@@ -1,0 +1,50 @@
+{
+  "pins" : [
+    {
+      "identity" : "alamofire",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Alamofire/Alamofire.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "78424be314842833c04bc3bef5b72e85fff99204"
+      }
+    },
+    {
+      "identity" : "kingfisher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/onevcat/Kingfisher.git",
+      "state" : {
+        "revision" : "44e891bdb61426a95e31492a67c7c0dfad1f87c5",
+        "version" : "7.4.1"
+      }
+    },
+    {
+      "identity" : "lottie-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/airbnb/lottie-ios.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "6b96292ffa1b052b5c1b93f08f058c8bf19d5a56"
+      }
+    },
+    {
+      "identity" : "skyfloatinglabeltextfield",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Skyscanner/SkyFloatingLabelTextField.git",
+      "state" : {
+        "revision" : "a0750ebbc7311f3b3debf99c5e59338e854afa59",
+        "version" : "4.0.0"
+      }
+    },
+    {
+      "identity" : "snapkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SnapKit/SnapKit.git",
+      "state" : {
+        "branch" : "develop",
+        "revision" : "58320fe80522414bf3a7e24c88123581dc586752"
+      }
+    }
+  ],
+  "version" : 2
+}
