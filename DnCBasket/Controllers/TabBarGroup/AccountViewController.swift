@@ -1,5 +1,5 @@
 //
-//  LoginViewController.swift
+//  AccountViewController.swift
 //  DnCBasket
 //
 //  Created by Леонід Шевченко on 05.12.2022.
@@ -7,13 +7,10 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
-    //MARK: - Constants and variables
-    
+class AccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .purple
+        view.backgroundColor = .orange
     }
-
 }

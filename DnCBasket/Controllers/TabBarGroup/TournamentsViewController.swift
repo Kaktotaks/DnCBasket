@@ -13,5 +13,4 @@ class TournamentsViewController: UIViewController {
 
         view.backgroundColor = .green
     }
-    
 }
