@@ -13,5 +13,4 @@ class AccountViewController: UIViewController {
 
         view.backgroundColor = .orange
     }
-    
 }

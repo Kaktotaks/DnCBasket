@@ -23,7 +23,6 @@
 		E4BA9429293E2BC40049F281 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E4BA9428293E2BC40049F281 /* Kingfisher */; };
 		E4BA942C293E2BE30049F281 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = E4BA942B293E2BE30049F281 /* Lottie */; };
 		E4BA942F293E2CBE0049F281 /* SkyFloatingLabelTextField in Frameworks */ = {isa = PBXBuildFile; productRef = E4BA942E293E2CBE0049F281 /* SkyFloatingLabelTextField */; };
-		E4BA9437293F63410049F281 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA9436293F63410049F281 /* CreateAccountViewController.swift */; };
 		E4BA943A293F64700049F281 /* ActivityIndicatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA9439293F64700049F281 /* ActivityIndicatorManager.swift */; };
 		E4BA943C293F649E0049F281 /* MyAlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA943B293F649E0049F281 /* MyAlertManager.swift */; };
 		E4BA943E293F64F10049F281 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA943D293F64F10049F281 /* GradientView.swift */; };
@@ -37,6 +36,7 @@
 		E4BA9456293FBAC40049F281 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA9455293FBAC40049F281 /* StringExtension.swift */; };
 		E4BA94582940A5050049F281 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4BA94572940A5050049F281 /* GoogleService-Info.plist */; };
 		E4BA945B2940DE7D0049F281 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA945A2940DE7D0049F281 /* Validator.swift */; };
+		E4BA945F29412E900049F281 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA945E29412E900049F281 /* CreateAccountViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,7 +53,6 @@
 		E4BA941A293E21C30049F281 /* TournamentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentsViewController.swift; sourceTree = "<group>"; };
 		E4BA941C293E21D50049F281 /* TeamsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsViewController.swift; sourceTree = "<group>"; };
 		E4BA941E293E21EC0049F281 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
-		E4BA9436293F63410049F281 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateAccountViewController.swift; path = ../../../../DnC/DnCBasket/DnCBasket/Controllers/CreateAccountViewController.swift; sourceTree = "<group>"; };
 		E4BA9439293F64700049F281 /* ActivityIndicatorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorManager.swift; sourceTree = "<group>"; };
 		E4BA943B293F649E0049F281 /* MyAlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAlertManager.swift; sourceTree = "<group>"; };
 		E4BA943D293F64F10049F281 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
@@ -64,6 +63,7 @@
 		E4BA9455293FBAC40049F281 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		E4BA94572940A5050049F281 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E4BA945A2940DE7D0049F281 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
+		E4BA945E29412E900049F281 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,7 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				E4BA93FB293DF3E50049F281 /* LoginViewController.swift */,
-				E4BA9436293F63410049F281 /* CreateAccountViewController.swift */,
+				E4BA945E29412E900049F281 /* CreateAccountViewController.swift */,
 			);
 			path = LoginGroup;
 			sourceTree = "<group>";
@@ -342,10 +342,10 @@
 				E4BA9415293E05850049F281 /* BaseViewController.swift in Sources */,
 				E4BA941B293E21C30049F281 /* TournamentsViewController.swift in Sources */,
 				E4BA93FC293DF3E50049F281 /* LoginViewController.swift in Sources */,
-				E4BA9437293F63410049F281 /* CreateAccountViewController.swift in Sources */,
 				E4BA943E293F64F10049F281 /* GradientView.swift in Sources */,
 				E4BA9402293DF3E50049F281 /* DnCBasket.xcdatamodeld in Sources */,
 				E4BA9417293E07010049F281 /* TabBarController.swift in Sources */,
+				E4BA945F29412E900049F281 /* CreateAccountViewController.swift in Sources */,
 				E4BA943A293F64700049F281 /* ActivityIndicatorManager.swift in Sources */,
 				E4BA9456293FBAC40049F281 /* StringExtension.swift in Sources */,
 				E4BA93F8293DF3E50049F281 /* AppDelegate.swift in Sources */,
