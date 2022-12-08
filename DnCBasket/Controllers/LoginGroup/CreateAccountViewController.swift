@@ -63,7 +63,6 @@ class CreateAccountViewController: UIViewController {
             let email = emailTextField.text, !email.isEmpty,
             let password = passwordTextField.text, !password.isEmpty
         else {
-            print("Missing data in Email/Password field.")
             return
         }
 
@@ -77,26 +76,22 @@ class CreateAccountViewController: UIViewController {
 
             switch emailResponce {
             case .success:
-                print("success")
                 emailTextField.lineColor = .green
                 emailTextField.selectedLineColor = .green
-            case .failure(_, let message):
+            case .failure:
                 emailTextField.lineColor = .red
                 emailTextField.selectedLineColor = .red
-                print(message.localized())
             }
         } else if passwordTextField.isEditing {
             let passwordResponce = Validator.shared.validate(values: (ValidationType.password, responce))
 
             switch passwordResponce {
             case .success:
-                print("success")
                 passwordTextField.lineColor = .green
                 passwordTextField.selectedLineColor = .green
-            case .failure(_, let message):
+            case .failure:
                 passwordTextField.lineColor = .red
                 passwordTextField.selectedLineColor = .red
-                print(message.localized())
             }
         }
     }

@@ -13,6 +13,7 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "door.left.hand.open"), style: .plain, target: self, action: #selector(logOutButtonTapped))
         view.backgroundColor = .systemBackground
            UITabBar.appearance().barTintColor = .systemBackground
            tabBar.tintColor = .label
@@ -40,4 +41,10 @@ class TabBarController: UITabBarController {
               createNavController(for: AccountViewController(), title: NSLocalizedString("Account", comment: ""), image: UIImage(systemName: "person")!)
           ]
       }
+    
+    @objc func logOutButtonTapped() {
+        FireBaseManager.shared.signOut {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
 }
