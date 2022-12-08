@@ -6,13 +6,12 @@
 //
 
 import UIKit
-import FirebaseAuth
 import SnapKit
 import Lottie
 import SkyFloatingLabelTextField
 
-class LoginViewController: UIViewController {
-    // MARK: - Variables
+class LoginViewController: BaseViewController {
+    // MARK: - Constants & Variables
     private enum Constants {
         static let dncLabel = "D     С"
         static let loginButtonTitle = "Login"
@@ -22,7 +21,7 @@ class LoginViewController: UIViewController {
         static let emailPlaceholderText = "Email address"
         static let passPlaceholderText = "Password"
 
-        static let redColor = UIColor(red: 198/255, green: 60/255, blue: 83/255, alpha: 1.0)
+        static let redColor = UIColor(red: 198 / 255, green: 60 / 255, blue: 83 / 255, alpha: 1.0)
     }
 
     private let dncLabel: UILabel = {
@@ -51,6 +50,7 @@ class LoginViewController: UIViewController {
         value.title = "Password"
         value.selectedTitleColor = .systemGray
         value.selectedLineColor = .systemGray4
+        value.isSecureTextEntry = true
         value.font = UIFont.systemFont(ofSize: 20)
         value.autocapitalizationType = .none
         value.leftViewMode = .always
@@ -106,9 +106,8 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        passwordTextField.isSecureTextEntry = true
         setupUI()
-//        userLogedInUI()
+        userLogedIn()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -117,62 +116,33 @@ class LoginViewController: UIViewController {
         emailTextField.becomeFirstResponder()
     }
 
+    // MARK: - Functions
     @objc func loginButtonPressed(sender: UIButton!) {
-
-        print("loginButtonPressed")
         guard
             let email = emailTextField.text, !email.isEmpty,
             let password = passwordTextField.text, !password.isEmpty
         else {
-            print("Missing data in Email/Password field.")
             return
         }
 
-        Auth.auth().signIn(withEmail: email, password: password) { [weak self] user, error in
-            guard let self = self else { return }
-
-            if let error = error, user == nil {
-                let errorAlert = MyAlertManager.shared.presentTemporaryInfoAlert(title: "Log in error!",
-                                                                                 message: error.localizedDescription,
-                                                                                 preferredStyle: .actionSheet,
-                                                                                 forTime: 10)
-                self.present(errorAlert, animated: true, completion: nil)
-            } else if error == nil, user == user {
-                print("You successfully loged in \(user?.user.displayName ?? "nilName")")
-
-                self.transitionToTapBar()
-            }
+        FireBaseManager.shared.logInToAccount(email: email, password: password, viewController: self) {
+            self.goToTapBar(vc: self)
         }
     }
 
     @objc func createNewAccountButtonPressed(sender: UIButton!) {
-        let createAccVC = CreateAccountViewController()
-        if let sheet = createAccVC.sheetPresentationController {
-            sheet.detents = [.medium()]
-            sheet.prefersGrabberVisible = true
-            sheet.preferredCornerRadius = 20
-        }
-
-        present(createAccVC, animated: true)
+        self.goToCreateAccVC(vc: self)
     }
 
     @objc func enterAsGuestButtonPressed(sender: UIButton!) {
-        print("enterAsGuestButtonPressed")
-        transitionToTapBar()
+        self.goToTapBar(vc: self)
     // MARK: Enter as a guest
     }
 
-//    private func userLogedInUI() {
-//        if FirebaseAuth.Auth.auth().currentUser != nil {
-//            transitionToHomeVC()
-//        }
-//    }
-
-    private func transitionToTapBar() {
-        let tapBar = UINavigationController(rootViewController: TabBarController())
-        tapBar.modalPresentationStyle = .fullScreen
-        tapBar.modalTransitionStyle = .flipHorizontal
-        present(tapBar, animated: true)
+    private func userLogedIn() {
+        if FireBaseManager.shared.currentUser != nil {
+            self.goToTapBar(vc: self, animated: false)
+        }
     }
 }
 

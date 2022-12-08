@@ -33,10 +33,10 @@
 		E4BA944C293F6C940049F281 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E4BA944B293F6C940049F281 /* FirebaseFirestore */; };
 		E4BA9451293F7FF50049F281 /* basketBall.json in Resources */ = {isa = PBXBuildFile; fileRef = E4BA9450293F7FF50049F281 /* basketBall.json */; };
 		E4BA9453293FB6990049F281 /* spinBasketball.json in Resources */ = {isa = PBXBuildFile; fileRef = E4BA9452293FB6990049F281 /* spinBasketball.json */; };
-		E4BA9456293FBAC40049F281 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA9455293FBAC40049F281 /* StringExtension.swift */; };
 		E4BA94582940A5050049F281 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4BA94572940A5050049F281 /* GoogleService-Info.plist */; };
 		E4BA945B2940DE7D0049F281 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA945A2940DE7D0049F281 /* Validator.swift */; };
 		E4BA945F29412E900049F281 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA945E29412E900049F281 /* CreateAccountViewController.swift */; };
+		E4BA94612941F46F0049F281 /* FireBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA94602941F46F0049F281 /* FireBaseManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,10 +60,10 @@
 		E4BA9444293F65A30049F281 /* RestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestService.swift; sourceTree = "<group>"; };
 		E4BA9450293F7FF50049F281 /* basketBall.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = basketBall.json; sourceTree = "<group>"; };
 		E4BA9452293FB6990049F281 /* spinBasketball.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = spinBasketball.json; sourceTree = "<group>"; };
-		E4BA9455293FBAC40049F281 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		E4BA94572940A5050049F281 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E4BA945A2940DE7D0049F281 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		E4BA945E29412E900049F281 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		E4BA94602941F46F0049F281 /* FireBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,14 +104,13 @@
 		E4BA93F6293DF3E50049F281 /* DnCBasket */ = {
 			isa = PBXGroup;
 			children = (
-				E4BA94572940A5050049F281 /* GoogleService-Info.plist */,
-				E4BA9454293FBAAE0049F281 /* Extensions */,
 				E4BA9432293F62560049F281 /* Managers */,
 				E4BA9433293F625D0049F281 /* Models */,
 				E4BA9434293F62640049F281 /* Views */,
 				E4BA9410293DF58B0049F281 /* Controllers */,
 				E4BA940E293DF56D0049F281 /* Defaults */,
 				E4BA9400293DF3E50049F281 /* DnCBasket.xcdatamodeld */,
+				E4BA94572940A5050049F281 /* GoogleService-Info.plist */,
 			);
 			path = DnCBasket;
 			sourceTree = "<group>";
@@ -198,6 +197,7 @@
 			children = (
 				E4BA9441293F65820049F281 /* MyCoreDataManager.swift */,
 				E4BA9444293F65A30049F281 /* RestService.swift */,
+				E4BA94602941F46F0049F281 /* FireBaseManager.swift */,
 			);
 			path = DataManagers;
 			sourceTree = "<group>";
@@ -209,14 +209,6 @@
 				E4BA9452293FB6990049F281 /* spinBasketball.json */,
 			);
 			path = LottieAnimations;
-			sourceTree = "<group>";
-		};
-		E4BA9454293FBAAE0049F281 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				E4BA9455293FBAC40049F281 /* StringExtension.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		E4BA94592940DE640049F281 /* Validator */ = {
@@ -347,13 +339,13 @@
 				E4BA9417293E07010049F281 /* TabBarController.swift in Sources */,
 				E4BA945F29412E900049F281 /* CreateAccountViewController.swift in Sources */,
 				E4BA943A293F64700049F281 /* ActivityIndicatorManager.swift in Sources */,
-				E4BA9456293FBAC40049F281 /* StringExtension.swift in Sources */,
 				E4BA93F8293DF3E50049F281 /* AppDelegate.swift in Sources */,
 				E4BA945B2940DE7D0049F281 /* Validator.swift in Sources */,
 				E4BA941F293E21EC0049F281 /* AccountViewController.swift in Sources */,
 				E4BA9419293E21AB0049F281 /* HomeViewController.swift in Sources */,
 				E4BA9445293F65A30049F281 /* RestService.swift in Sources */,
 				E4BA941D293E21D50049F281 /* TeamsViewController.swift in Sources */,
+				E4BA94612941F46F0049F281 /* FireBaseManager.swift in Sources */,
 				E4BA93FA293DF3E50049F281 /* SceneDelegate.swift in Sources */,
 				E4BA9442293F65820049F281 /* MyCoreDataManager.swift in Sources */,
 				E4BA943C293F649E0049F281 /* MyAlertManager.swift in Sources */,

@@ -22,31 +22,25 @@ enum Valid {
 
 enum ValidationType {
     case email
-    case stringWithFirstLetterCaps
-    case phoneNo
-    case alphabeticString
     case password
 }
 
 enum RegEx: String {
-    case email = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{1,}" // Email
-    case password = "^.{6,15}$" // Password length 6-15
-    case alphabeticStringWithSpace = "^[a-zA-Z ]*$" // e.g. hello sandeep
-    case alphabeticStringFirstLetterCaps = "^[A-Z]+[a-zA-Z]*$" // SandsHell
-    case phoneNo = "[0-9]{10,14}" // PhoneNo 10-14 Digits
+    case email = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}" // Email
+//    case password = "^.{8,30}$" // Password length 8-30
+    case password = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$" // Minimum 8 characters at least 1 Alphabet and 1 Number:
 }
 
 enum AlertMessages: String {
-     case inValidEmail = "InvalidEmail"
-     case invalidFirstLetterCaps = "First Letter should be capital"
-     case inValidPhone = "Invalid Phone"
-     case invalidAlphabeticString = "Invalid String"
-     case inValidPSW = "Invalid Password"
+     case inValidEmail = "Invalid Email"
+     case inValidPSW = """
+    Invalid Password. Password must contain:
+    - minimum 8 characters
+    - at least 1 alphabet
+    - at least 1 number
+    """
 
-     case emptyPhone = "Empty Phone"
      case emptyEmail = "Empty Email"
-     case emptyFirstLetterCaps = "Empty Name"
-     case emptyAlphabeticString = "Empty String"
      case emptyPSW = "Empty Password"
 
      func localized() -> String {
@@ -54,29 +48,14 @@ enum AlertMessages: String {
      }
 }
 
-class Validation: NSObject {
-    public static let shared = Validation()
+class Validator: NSObject {
+    public static let shared = Validator()
 
     func validate(values: (type: ValidationType, inputValue: String)...) -> Valid {
         for valueToBeChecked in values {
             switch valueToBeChecked.type {
             case .email:
                 if let tempValue = isValidString((valueToBeChecked.inputValue, .email, .emptyEmail, .inValidEmail)) {
-                    return tempValue
-                }
-
-            case .stringWithFirstLetterCaps:
-                if let tempValue = isValidString((valueToBeChecked.inputValue, .alphabeticStringFirstLetterCaps, .emptyFirstLetterCaps, .invalidFirstLetterCaps)) {
-                    return tempValue
-                }
-
-            case .phoneNo:
-                if let tempValue = isValidString((valueToBeChecked.inputValue, .phoneNo, .emptyPhone, .inValidPhone)) {
-                    return tempValue
-                }
-
-            case .alphabeticString:
-                if let tempValue = isValidString((valueToBeChecked.inputValue, .alphabeticStringWithSpace, .emptyAlphabeticString, .invalidAlphabeticString)) {
                     return tempValue
                 }
 
