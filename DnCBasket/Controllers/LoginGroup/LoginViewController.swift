@@ -135,7 +135,7 @@ class LoginViewController: UIViewController {
                 let errorAlert = MyAlertManager.shared.presentTemporaryInfoAlert(title: "Log in error!",
                                                                                  message: error.localizedDescription,
                                                                                  preferredStyle: .actionSheet,
-                                                                                 forTime: 10)
+                                                                                 forTime: 5)
                 self.present(errorAlert, animated: true, completion: nil)
             } else if error == nil, user == user {
                 print("You successfully loged in \(user?.user.displayName ?? "nilName")")
@@ -147,13 +147,14 @@ class LoginViewController: UIViewController {
 
     @objc func createNewAccountButtonPressed(sender: UIButton!) {
         let createAccVC = CreateAccountViewController()
-        if let sheet = createAccVC.sheetPresentationController {
+        let navController = UINavigationController(rootViewController: createAccVC)
+        if let sheet = navController.sheetPresentationController {
             sheet.detents = [.medium()]
             sheet.prefersGrabberVisible = true
             sheet.preferredCornerRadius = 20
         }
 
-        present(createAccVC, animated: true)
+        present(navController, animated: true)
     }
 
     @objc func enterAsGuestButtonPressed(sender: UIButton!) {

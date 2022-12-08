@@ -7,21 +7,13 @@
 
 import UIKit
 import SkyFloatingLabelTextField
-import FirebaseAuth
 
 class CreateAccountViewController: UIViewController {
     private enum Constants {
         static let emailPlaceholderText = "Enter your email"
         static let passPlaceholderText = "Create your password"
+        static let redColor = UIColor(red: 198 / 255, green: 60 / 255, blue: 83 / 255, alpha: 1.0)
     }
-
-    private lazy var registrationLabel: UILabel = {
-        let value: UILabel = .init()
-        value.text = "Registration"
-        value.font = UIFont.systemFont(ofSize: 24, weight: .heavy)
-        value.textAlignment = .center
-        return value
-    }()
 
     private lazy var emailTextField: SkyFloatingLabelTextField = {
         let value = SkyFloatingLabelTextField()
@@ -47,7 +39,7 @@ class CreateAccountViewController: UIViewController {
 
     private lazy var createAccountButton: UIButton = {
         let value: UIButton = .init()
-        value.backgroundColor = .systemFill.withAlphaComponent(0.5)
+        value.backgroundColor = Constants.redColor.withAlphaComponent(0.7)
         value.addTarget(self, action: #selector(createAccountButtonPressed), for: .touchUpInside)
         value.setTitleColor(.white, for: .normal)
         value.setTitle("Create an account", for: .normal)
@@ -66,67 +58,46 @@ class CreateAccountViewController: UIViewController {
     }
 
     // MARK: - Functions
-    @objc private func backButtonTapped() {
-            dismiss(animated: true, completion: nil)
-    }
-
     @objc private func createAccountButtonPressed(sender: UIButton!) {
         guard
             let email = emailTextField.text, !email.isEmpty,
             let password = passwordTextField.text, !password.isEmpty
         else {
-            print(print("Missing data in Email/Password field."))
+            print("Missing data in Email/Password field.")
             return
         }
 
-        Auth.auth().createUser(withEmail: email, password: password) { [weak self]_, error in
-            guard let self = self else { return }
+        FireBaseManager.shared.createAccount(email: email, password: password, viewController: self)
+    }
 
-            if error == nil {
-                let successAlert = MyAlertManager.shared.presentTemporaryInfoAlert(
-                    title: "Well done",
-                    message: "You have just created a new account. Go back to login.",
-                    preferredStyle: .actionSheet,
-                    forTime: 30
-                )
+    // MARK: Indicate succes or invalid format of password and email
+    private func checkEmailAndPassword(responce: String) {
+        if emailTextField.isEditing {
+            let emailResponce = Validator.shared.validate(values: (ValidationType.email, responce))
 
-                successAlert.addAction(UIAlertAction(title: "OK", style: .default))
-                self.present(successAlert, animated: true, completion: nil)
-            } else {
-                print("Registration error: \(error?.localizedDescription)")
-                let errorAlert = MyAlertManager.shared.presentTemporaryInfoAlert(
-                    title: "Registration error:",
-                    message: error?.localizedDescription,
-                    preferredStyle: .actionSheet,
-                    forTime: 5
-                )
-
-                self.present(errorAlert, animated: true, completion: nil)
+            switch emailResponce {
+            case .success:
+                print("success")
+                emailTextField.lineColor = .green
+                emailTextField.selectedLineColor = .green
+            case .failure(_, let message):
+                emailTextField.lineColor = .red
+                emailTextField.selectedLineColor = .red
+                print(message.localized())
             }
-        }
-    }
+        } else if passwordTextField.isEditing {
+            let passwordResponce = Validator.shared.validate(values: (ValidationType.password, responce))
 
-    func checkEmail(email: String) {
-        let response = Validation.shared.validate(values: (ValidationType.email, email))
-
-        switch response {
-        case .success:
-            print("success")
-            break
-        case .failure(_, let message):
-            print(message.localized())
-        }
-    }
-
-    func checkPassword(password: String) {
-        let response = Validation.shared.validate(values: (ValidationType.password, password))
-
-        switch response {
-        case .success:
-            print("success")
-            break
-        case .failure(_, let message):
-            print(message.localized())
+            switch passwordResponce {
+            case .success:
+                print("success")
+                passwordTextField.lineColor = .green
+                passwordTextField.selectedLineColor = .green
+            case .failure(_, let message):
+                passwordTextField.lineColor = .red
+                passwordTextField.selectedLineColor = .red
+                print(message.localized())
+            }
         }
     }
 }
@@ -144,34 +115,24 @@ extension CreateAccountViewController: UITextFieldDelegate {
 
         textField.text = responce
 
-        if emailTextField.isEditing {
-            checkEmail(email: responce)
-        } else if passwordTextField.isEditing {
-            checkPassword(password: responce)
-        }
+        checkEmailAndPassword(responce: responce)
 
         return false
     }
 }
 
-// MARK: - Constraints extension
+// MARK: - Setup UI extension
 extension CreateAccountViewController {
     func setupUI() {
+        title = "Registration"
         view.backgroundColor = .systemBackground.withAlphaComponent(0.8)
-        view.addSubview(registrationLabel)
         view.addSubview(emailTextField)
         view.addSubview(passwordTextField)
         view.addSubview(createAccountButton)
 
-        registrationLabel.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(40)
-            $0.top.equalToSuperview().inset(30)
-            $0.height.equalTo(40)
-        }
-
         emailTextField.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(40)
-            $0.top.equalTo(registrationLabel).inset(56)
+            $0.top.equalToSuperview().inset(50)
             $0.height.equalTo(40)
         }
 
