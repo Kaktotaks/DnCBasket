@@ -34,6 +34,7 @@ class CreateAccountViewController: UIViewController {
         value.font = UIFont.systemFont(ofSize: 20)
         value.autocapitalizationType = .none
         value.leftViewMode = .always
+        value.isSecureTextEntry = true
         return value
     }()
 
@@ -48,6 +49,18 @@ class CreateAccountViewController: UIViewController {
         value.layer.borderColor = UIColor.systemOrange.cgColor
         return value
     }()
+
+    private lazy var showHidePasswordButton: UIButton = {
+        let value: UIButton = .init()
+        value.backgroundColor = .systemGray3.withAlphaComponent(0.2)
+        value.addTarget(self, action: #selector(showHidePasswordButtonPressed), for: .touchUpInside)
+        value.setImage(UIImage(systemName: "eye.slash"), for: .normal)
+        value.layer.cornerRadius = 10
+        value.tintColor = Constants.redColor.withAlphaComponent(0.7)
+        return value
+    }()
+
+    private lazy var buttonTogled = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,6 +108,18 @@ class CreateAccountViewController: UIViewController {
             }
         }
     }
+
+    @objc private func showHidePasswordButtonPressed(_ sender: Any) {
+        if buttonTogled == false {
+            buttonTogled = true
+            showHidePasswordButton.setImage(UIImage(systemName: "eye.slash"), for: .normal)
+            passwordTextField.isSecureTextEntry = true
+        } else {
+            buttonTogled = false
+            showHidePasswordButton.setImage(UIImage(systemName: "eye"), for: .normal)
+            passwordTextField.isSecureTextEntry = false
+        }
+    }
 }
 
 extension CreateAccountViewController: UITextFieldDelegate {
@@ -124,6 +149,7 @@ extension CreateAccountViewController {
         view.addSubview(emailTextField)
         view.addSubview(passwordTextField)
         view.addSubview(createAccountButton)
+        view.addSubview(showHidePasswordButton)
 
         emailTextField.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(40)
@@ -142,6 +168,12 @@ extension CreateAccountViewController {
             $0.width.equalTo(200)
             $0.top.equalTo(passwordTextField).inset(70)
             $0.height.equalTo(40)
+        }
+        
+        showHidePasswordButton.snp.makeConstraints {
+            $0.centerY.equalTo(passwordTextField)
+            $0.trailing.equalToSuperview().inset(40)
+            $0.width.height.equalTo(30)
         }
     }
 }
