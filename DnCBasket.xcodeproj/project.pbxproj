@@ -31,7 +31,6 @@
 		E4BA9448293F6C940049F281 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E4BA9447293F6C940049F281 /* FirebaseAuth */; };
 		E4BA944A293F6C940049F281 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = E4BA9449293F6C940049F281 /* FirebaseCrashlytics */; };
 		E4BA944C293F6C940049F281 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E4BA944B293F6C940049F281 /* FirebaseFirestore */; };
-		E4BA9451293F7FF50049F281 /* basketBall.json in Resources */ = {isa = PBXBuildFile; fileRef = E4BA9450293F7FF50049F281 /* basketBall.json */; };
 		E4BA9453293FB6990049F281 /* spinBasketball.json in Resources */ = {isa = PBXBuildFile; fileRef = E4BA9452293FB6990049F281 /* spinBasketball.json */; };
 		E4BA94582940A5050049F281 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4BA94572940A5050049F281 /* GoogleService-Info.plist */; };
 		E4BA945B2940DE7D0049F281 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA945A2940DE7D0049F281 /* Validator.swift */; };
@@ -58,7 +57,6 @@
 		E4BA943D293F64F10049F281 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		E4BA9441293F65820049F281 /* MyCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoreDataManager.swift; sourceTree = "<group>"; };
 		E4BA9444293F65A30049F281 /* RestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestService.swift; sourceTree = "<group>"; };
-		E4BA9450293F7FF50049F281 /* basketBall.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = basketBall.json; sourceTree = "<group>"; };
 		E4BA9452293FB6990049F281 /* spinBasketball.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = spinBasketball.json; sourceTree = "<group>"; };
 		E4BA94572940A5050049F281 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E4BA945A2940DE7D0049F281 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
@@ -149,6 +147,7 @@
 		E4BA9433293F625D0049F281 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E4BA946229436A310049F281 /* APIModels */,
 				E4BA944D293F7EBC0049F281 /* LottieAnimations */,
 			);
 			path = Models;
@@ -205,7 +204,6 @@
 		E4BA944D293F7EBC0049F281 /* LottieAnimations */ = {
 			isa = PBXGroup;
 			children = (
-				E4BA9450293F7FF50049F281 /* basketBall.json */,
 				E4BA9452293FB6990049F281 /* spinBasketball.json */,
 			);
 			path = LottieAnimations;
@@ -217,6 +215,13 @@
 				E4BA945A2940DE7D0049F281 /* Validator.swift */,
 			);
 			path = Validator;
+			sourceTree = "<group>";
+		};
+		E4BA946229436A310049F281 /* APIModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = APIModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,7 +303,6 @@
 			files = (
 				E4BA9453293FB6990049F281 /* spinBasketball.json in Resources */,
 				E4BA94582940A5050049F281 /* GoogleService-Info.plist in Resources */,
-				E4BA9451293F7FF50049F281 /* basketBall.json in Resources */,
 				E4BA9404293DF3E60049F281 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
