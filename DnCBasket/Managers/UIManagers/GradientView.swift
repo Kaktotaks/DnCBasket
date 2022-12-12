@@ -16,6 +16,7 @@ public class GradientView: UIView {
     @IBInspectable var endLocation:   Double =   0.95 { didSet { updateLocations() }}
     @IBInspectable var horizontalMode:  Bool =  false { didSet { updatePoints() }}
     @IBInspectable var diagonalMode:    Bool =  false { didSet { updatePoints() }}
+    @IBInspectable var verticalMode:    Bool =  false { didSet { updatePoints() }}
 
     override public class var layerClass: AnyClass { CAGradientLayer.self }
 
@@ -25,6 +26,9 @@ public class GradientView: UIView {
         if horizontalMode {
             gradientLayer.startPoint = diagonalMode ? .init(x: 1, y: 0) : .init(x: 0, y: 0.5)
             gradientLayer.endPoint   = diagonalMode ? .init(x: 0, y: 1) : .init(x: 1, y: 0.5)
+        } else if verticalMode {
+            gradientLayer.startPoint = verticalMode ? .init(x: 1, y: 1) : .init(x: 0.5, y: 0)
+            gradientLayer.endPoint   = verticalMode ? .init(x: 1, y: 0) : .init(x: 1, y: 0.5)
         } else {
             gradientLayer.startPoint = diagonalMode ? .init(x: 0, y: 0) : .init(x: 0.5, y: 0)
             gradientLayer.endPoint   = diagonalMode ? .init(x: 1, y: 1) : .init(x: 0.5, y: 1)
