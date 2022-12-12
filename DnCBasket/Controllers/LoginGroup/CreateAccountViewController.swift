@@ -9,12 +9,6 @@ import UIKit
 import SkyFloatingLabelTextField
 
 class CreateAccountViewController: UIViewController {
-    private enum Constants {
-        static let emailPlaceholderText = "Enter your email"
-        static let passPlaceholderText = "Create your password"
-        static let redColor = UIColor(red: 198 / 255, green: 60 / 255, blue: 83 / 255, alpha: 1.0)
-    }
-
     private lazy var emailTextField: SkyFloatingLabelTextField = {
         let value = SkyFloatingLabelTextField()
         value.placeholder = Constants.emailPlaceholderText

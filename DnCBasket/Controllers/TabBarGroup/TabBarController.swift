@@ -13,8 +13,6 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "door.left.hand.open"), style: .plain, target: self, action: #selector(logOutButtonTapped))
-        view.backgroundColor = .systemBackground
            UITabBar.appearance().barTintColor = .systemBackground
            tabBar.tintColor = .label
            setupVCs()
@@ -27,8 +25,6 @@ class TabBarController: UITabBarController {
           let navController = UINavigationController(rootViewController: rootViewController)
           navController.tabBarItem.title = title
           navController.tabBarItem.image = image
-          navController.navigationBar.prefersLargeTitles = true
-          rootViewController.navigationItem.title = title
           return navController
       }
 
@@ -37,14 +33,8 @@ class TabBarController: UITabBarController {
           viewControllers = [
               createNavController(for: HomeViewController(), title: NSLocalizedString("Home", comment: ""), image: UIImage(systemName: "house")!),
               createNavController(for: TournamentsViewController(), title: NSLocalizedString("Tournaments", comment: ""), image: UIImage(systemName: "trophy")!),
-              createNavController(for: TeamsViewController(), title: NSLocalizedString("Teams", comment: ""), image: UIImage(systemName: "figure.basketball")!),
+              createNavController(for: TeamsViewController(), title: NSLocalizedString("Teams", comment: ""), image: UIImage(systemName: "person.3")!),
               createNavController(for: AccountViewController(), title: NSLocalizedString("Account", comment: ""), image: UIImage(systemName: "person")!)
           ]
       }
-    
-    @objc func logOutButtonTapped() {
-        FireBaseManager.shared.signOut {
-            self.dismiss(animated: true, completion: nil)
-        }
-    }
 }

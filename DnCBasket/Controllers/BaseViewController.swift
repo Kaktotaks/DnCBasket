@@ -6,10 +6,21 @@
 //
 
 import UIKit
+import SnapKit
 
 class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+
+    func setUPNavItems(needed: Bool = true) {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "door.left.hand.open"), style: .plain, target: self, action: #selector(logOutButtonTapped))
+    }
+
+    @objc func logOutButtonTapped() {
+        FireBaseManager.shared.signOut {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 
     func goToTapBar(vc: UIViewController, animated: Bool = true) {
