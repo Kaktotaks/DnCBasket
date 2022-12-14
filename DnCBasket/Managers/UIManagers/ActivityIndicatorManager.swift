@@ -15,7 +15,7 @@ class ActivityIndicatorManager: UIView {
     private let loadingAnimationView = LottieAnimationView()
 
     enum AnimationName: String {
-        case basketBallAnimation
+        case basketballLoading
     }
 
     // MARK: - Setup UI Components
