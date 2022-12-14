@@ -48,16 +48,20 @@ class HomeViewController: BaseViewController {
         value.translatesAutoresizingMaskIntoConstraints = false
         return value
     }()
+    
+    private var gamesModel: [GameResponse] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUI()
         setUpTableView()
+        getGames()
         setupFilteredByButton()
         setUPNavItems(needed: true)
     }
 
+    // MARK: - Methods
     private func setupFilteredByButton() {
         let categoriesMenu = UIMenu(title: "",
                                     children: [
@@ -87,12 +91,39 @@ class HomeViewController: BaseViewController {
         gamesTableView.dataSource = self
 
     }
+    
+    private func getGames() {
+        ActivityIndicatorManager.shared.showIndicator(.basketballLoading)
+
+        RestService.shared.getAllGames { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let games):
+                self.gamesModel.append(contentsOf: games)
+                DispatchQueue.main.async {
+                    ActivityIndicatorManager.shared.hide()
+                    self.gamesTableView.reloadData()
+                }
+            case .failure(let error):
+                let somethingWentWrongAlert = MyAlertManager.shared.presentTemporaryInfoAlert(
+                    title: Constants.TemporaryAlertAnswers.somethingWentWrongAnswear,
+                    message: error.localizedDescription,
+                    preferredStyle: .actionSheet,
+                    forTime: 10.0)
+                DispatchQueue.main.async {
+                    ActivityIndicatorManager.shared.hide()
+                    self.present(somethingWentWrongAlert, animated: true)
+                }
+            }
+        }
+    }
 }
 
 // MARK: - TableView setup
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        5
+        gamesModel.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -105,8 +136,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
 
-//        cell.configure(with: dailyModel[indexPath.row])
-//        cell.selectionStyle = .none
+        cell.configure(with: gamesModel[indexPath.row])
+        cell.selectionStyle = .none
         return cell
     }
     

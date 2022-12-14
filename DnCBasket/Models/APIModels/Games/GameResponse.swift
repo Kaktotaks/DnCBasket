@@ -1,6 +1,6 @@
 import Foundation
 
-struct Response: Codable {
+struct GameResponse: Codable {
 	let id: Int?
 	let date: String?
 	let time: String?

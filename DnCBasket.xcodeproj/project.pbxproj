@@ -42,12 +42,14 @@
 		E4BA947329479EB00049F281 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA946929479EB00049F281 /* Status.swift */; };
 		E4BA947429479EB00049F281 /* Away.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA946A29479EB00049F281 /* Away.swift */; };
 		E4BA947529479EB00049F281 /* Scores.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA946B29479EB00049F281 /* Scores.swift */; };
-		E4BA947629479EB00049F281 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA946C29479EB00049F281 /* Response.swift */; };
+		E4BA947629479EB00049F281 /* GameResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA946C29479EB00049F281 /* GameResponse.swift */; };
 		E4BA947729479EB00049F281 /* Teams.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA946D29479EB00049F281 /* Teams.swift */; };
 		E4BA947829479EB00049F281 /* GamesEntryPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA946E29479EB00049F281 /* GamesEntryPoint.swift */; };
 		E4BA947929479EB00049F281 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA946F29479EB00049F281 /* Home.swift */; };
 		E4BA947A29479EB00049F281 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA947029479EB00049F281 /* Country.swift */; };
 		E4BA947B29479EB00049F281 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA947129479EB00049F281 /* Parameters.swift */; };
+		E4BA947D2948E1720049F281 /* basketballLoading.json in Resources */ = {isa = PBXBuildFile; fileRef = E4BA947C2948E1720049F281 /* basketballLoading.json */; };
+		E4BA947F294931DF0049F281 /* DateFormater.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA947E294931DF0049F281 /* DateFormater.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,12 +82,14 @@
 		E4BA946929479EB00049F281 /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		E4BA946A29479EB00049F281 /* Away.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Away.swift; sourceTree = "<group>"; };
 		E4BA946B29479EB00049F281 /* Scores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scores.swift; sourceTree = "<group>"; };
-		E4BA946C29479EB00049F281 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		E4BA946C29479EB00049F281 /* GameResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameResponse.swift; sourceTree = "<group>"; };
 		E4BA946D29479EB00049F281 /* Teams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Teams.swift; sourceTree = "<group>"; };
 		E4BA946E29479EB00049F281 /* GamesEntryPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamesEntryPoint.swift; sourceTree = "<group>"; };
 		E4BA946F29479EB00049F281 /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		E4BA947029479EB00049F281 /* Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		E4BA947129479EB00049F281 /* Parameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parameters.swift; sourceTree = "<group>"; };
+		E4BA947C2948E1720049F281 /* basketballLoading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = basketballLoading.json; sourceTree = "<group>"; };
+		E4BA947E294931DF0049F281 /* DateFormater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormater.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +217,7 @@
 				E4BA9439293F64700049F281 /* ActivityIndicatorManager.swift */,
 				E4BA943B293F649E0049F281 /* MyAlertManager.swift */,
 				E4BA943D293F64F10049F281 /* GradientView.swift */,
+				E4BA947E294931DF0049F281 /* DateFormater.swift */,
 			);
 			path = UIManagers;
 			sourceTree = "<group>";
@@ -230,6 +235,7 @@
 		E4BA944D293F7EBC0049F281 /* LottieAnimations */ = {
 			isa = PBXGroup;
 			children = (
+				E4BA947C2948E1720049F281 /* basketballLoading.json */,
 				E4BA9452293FB6990049F281 /* spinBasketball.json */,
 			);
 			path = LottieAnimations;
@@ -260,7 +266,7 @@
 				E4BA946E29479EB00049F281 /* GamesEntryPoint.swift */,
 				E4BA946829479EB00049F281 /* League.swift */,
 				E4BA947129479EB00049F281 /* Parameters.swift */,
-				E4BA946C29479EB00049F281 /* Response.swift */,
+				E4BA946C29479EB00049F281 /* GameResponse.swift */,
 				E4BA946B29479EB00049F281 /* Scores.swift */,
 				E4BA946929479EB00049F281 /* Status.swift */,
 				E4BA946D29479EB00049F281 /* Teams.swift */,
@@ -346,6 +352,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4BA9453293FB6990049F281 /* spinBasketball.json in Resources */,
+				E4BA947D2948E1720049F281 /* basketballLoading.json in Resources */,
 				E4BA94582940A5050049F281 /* GoogleService-Info.plist in Resources */,
 				E4BA9404293DF3E60049F281 /* Assets.xcassets in Resources */,
 			);
@@ -400,6 +407,7 @@
 				E4BA9445293F65A30049F281 /* RestService.swift in Sources */,
 				E4BA941D293E21D50049F281 /* TeamsViewController.swift in Sources */,
 				E4BA947A29479EB00049F281 /* Country.swift in Sources */,
+				E4BA947F294931DF0049F281 /* DateFormater.swift in Sources */,
 				E4BA947429479EB00049F281 /* Away.swift in Sources */,
 				E4BA94612941F46F0049F281 /* FireBaseManager.swift in Sources */,
 				E4BA947829479EB00049F281 /* GamesEntryPoint.swift in Sources */,
@@ -408,7 +416,7 @@
 				E4BA9442293F65820049F281 /* MyCoreDataManager.swift in Sources */,
 				E4BA947529479EB00049F281 /* Scores.swift in Sources */,
 				E4BA943C293F649E0049F281 /* MyAlertManager.swift in Sources */,
-				E4BA947629479EB00049F281 /* Response.swift in Sources */,
+				E4BA947629479EB00049F281 /* GameResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

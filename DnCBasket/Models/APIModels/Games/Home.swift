@@ -1,6 +1,9 @@
 import Foundation
 
 struct Home: Codable {
+    let id: Int?
+    let name: String?
+    let logo: String?
 	let quarter1: Int?
 	let quarter2: Int?
 	let quarter3: Int?
@@ -10,6 +13,9 @@ struct Home: Codable {
 
 	enum CodingKeys: String, CodingKey {
 
+        case id =  "id"
+        case name = "name"
+        case logo = "logo"
 		case quarter1 = "quarter_1"
 		case quarter2 = "quarter_2"
 		case quarter3 = "quarter_3"
@@ -20,6 +26,9 @@ struct Home: Codable {
 
 	init(from decoder: Decoder) throws {
 		let values = try decoder.container(keyedBy: CodingKeys.self)
+        id = try values.decodeIfPresent(Int.self, forKey: .id)
+        name = try values.decodeIfPresent(String.self, forKey: .name)
+        logo = try values.decodeIfPresent(String.self, forKey: .logo)
 		quarter1 = try values.decodeIfPresent(Int.self, forKey: .quarter1)
 		quarter2 = try values.decodeIfPresent(Int.self, forKey: .quarter2)
 		quarter3 = try values.decodeIfPresent(Int.self, forKey: .quarter3)

@@ -5,7 +5,7 @@ struct GamesEntryPoint: Codable {
 	let parameters: Parameters?
 	let errors: [String]?
 	let results: Int?
-	let response: [Response]?
+	let response: [GameResponse]?
 
 	enum CodingKeys: String, CodingKey {
 
@@ -22,7 +22,7 @@ struct GamesEntryPoint: Codable {
 		parameters = try values.decodeIfPresent(Parameters.self, forKey: .parameters)
 		errors = try values.decodeIfPresent([String].self, forKey: .errors)
 		results = try values.decodeIfPresent(Int.self, forKey: .results)
-		response = try values.decodeIfPresent([Response].self, forKey: .response)
+		response = try values.decodeIfPresent([GameResponse].self, forKey: .response)
 	}
 
 }
