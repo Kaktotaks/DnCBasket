@@ -14,7 +14,12 @@ class BaseViewController: UIViewController {
     }
 
     func setUPNavItems(needed: Bool = true) {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "door.left.hand.open"), style: .plain, target: self, action: #selector(logOutButtonTapped))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            image: UIImage(systemName: "door.left.hand.open"),
+            style: .plain,
+            target: self,
+            action: #selector(logOutButtonTapped)
+        )
     }
 
     @objc func logOutButtonTapped() {

@@ -12,44 +12,14 @@ import SnapKit
 
 class HomeViewController: BaseViewController {
     // MARK: - Constants & Variables
-    private lazy var categorySwitcher = 0
-
-    private lazy var eventsSettingsView: UIView = {
-        let value: UIView = .init()
-        value.translatesAutoresizingMaskIntoConstraints = false
-        return value
-    }()
-
-    private lazy var categoriesCollectionView: UICollectionView = {
-//        value.register(<#T##cellClass: AnyClass?##AnyClass?#>, forCellWithReuseIdentifier: <#T##String#>)
-        let layout: UICollectionViewFlowLayout = .init()
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
-        layout.itemSize = CGSize(width: 20, height: 20)
-        layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 0
-        layout.minimumInteritemSpacing = 0
-
-        let value = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        value.backgroundColor = .green
-        value.translatesAutoresizingMaskIntoConstraints = false
-        return value
-    }()
-    
     private lazy var gamesTableView: UITableView = {
         let value: UITableView = .init()
         value.separatorStyle = .none
         return value
     }()
-
-    private lazy var filteredByButton: UIButton = {
-        let value: UIButton = .init()
-        value.setImage(UIImage(systemName: "checklist"), for: .normal)
-        value.backgroundColor = Constants.redColor.withAlphaComponent(0.7)
-        value.translatesAutoresizingMaskIntoConstraints = false
-        return value
-    }()
     
     private var gamesModel: [GameResponse] = []
+    private var leaguesModels = [LeagueResponse]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,39 +27,19 @@ class HomeViewController: BaseViewController {
         setupUI()
         setUpTableView()
         getGames()
-        setupFilteredByButton()
         setUPNavItems(needed: true)
     }
 
     // MARK: - Methods
-    private func setupFilteredByButton() {
-        let categoriesMenu = UIMenu(title: "",
-                                    children: [
-            UIAction(title: "Leagues",
-                     image: UIImage(systemName: "sportscourt")) { _ in
-                         print("Leagues")
-                         self.categorySwitcher = 0
-                         self.categoriesCollectionView.reloadData()
-            },
-            UIAction(title: "Seasons",
-                     image: UIImage(systemName: "calendar")) { _ in
-                         print("Calendar")
-                         self.categorySwitcher = 1
-                         self.categoriesCollectionView.reloadData()
-            }
-                                    ]
-        )
-
-        filteredByButton.layer.cornerRadius = 4
-        filteredByButton.menu = categoriesMenu
-        filteredByButton.showsMenuAsPrimaryAction = true
-    }
-    
     private func setUpTableView() {
         gamesTableView.register(GameTableViewCell.self, forCellReuseIdentifier: GameTableViewCell.identifier)
+        gamesTableView.register(LeaguesTableViewCell.self, forCellReuseIdentifier: LeaguesTableViewCell.identifier)
         gamesTableView.delegate = self
         gamesTableView.dataSource = self
-
+    }
+    
+    private func getLeagues() {
+        
     }
     
     private func getGames() {
@@ -122,11 +72,35 @@ class HomeViewController: BaseViewController {
 
 // MARK: - TableView setup
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        gamesModel.count
+    func numberOfSections(in tableView: UITableView) -> Int {
+        2
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            if section == 0 {
+                return 1
+            }
+
+            return gamesModel.count
+        }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            guard
+                let cell = gamesTableView.dequeueReusableCell(
+                    withIdentifier: LeaguesTableViewCell.identifier,
+                    for: indexPath)
+                    as? LeaguesTableViewCell
+            else {
+                return UITableViewCell()
+            }
+
+//            cell.configure(with: leaguesModels)
+            
+            cell.selectionStyle = .none
+            return cell
+        }
+
         guard
             let cell = gamesTableView.dequeueReusableCell(
                 withIdentifier: GameTableViewCell.identifier,
@@ -142,7 +116,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        400
+        if indexPath.section == 0 {
+            return 180
+        }
+        return 400
     }
 }
 
@@ -151,25 +128,6 @@ extension HomeViewController {
     private func setupUI() {
         view.backgroundColor = .systemBackground
         view.addSubview(gamesTableView)
-        view.addSubview(eventsSettingsView)
-        eventsSettingsView.addSubview(filteredByButton)
-        eventsSettingsView.addSubview(categoriesCollectionView)
-
-        eventsSettingsView.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide)
-            $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(40)
-        }
-
-        filteredByButton.snp.makeConstraints {
-            $0.leading.height.equalToSuperview()
-            $0.width.equalTo(40)
-        }
-
-        categoriesCollectionView.snp.makeConstraints {
-            $0.left.equalTo(filteredByButton.snp.right)
-            $0.top.bottom.trailing.equalToSuperview()
-        }
         
         gamesTableView.snp.makeConstraints {
             $0.edges.equalTo(self.view.safeAreaLayoutGuide)

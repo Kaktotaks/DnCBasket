@@ -78,7 +78,7 @@ class RestService {
         }
         print(path)
 
-        self.getJsonResponse(path) { [weak self] result in
+        self.getJsonResponse(path) { result in
             switch result {
             case .success(let games):
                 completionHandler(.success(games))

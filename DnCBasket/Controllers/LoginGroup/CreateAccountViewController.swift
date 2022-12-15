@@ -163,7 +163,7 @@ extension CreateAccountViewController {
             $0.top.equalTo(passwordTextField).inset(70)
             $0.height.equalTo(40)
         }
-        
+
         showHidePasswordButton.snp.makeConstraints {
             $0.centerY.equalTo(passwordTextField)
             $0.trailing.equalToSuperview().inset(40)
