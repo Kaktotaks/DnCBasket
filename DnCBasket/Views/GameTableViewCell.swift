@@ -20,7 +20,7 @@ class GameTableViewCell: UITableViewCell {
     }
 
     private lazy var myBackgroundView: GradientView = {
-        let value = GradientView()
+        let value: GradientView = .init()
         value.verticalMode = true
         value.startColor = Constants.redColor.withAlphaComponent(0.7)
         value.endColor = .clear
@@ -31,7 +31,7 @@ class GameTableViewCell: UITableViewCell {
     }()
 
     private lazy var addToFavouritesButton: UIButton = {
-        let value = UIButton()
+        let value: UIButton = .init()
         value.setImage(UIImage(systemName: "pin"), for: .normal)
         value.tintColor = .label
         value.contentMode = .scaleAspectFit
@@ -43,7 +43,7 @@ class GameTableViewCell: UITableViewCell {
     }()
 
     private lazy var leagueImageView: UIImageView = {
-        let value = UIImageView()
+        let value: UIImageView = .init()
         value.contentMode = .scaleAspectFit
         value.backgroundColor = .systemGray3.withAlphaComponent(0.3)
         value.clipsToBounds = true
@@ -52,7 +52,7 @@ class GameTableViewCell: UITableViewCell {
     }()
 
     private lazy var countryCodeLabel: UILabel = {
-        let value = UILabel()
+        let value: UILabel = .init()
         value.font = .systemFont(ofSize: 18, weight: .medium)
         value.backgroundColor = .systemGray3.withAlphaComponent(0.3)
         value.contentMode = .center
@@ -63,7 +63,7 @@ class GameTableViewCell: UITableViewCell {
     }()
 
     private lazy var homeTeamImageView: UIImageView = {
-        let value = UIImageView()
+        let value: UIImageView = .init()
         value.contentMode = .scaleAspectFit
         value.clipsToBounds = true
         value.layer.cornerRadius = 12
@@ -71,7 +71,7 @@ class GameTableViewCell: UITableViewCell {
     }()
 
     private lazy var guestTeamImageView: UIImageView = {
-        let value = UIImageView()
+        let value: UIImageView = .init()
         value.contentMode = .scaleAspectFit
         value.clipsToBounds = true
         value.layer.cornerRadius = 12
@@ -79,7 +79,7 @@ class GameTableViewCell: UITableViewCell {
     }()
 
     private lazy var homeTeamNameLable: UILabel = {
-        let value = UILabel()
+        let value: UILabel = .init()
         value.font = .systemFont(ofSize: 18, weight: .heavy)
         value.contentMode = .center
         value.textAlignment = .center
@@ -89,7 +89,7 @@ class GameTableViewCell: UITableViewCell {
     }()
 
     private lazy var guestTeamNameLable: UILabel = {
-        let value = UILabel()
+        let value: UILabel = .init()
         value.font = .systemFont(ofSize: 18, weight: .heavy)
         value.contentMode = .center
         value.textAlignment = .center
@@ -99,7 +99,7 @@ class GameTableViewCell: UITableViewCell {
     }()
 
     private lazy var homeTotalScoreLabel: UILabel = {
-        let value = UILabel()
+        let value: UILabel = .init()
         value.font = .systemFont(ofSize: 36, weight: .heavy)
         value.contentMode = .center
         value.textAlignment = .center
@@ -108,7 +108,7 @@ class GameTableViewCell: UITableViewCell {
     }()
 
     private lazy var guestTotalScoreLabel: UILabel = {
-        let value = UILabel()
+        let value: UILabel = .init()
         value.font = .systemFont(ofSize: 36, weight: .heavy)
         value.contentMode = .center
         value.textAlignment = .center
@@ -117,7 +117,7 @@ class GameTableViewCell: UITableViewCell {
     }()
 
     private lazy var dateLabel: UILabel = {
-        let value = UILabel()
+        let value: UILabel = .init()
         value.font = .systemFont(ofSize: 12, weight: .medium)
         value.contentMode = .center
         value.textAlignment = .center
@@ -125,7 +125,7 @@ class GameTableViewCell: UITableViewCell {
     }()
 
     private lazy var statusLabel: UILabel = {
-        let value = UILabel()
+        let value: UILabel = .init()
         value.font = .systemFont(ofSize: 12, weight: .medium)
         value.contentMode = .center
         value.textAlignment = .center
