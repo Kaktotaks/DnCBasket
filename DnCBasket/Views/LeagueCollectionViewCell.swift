@@ -25,11 +25,10 @@ class LeagueCollectionViewCell: UICollectionViewCell {
 
     private lazy var leagueImageView: UIImageView = {
         let value: UIImageView = .init()
-        value.contentMode = .scaleAspectFit
-        value.backgroundColor = .systemGray3.withAlphaComponent(0.3)
+        value.contentMode = .scaleAspectFill
+        value.image = UIImage(named: "fbuLogo")
         value.clipsToBounds = true
-        value.backgroundColor = .yellow
-        value.layer.cornerRadius = 20
+        value.layer.cornerRadius = 15
         return value
     }()
 
@@ -39,9 +38,7 @@ class LeagueCollectionViewCell: UICollectionViewCell {
         value.contentMode = .center
         value.textAlignment = .center
         value.numberOfLines = 2
-        value.clipsToBounds = true
-        value.backgroundColor = .green
-        value.layer.cornerRadius = 20
+        value.text = "TestFBU"
         return value
     }()
 
@@ -51,9 +48,7 @@ class LeagueCollectionViewCell: UICollectionViewCell {
         value.contentMode = .center
         value.textAlignment = .center
         value.numberOfLines = 2
-        value.clipsToBounds = true
-        value.backgroundColor = .gray
-        value.layer.cornerRadius = 20
+        value.text = "TestUkraine"
         return value
     }()
 
@@ -82,13 +77,13 @@ class LeagueCollectionViewCell: UICollectionViewCell {
         }
 
         leagueImageView.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
+            $0.top.leading.trailing.equalToSuperview().inset(12)
             $0.height.equalToSuperview().dividedBy(2)
         }
 
         leagueNameLabel.snp.makeConstraints {
             $0.width.equalToSuperview()
-            $0.top.equalTo(leagueImageView.snp.bottom).inset(4)
+            $0.top.equalTo(leagueImageView.snp.bottom)
             $0.height.equalTo(30)
         }
 

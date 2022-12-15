@@ -46,7 +46,8 @@ class LeaguesTableViewCell: UITableViewCell {
 
 extension LeaguesTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        leaguesModels.count
+//        leaguesModels.count
+        10
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -58,7 +59,7 @@ extension LeaguesTableViewCell: UICollectionViewDelegate, UICollectionViewDataSo
             return UICollectionViewCell()
         }
 
-        cell.configure(with: leaguesModels[indexPath.row])
+//        cell.configure(with: leaguesModels[indexPath.row])
 
 //        if indexPath.row == 0 {
 //            cell.hourLabel.text = "Now"
@@ -72,6 +73,6 @@ extension LeaguesTableViewCell: UICollectionViewDelegate, UICollectionViewDataSo
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        CGSize(width: 100, height: 160)
+        CGSize(width: 140, height: 140)
     }
 }

@@ -12,12 +12,6 @@ import SnapKit
 
 class HomeViewController: BaseViewController {
     // MARK: - Constants & Variables
-    private lazy var eventsSettingsView: UIView = {
-        let value: UIView = .init()
-        value.translatesAutoresizingMaskIntoConstraints = false
-        return value
-    }()
-    
     private lazy var gamesTableView: UITableView = {
         let value: UITableView = .init()
         value.separatorStyle = .none
@@ -39,6 +33,7 @@ class HomeViewController: BaseViewController {
     // MARK: - Methods
     private func setUpTableView() {
         gamesTableView.register(GameTableViewCell.self, forCellReuseIdentifier: GameTableViewCell.identifier)
+        gamesTableView.register(LeaguesTableViewCell.self, forCellReuseIdentifier: LeaguesTableViewCell.identifier)
         gamesTableView.delegate = self
         gamesTableView.dataSource = self
     }
@@ -77,33 +72,34 @@ class HomeViewController: BaseViewController {
 
 // MARK: - TableView setup
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        2
-//    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        2
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//            if section == 0 {
-//                return 1
-//            }
+            if section == 0 {
+                return 1
+            }
 
             return gamesModel.count
         }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        if indexPath.section == 0 {
-//            guard
-//                let cell = gamesTableView.dequeueReusableCell(
-//                    withIdentifier: LeaguesTableViewCell.identifier,
-//                    for: indexPath)
-//                    as? LeaguesTableViewCell
-//            else {
-//                return UITableViewCell()
-//            }
-//
+        if indexPath.section == 0 {
+            guard
+                let cell = gamesTableView.dequeueReusableCell(
+                    withIdentifier: LeaguesTableViewCell.identifier,
+                    for: indexPath)
+                    as? LeaguesTableViewCell
+            else {
+                return UITableViewCell()
+            }
+
 //            cell.configure(with: leaguesModels)
-//            cell.selectionStyle = .none
-//            return cell
-//        }
+            
+            cell.selectionStyle = .none
+            return cell
+        }
 
         guard
             let cell = gamesTableView.dequeueReusableCell(
@@ -120,7 +116,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        400
+        if indexPath.section == 0 {
+            return 180
+        }
+        return 400
     }
 }
 
@@ -129,13 +128,6 @@ extension HomeViewController {
     private func setupUI() {
         view.backgroundColor = .systemBackground
         view.addSubview(gamesTableView)
-        view.addSubview(eventsSettingsView)
-
-        eventsSettingsView.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide)
-            $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(40)
-        }
         
         gamesTableView.snp.makeConstraints {
             $0.edges.equalTo(self.view.safeAreaLayoutGuide)

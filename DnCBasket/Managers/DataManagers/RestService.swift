@@ -21,20 +21,6 @@ class RestService {
     static let shared: RestService = .init()
 
     private init() {}
-    
-    enum CodableObjects {
-        case gameResponse, leagueResponse
-    }
-    
-    var responses = CodableObjects.gameResponse
-    
-        switch responses {
-        case .gameResponse:
-            return GameResponse
-        case .leagueResponse:
-            return LeagueResponse
-        }
-  
 
     // MARK: CONTROL API RESPONSE
     private func getJsonResponse(
@@ -92,7 +78,7 @@ class RestService {
         }
         print(path)
 
-        self.getJsonResponse(path) { [weak self] result in
+        self.getJsonResponse(path) { result in
             switch result {
             case .success(let games):
                 completionHandler(.success(games))
@@ -100,19 +86,5 @@ class RestService {
                 completionHandler(.failure(error))
             }
         }
-    }
-    
-    func getAllLeagues() {
-        let path = "https://v1.basketball.api-sports.io/leagues"
-//        AF.request(path).responseJSON { response in
-//            switch response.result {
-//            case .success(_):
-//                <#code#>
-//            case .failure(_):
-//                <#code#>
-//            }
-//
-//        }
-        
     }
 }
