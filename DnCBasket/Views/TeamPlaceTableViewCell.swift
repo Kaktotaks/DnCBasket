@@ -23,6 +23,7 @@ class TeamPlaceTableViewCell: UITableViewCell {
         return value
     }()
 
+    // set private after model seted
     lazy var positionLabel: UILabel = {
         let value: UILabel = .init()
         value.font = .systemFont(ofSize: 16, weight: .medium)
@@ -40,7 +41,7 @@ class TeamPlaceTableViewCell: UITableViewCell {
     private lazy var teamNameLabel: UILabel = {
         let value: UILabel = .init()
         value.font = .systemFont(ofSize: 14, weight: .regular)
-        value.textAlignment = .left
+        value.textAlignment = .center
         value.text = "BC DniproBasket"
         value.numberOfLines = 2
         return value
@@ -93,6 +94,7 @@ class TeamPlaceTableViewCell: UITableViewCell {
 
 extension TeamPlaceTableViewCell {
     private func setUpUI() {
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 5, left: 4, bottom: 0, right: 4))
         contentView.addSubview(myBackgroundView)
         myBackgroundView.addSubview(positionLabel)
         myBackgroundView.addSubview(teamImageView)
@@ -103,7 +105,7 @@ extension TeamPlaceTableViewCell {
         myBackgroundView.addSubview(totalPointsLabel)
 
         myBackgroundView.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(2)
+            $0.edges.equalToSuperview()
         }
 
         positionLabel.snp.makeConstraints {
@@ -126,7 +128,7 @@ extension TeamPlaceTableViewCell {
 
         gamesPlayedLabel.snp.makeConstraints {
             $0.height.equalToSuperview()
-            $0.left.equalTo(teamNameLabel.snp.right).offset(12)
+            $0.centerX.equalToSuperview()
             $0.width.equalTo(40)
         }
 

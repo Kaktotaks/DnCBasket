@@ -25,7 +25,7 @@ class LeaguesTableViewCell: UITableViewCell {
     }
 
     // MARK: - functions
-    func configureCollectionView() {
+    private func configureCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 0
@@ -34,8 +34,8 @@ class LeaguesTableViewCell: UITableViewCell {
         collectionView = UICollectionView(
             frame: CGRect(x: 0, y: 0, width: contentView.frame.size.width, height: contentView.frame.size.height),
             collectionViewLayout: layout)
-        collectionView.register(LeagueCollectionViewCell.self,
-                                forCellWithReuseIdentifier: LeagueCollectionViewCell.identifier)
+        collectionView.register(BaseCollectionViewCell.self,
+                                forCellWithReuseIdentifier: BaseCollectionViewCell.identifier)
         collectionView.delegate = self
         collectionView.dataSource = self
 //        collectionView.showsHorizontalScrollIndicator = false
@@ -53,8 +53,8 @@ extension LeaguesTableViewCell: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard
             let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: LeagueCollectionViewCell.identifier,
-            for: indexPath) as? LeagueCollectionViewCell
+            withReuseIdentifier: BaseCollectionViewCell.identifier,
+            for: indexPath) as? BaseCollectionViewCell
         else {
             return UICollectionViewCell()
         }
