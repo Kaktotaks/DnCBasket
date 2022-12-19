@@ -6,18 +6,55 @@
 //
 
 import UIKit
+import SnapKit
 
 class UserInfoTableViewCell: UITableViewCell {
+    static let identifier = "UserInfoTableViewCell"
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    private lazy var dataTypeLabel: UILabel = {
+        let value: UILabel = .init()
+        value.textColor = .lightGray
+        value.font = .systemFont(ofSize: 14, weight: .semibold)
+        value.contentMode = .left
+        value.text = "SomeData"
+        return value
+    }()
+
+    private lazy var usersAnswerLabel: UILabel = {
+        let value: UILabel = .init()
+        value.font = .systemFont(ofSize: 18, weight: .regular)
+        value.numberOfLines = 2
+        value.contentMode = .left
+        value.text = "SomeAnswear"
+        return value
+    }()
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        setUpUI()
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+//    func configure(with userData: UserData) {
+//        self.dataTypeLabel.text = userData.dataType
+//        self.usersAnswerLabel.text = userData.usersAnswer
+//    }
+}
 
-        // Configure the view for the selected state
+extension UserInfoTableViewCell {
+    private func setUpUI() {
+        contentView.addSubview(dataTypeLabel)
+        contentView.addSubview(usersAnswerLabel)
+
+        dataTypeLabel.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview().inset(5)
+            make.height.equalTo(20)
+        }
+
+        usersAnswerLabel.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().inset(5)
+            make.leading.trailing.equalToSuperview().inset(5)
+            make.height.equalTo(20)
+        }
     }
-
 }
