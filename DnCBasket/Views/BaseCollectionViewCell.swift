@@ -8,9 +8,9 @@
 import UIKit
 import Kingfisher
 
-class LeagueCollectionViewCell: UICollectionViewCell {
+class BaseCollectionViewCell: UICollectionViewCell {
     // MARK: - Constants and Variables
-    static let identifier = "LeagueCollectionViewCell"
+    static let identifier = "BaseCollectionViewCell"
 
     private lazy var myBackgroundView: GradientView = {
         let value: GradientView = .init()

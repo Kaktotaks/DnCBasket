@@ -19,12 +19,12 @@ class TournamentViewController: UIViewController {
         super.viewDidLoad()
 
         setupUI()
-
         setUpTableView()
     }
 
     private func setUpTableView() {
         tournamentTableView.register(TeamPlaceTableViewCell.self, forCellReuseIdentifier: TeamPlaceTableViewCell.identifier)
+        tournamentTableView.register(TournamentHeaderView.self, forHeaderFooterViewReuseIdentifier: TournamentHeaderView.idetifier)
         tournamentTableView.delegate = self
         tournamentTableView.dataSource = self
     }
@@ -54,13 +54,23 @@ extension TournamentViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         60
     }
+
+    // MARK: - Header setup
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: TournamentHeaderView.idetifier) as? TournamentHeaderView
+        return header
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        100
+    }
 }
 
 extension TournamentViewController {
     private func setupUI() {
         view.backgroundColor = .systemBackground
         view.addSubview(tournamentTableView)
-//
+
         tournamentTableView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.top.bottom.equalToSuperview()

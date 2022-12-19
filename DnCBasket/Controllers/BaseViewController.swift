@@ -46,4 +46,18 @@ class BaseViewController: UIViewController {
 
         vc.present(navController, animated: true)
     }
+
+    // MARK: - Configure appearance upButton
+    func upButtonAppearance(_ scrollView: UIScrollView, upButton: UIButton) {
+        DispatchQueue.main.async {
+            let startPoint = scrollView.contentOffset.y
+            let scrollHeight = scrollView.frame.height
+
+            if startPoint >= abs(scrollHeight * 3) {
+                upButton.isHidden = false
+            } else {
+                upButton.isHidden = true
+            }
+        }
+    }
 }

@@ -20,6 +20,18 @@ class HomeViewController: BaseViewController {
     
     private var gamesModel: [GameResponse] = []
     private var leaguesModels = [LeagueResponse]()
+    private lazy var upButton: UIButton = {
+        let value: UIButton = .init()
+        value.setImage(UIImage(systemName: "chevron.up"), for: .normal)
+        value.tintColor = .label
+        value.contentMode = .scaleAspectFit
+        value.clipsToBounds = true
+        value.layer.cornerRadius = 20
+        
+        value.addTarget(self, action: #selector(upButtonPressed), for: .touchUpInside)
+        value.backgroundColor = .systemGray3.withAlphaComponent(0.5)
+        return value
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +79,15 @@ class HomeViewController: BaseViewController {
                 }
             }
         }
+    }
+    
+    @objc private func upButtonPressed() {
+        let topRow = IndexPath(row: 0, section: 0)
+        
+        gamesTableView.scrollToRow(at: topRow,
+                                   at: .top,
+                                   animated: true
+        )
     }
 }
 
@@ -121,6 +142,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return 400
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        upButtonAppearance(scrollView, upButton: upButton)
+    }
 }
 
 // MARK: - Setup UI components
@@ -128,9 +153,16 @@ extension HomeViewController {
     private func setupUI() {
         view.backgroundColor = .systemBackground
         view.addSubview(gamesTableView)
+        view.addSubview(upButton)
         
         gamesTableView.snp.makeConstraints {
             $0.edges.equalTo(self.view.safeAreaLayoutGuide)
+        }
+        
+        upButton.snp.makeConstraints {
+            $0.width.height.equalTo(40)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(10)
+            $0.centerX.equalToSuperview()
         }
     }
 }
