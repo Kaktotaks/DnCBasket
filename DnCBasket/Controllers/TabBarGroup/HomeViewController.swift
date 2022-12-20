@@ -17,7 +17,7 @@ class HomeViewController: BaseViewController {
         value.separatorStyle = .none
         return value
     }()
-    
+
     private var gamesModel: [GameResponse] = []
     private var leaguesModels = [LeagueResponse]()
     private lazy var upButton: UIButton = {
@@ -132,6 +132,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         }
 
         cell.configure(with: gamesModel[indexPath.row])
+        cell.delegate = self
+        cell.tag = indexPath.row
         cell.selectionStyle = .none
         return cell
     }
@@ -164,5 +166,35 @@ extension HomeViewController {
             $0.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(10)
             $0.centerX.equalToSuperview()
         }
+    }
+}
+
+extension HomeViewController: GameTableViewCellDelegate {
+    func saveToPickedButtonTapped(tappedForItem item: Int) {
+        let game = gamesModel[item]
+        let cdGame = CDGame(context: self.context)
+        cdGame.homeTeamName = game.teams?.home?.name
+        cdGame.homeTotalScore = game.teams?.home?.total?.description
+        cdGame.homeTeamImageURL = game.teams?.home?.logo
+        cdGame.guestTeamName = game.teams?.away?.name
+        cdGame.guestTotalScore = game.teams?.away?.total?.description
+        cdGame.guestTeamImageURL = game.teams?.away?.logo
+        cdGame.countryCode = game.country?.code
+        cdGame.status = game.status?.long
+        cdGame.date = game.date
+        cdGame.leagueImageURL = game.league?.logo
+        
+
+        // Save in Core Data action
+        MyCoreDataManager.shared.cdSave(self.context)
+
+        let alert = MyAlertManager.shared.presentTemporaryInfoAlert(
+            title: "Article Added",
+            message: nil,
+            preferredStyle: .actionSheet,
+            forTime: 1.0
+        )
+
+        present(alert, animated: true)
     }
 }
