@@ -10,7 +10,7 @@ import UIKit
 struct MyAlertManager {
     static let shared = MyAlertManager()
     private init() { }
-    
+
     struct Action {
         let title: String
         let style: UIAlertAction.Style
@@ -26,7 +26,7 @@ struct MyAlertManager {
             self.completion = completion
         }
     }
-    
+
     private func buildAlertView(
         preferredStyle: UIAlertController.Style = .alert,
         title: String?,
@@ -50,19 +50,7 @@ struct MyAlertManager {
 
         return alertController
     }
-    
-//    func presentAlertWithOptions(
-//        title: String?,
-//        message: String?,
-//        actions: Action...,
-//        dismissActionTitle: Action) -> UIAlertController {
-//            presentAlertWithOptions(
-//                title: title,
-//                message: message,
-//                actions: actions,
-//                dismissActionTitle: dismissActionTitle)
-//    }
-    
+
     func presentAlertWithOptions(
         title: String?,
         message: String?,

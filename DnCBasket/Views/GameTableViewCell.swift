@@ -9,6 +9,10 @@ import UIKit
 import SnapKit
 import Kingfisher
 
+protocol GameTableViewCellDelegate: AnyObject {
+    func saveToPickedButtonTapped(tappedForItem item: Int)
+}
+
 class GameTableViewCell: UITableViewCell {
     static let identifier = "GamesTableViewCell"
     public var buttonTogled = false
@@ -30,7 +34,7 @@ class GameTableViewCell: UITableViewCell {
         return value
     }()
 
-    private lazy var addToFavouritesButton: UIButton = {
+    lazy var addToFavouritesButton: UIButton = {
         let value: UIButton = .init()
         value.setImage(UIImage(systemName: "pin"), for: .normal)
         value.tintColor = .label
@@ -126,16 +130,18 @@ class GameTableViewCell: UITableViewCell {
         return value
     }()
 
+    weak var delegate: GameTableViewCellDelegate?
+
     // MARK: - Methods
     @objc private func addToFavouritesButtonPressed() {
         if buttonTogled == false {
             buttonTogled = true
             addToFavouritesButton.setImage(UIImage(systemName: "pin.fill"), for: .normal)
-//            self.delegate?.saveToFavouritesButtonTapped(tappedForItem: self.tag)
+            self.delegate?.saveToPickedButtonTapped(tappedForItem: self.tag)
         } else {
             buttonTogled = false
             addToFavouritesButton.setImage(UIImage(systemName: "pin"), for: .normal)
-//            self.delegate?.deleteFromFavouritesButtonTapped(tappedForItem: self.tag)
+            // delete func
         }
     }
 
@@ -161,6 +167,30 @@ class GameTableViewCell: UITableViewCell {
         homeTotalScoreLabel.text = gameModel.scores?.home?.total?.description
         guestTotalScoreLabel.text = gameModel.scores?.away?.total?.description
         countryCodeLabel.text = gameModel.country?.code
+    }
+
+    func configure(with coreDataModel: CDGame) {
+        let leagueImageURL = URL(string: coreDataModel.leagueImageURL ?? Constants.noImageURL)
+        leagueImageView.kf.setImage(with: leagueImageURL)
+
+        let homeTeamImageURL = URL(string: coreDataModel.homeTeamImageURL ?? Constants.noImageURL)
+        homeTeamImageView.kf.indicatorType = .activity
+        homeTeamImageView.kf.setImage(with: homeTeamImageURL)
+
+        let guestTeamImageURL = URL(string: coreDataModel.guestTeamImageURL ?? Constants.noImageURL)
+        guestTeamImageView.kf.indicatorType = .activity
+        guestTeamImageView.kf.setImage(with: guestTeamImageURL)
+
+        homeTeamNameLable.text = coreDataModel.homeTeamName
+        guestTeamNameLable.text = coreDataModel.guestTeamName
+
+        let formatedDate = DateFormaterManager.shared.formatDate(stringDate: coreDataModel.date ?? "")
+        dateLabel.text = formatedDate
+
+        statusLabel.text = coreDataModel.status
+        homeTotalScoreLabel.text = coreDataModel.homeTotalScore
+        guestTotalScoreLabel.text = coreDataModel.guestTotalScore
+        countryCodeLabel.text = coreDataModel.countryCode
     }
 }
 

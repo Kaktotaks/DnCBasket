@@ -18,8 +18,8 @@
 		E4369ACE294B941F00678ED7 /* TeamPlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4369ACD294B941F00678ED7 /* TeamPlaceTableViewCell.swift */; };
 		E4369AD0294C820300678ED7 /* TournamentHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4369ACF294C820300678ED7 /* TournamentHeaderView.swift */; };
 		E4369AD2295068F500678ED7 /* AccountHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4369AD1295068F500678ED7 /* AccountHeaderTableViewCell.swift */; };
-		E4369AD429506E6500678ED7 /* UserInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4369AD329506E6500678ED7 /* UserInfoTableViewCell.swift */; };
 		E4369ADA2950CE3900678ED7 /* LocalFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4369AD92950CE3900678ED7 /* LocalFileManager.swift */; };
+		E4369ADF2952245400678ED7 /* PickedGamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4369ADE2952245400678ED7 /* PickedGamesViewController.swift */; };
 		E4BA93F8293DF3E50049F281 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA93F7293DF3E50049F281 /* AppDelegate.swift */; };
 		E4BA93FA293DF3E50049F281 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA93F9293DF3E50049F281 /* SceneDelegate.swift */; };
 		E4BA93FC293DF3E50049F281 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA93FB293DF3E50049F281 /* LoginViewController.swift */; };
@@ -82,8 +82,8 @@
 		E4369ACD294B941F00678ED7 /* TeamPlaceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamPlaceTableViewCell.swift; sourceTree = "<group>"; };
 		E4369ACF294C820300678ED7 /* TournamentHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentHeaderView.swift; sourceTree = "<group>"; };
 		E4369AD1295068F500678ED7 /* AccountHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountHeaderTableViewCell.swift; sourceTree = "<group>"; };
-		E4369AD329506E6500678ED7 /* UserInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoTableViewCell.swift; sourceTree = "<group>"; };
 		E4369AD92950CE3900678ED7 /* LocalFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFileManager.swift; sourceTree = "<group>"; };
+		E4369ADE2952245400678ED7 /* PickedGamesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickedGamesViewController.swift; sourceTree = "<group>"; };
 		E4BA93F4293DF3E50049F281 /* DnCBasket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DnCBasket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4BA93F7293DF3E50049F281 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4BA93F9293DF3E50049F281 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -242,7 +242,6 @@
 				E4BA94802949EC420049F281 /* BaseCollectionViewCell.swift */,
 				E4BA94822949EC780049F281 /* LeaguesTableViewCell.swift */,
 				E4369AD1295068F500678ED7 /* AccountHeaderTableViewCell.swift */,
-				E4369AD329506E6500678ED7 /* UserInfoTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -264,6 +263,7 @@
 				E4BA941A293E21C30049F281 /* TournamentViewController.swift */,
 				E4BA941C293E21D50049F281 /* TeamsViewController.swift */,
 				E4BA941E293E21EC0049F281 /* AccountViewController.swift */,
+				E4369ADE2952245400678ED7 /* PickedGamesViewController.swift */,
 			);
 			path = TabBarGroup;
 			sourceTree = "<group>";
@@ -464,13 +464,13 @@
 				E4369AD2295068F500678ED7 /* AccountHeaderTableViewCell.swift in Sources */,
 				E4BA946629479B230049F281 /* GameTableViewCell.swift in Sources */,
 				E4BA948B2949F8DB0049F281 /* leaguesResponse.swift in Sources */,
-				E4369AD429506E6500678ED7 /* UserInfoTableViewCell.swift in Sources */,
 				E4BA93FC293DF3E50049F281 /* LoginViewController.swift in Sources */,
 				E4369AC2294B8F6F00678ED7 /* Points.swift in Sources */,
 				E4BA947B29479EB00049F281 /* Parameters.swift in Sources */,
 				E4BA943E293F64F10049F281 /* GradientView.swift in Sources */,
 				E4BA947929479EB00049F281 /* Home.swift in Sources */,
 				E4BA9402293DF3E50049F281 /* DnCBasket.xcdatamodeld in Sources */,
+				E4369ADF2952245400678ED7 /* PickedGamesViewController.swift in Sources */,
 				E4BA947229479EB00049F281 /* League.swift in Sources */,
 				E4BA9417293E07010049F281 /* TabBarController.swift in Sources */,
 				E4BA945F29412E900049F281 /* CreateAccountViewController.swift in Sources */,

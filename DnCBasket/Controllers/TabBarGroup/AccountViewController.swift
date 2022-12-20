@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class AccountViewController: UIViewController {
+class AccountViewController: BaseViewController {
     private let accountTableView: UITableView = {
         let value: UITableView = .init()
         value.backgroundColor = .systemBackground
@@ -17,10 +17,6 @@ class AccountViewController: UIViewController {
 
     private lazy var fileManager = LocalFileManager.instance
 
-    // swiftlint: disable all
-    private lazy var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    // swiftlint: anable all
-    
     private lazy var cdPhotos: [CDPhoto]? = nil
     var image = UIImage()
 
@@ -39,7 +35,7 @@ class AccountViewController: UIViewController {
         imagePicker.sourceType = sourceType
         return imagePicker
     }
-    
+
     private func fetchPhotos() {
         // Fetch data from Core Data to displayin the table View
         do {
@@ -85,13 +81,11 @@ class AccountViewController: UIViewController {
     }
 
     private func setUpTableView() {
-        accountTableView.register(UserInfoTableViewCell.self, forCellReuseIdentifier: UserInfoTableViewCell.identifier)
         accountTableView.register(AccountHeaderTableViewCell.self, forCellReuseIdentifier: AccountHeaderTableViewCell.identifier)
-
         accountTableView.delegate = self
         accountTableView.dataSource = self
     }
-    
+
     private func setUpUI() {
         view.backgroundColor = .systemBackground
         view.addSubview(accountTableView)
@@ -109,14 +103,12 @@ extension AccountViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            if section == 0 {
-                return 1
-            }
-
-        return 4
-
-//        return ProfileData.datasList.count
+        if section == 0 {
+            return 1
         }
+
+        return 2
+    }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
@@ -129,8 +121,6 @@ extension AccountViewController: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
 
-//            cell.configure(with: model)
-
             cell.delegate = self
             guard
                 let photo = self.cdPhotos?.last,
@@ -138,24 +128,29 @@ extension AccountViewController: UITableViewDelegate, UITableViewDataSource {
             else {
                 return UITableViewCell()
             }
-            
+
             let imageName = fileManager.getImage(name: String("\(photoImageName)"))
             cell.configureCoreDataPhotos(image: imageName)
-            
+
             cell.selectionStyle = .none
             return cell
         }
 
-        guard
-            let cell = accountTableView.dequeueReusableCell(
-                withIdentifier: UserInfoTableViewCell.identifier,
-                for: indexPath)
-                as? UserInfoTableViewCell
-        else {
-            return UITableViewCell()
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
+        cell.selectionStyle = .none
+
+        switch indexPath.row {
+        case 0:
+            cell.textLabel?.text = "Email"
+            cell.detailTextLabel?.text = "UserEmail"
+            return cell
+        case 1:
+            cell.textLabel?.text = "Picked Games 📌"
+            return cell
+        default:
+            break
         }
 
-        cell.selectionStyle = .none
         return cell
     }
 
@@ -165,6 +160,12 @@ extension AccountViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return 60
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 1 {
+            self.goToPickedGames(vc: self)
+        }
+    }
 }
 
 extension AccountViewController: AccountHeaderTableViewCellDelegate {
@@ -173,7 +174,6 @@ extension AccountViewController: AccountHeaderTableViewCellDelegate {
         showImagePickerOptions()
     }
 }
-
 
 // MARK: - ImagePicker setup
 extension AccountViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -191,7 +191,6 @@ extension AccountViewController: UIImagePickerControllerDelegate, UINavigationCo
         let newPhoto = CDPhoto(context: self.context)
         newPhoto.imageName = imageName
         
-
         // Save the data
         do {
             try self.context.save()

@@ -9,6 +9,10 @@ import UIKit
 import SnapKit
 
 class BaseViewController: UIViewController {
+    // swiftlint:disable force_cast
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    // swiftlint:enable force_cast
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -40,6 +44,18 @@ class BaseViewController: UIViewController {
         let navController = UINavigationController(rootViewController: createAccVC)
         if let sheet = navController.sheetPresentationController {
             sheet.detents = [.medium()]
+            sheet.prefersGrabberVisible = true
+            sheet.preferredCornerRadius = 20
+        }
+
+        vc.present(navController, animated: true)
+    }
+
+    func goToPickedGames(vc: UIViewController) {
+        let pickedGamseVC = PickedGamesViewController()
+        let navController = UINavigationController(rootViewController: pickedGamseVC)
+        if let sheet = navController.sheetPresentationController {
+            sheet.detents = [.medium(), .large()]
             sheet.prefersGrabberVisible = true
             sheet.preferredCornerRadius = 20
         }
