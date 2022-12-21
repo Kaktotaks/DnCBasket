@@ -685,7 +685,8 @@
 				DEVELOPMENT_TEAM = SY6Z34435G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DnCBasket/Defaults/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "Please, allows us to use your camera";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please, allows us to use your camera.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please, allows us to use your library.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -716,7 +717,8 @@
 				DEVELOPMENT_TEAM = SY6Z34435G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DnCBasket/Defaults/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "Please, allows us to use your camera";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please, allows us to use your camera.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please, allows us to use your library.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;

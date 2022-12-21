@@ -11,7 +11,7 @@ class LeaguesTableViewCell: UITableViewCell {
     // MARK: - Constants and Variables
     static let identifier = "LeaguesTableViewCell"
     private var collectionView: UICollectionView!
-    private var leaguesModels = [LeagueResponse]()
+    private var leaguesModels: [LeagueResponse] = []
 
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -46,8 +46,7 @@ class LeaguesTableViewCell: UITableViewCell {
 
 extension LeaguesTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        leaguesModels.count
-        10
+        leaguesModels.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -59,11 +58,7 @@ extension LeaguesTableViewCell: UICollectionViewDelegate, UICollectionViewDataSo
             return UICollectionViewCell()
         }
 
-//        cell.configure(with: leaguesModels[indexPath.row])
-
-//        if indexPath.row == 0 {
-//            cell.hourLabel.text = "Now"
-//        }
+        cell.configure(with: leaguesModels[indexPath.row])
 
         return cell
     }

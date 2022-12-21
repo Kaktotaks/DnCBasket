@@ -26,6 +26,18 @@ class BaseViewController: UIViewController {
         )
     }
 
+    func showErrorAlert(_ message: String, controller: UIViewController) {
+        let errorAlert = MyAlertManager.shared.presentTemporaryInfoAlert(
+            title: Constants.TemporaryAlertAnswers.somethingWentWrongAnswear,
+            message: message,
+            preferredStyle: .actionSheet,
+            forTime: 10.0)
+        DispatchQueue.main.async {
+            ActivityIndicatorManager.shared.hide()
+            controller.present(errorAlert, animated: true)
+        }
+    }
+
     @objc func logOutButtonTapped() {
         FireBaseManager.shared.signOut {
             self.dismiss(animated: true, completion: nil)
