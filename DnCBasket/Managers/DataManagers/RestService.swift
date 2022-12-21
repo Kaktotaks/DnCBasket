@@ -12,7 +12,7 @@ class RestService {
     static let shared: RestService = .init()
 
     private init() {}
-    
+
     enum APIConstants {
         static let mainURL = "https://v1.basketball.api-sports.io/"
         static let apiKey = "626f23c3584d8914d8e90a3683f68a67"
@@ -51,7 +51,7 @@ class RestService {
                     if let data = try? decoder.decode(GamesEntryPoint.self, from: response.data ?? Data()) {
                         let games = data.response ?? []
                         completion(.success(games))
-                        print("\(data)")
+                        print("Total Results: \(data.results)")
                     }
 
                 case .failure(let error):

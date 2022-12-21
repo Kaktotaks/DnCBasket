@@ -11,7 +11,7 @@ class YearsTableViewCell: UITableViewCell {
         // MARK: - Constants and Variables
         static let identifier = "YearsTableViewCell"
         private var collectionView: UICollectionView!
-        private var yearsModels = [LeagueResponse]()
+        private var yearsModels = [Seasons]()
 
         override func layoutSubviews() {
             super.layoutSubviews()
@@ -19,7 +19,7 @@ class YearsTableViewCell: UITableViewCell {
             configureCollectionView()
         }
 
-        func configure(with models: [LeagueResponse]) {
+        func configure(with models: [Seasons]) {
             self.yearsModels = models
             collectionView?.reloadData()
         }
@@ -34,8 +34,8 @@ class YearsTableViewCell: UITableViewCell {
             collectionView = UICollectionView(
                 frame: CGRect(x: 0, y: 0, width: contentView.frame.size.width, height: contentView.frame.size.height),
                 collectionViewLayout: layout)
-            collectionView.register(BaseCollectionViewCell.self,
-                                    forCellWithReuseIdentifier: BaseCollectionViewCell.identifier)
+            collectionView.register(YearsCollectionViewCell.self,
+                                    forCellWithReuseIdentifier: YearsCollectionViewCell.identifier)
             collectionView.delegate = self
             collectionView.dataSource = self
             collectionView.showsHorizontalScrollIndicator = false
@@ -53,13 +53,13 @@ class YearsTableViewCell: UITableViewCell {
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             guard
                 let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: BaseCollectionViewCell.identifier,
-                for: indexPath) as? BaseCollectionViewCell
+                withReuseIdentifier: YearsCollectionViewCell.identifier,
+                for: indexPath) as? YearsCollectionViewCell
             else {
                 return UICollectionViewCell()
             }
 
-    //        cell.configure(with: leaguesModels[indexPath.row])
+//            cell.configure(with: yearsModels[indexPath.row])
 
     //        if indexPath.row == 0 {
     //            cell.hourLabel.text = "Now"
@@ -73,6 +73,6 @@ class YearsTableViewCell: UITableViewCell {
             layout collectionViewLayout: UICollectionViewLayout,
             sizeForItemAt indexPath: IndexPath
         ) -> CGSize {
-            CGSize(width: 140, height: 140)
+            CGSize(width: 140, height: 30)
         }
 }

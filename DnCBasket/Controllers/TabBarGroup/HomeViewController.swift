@@ -46,6 +46,7 @@ class HomeViewController: BaseViewController {
     private func setUpTableView() {
         gamesTableView.register(GameTableViewCell.self, forCellReuseIdentifier: GameTableViewCell.identifier)
         gamesTableView.register(LeaguesTableViewCell.self, forCellReuseIdentifier: LeaguesTableViewCell.identifier)
+        gamesTableView.register(YearsTableViewCell.self, forCellReuseIdentifier: YearsTableViewCell.identifier)
         gamesTableView.delegate = self
         gamesTableView.dataSource = self
     }
@@ -94,11 +95,11 @@ class HomeViewController: BaseViewController {
 // MARK: - TableView setup
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        2
+        3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            if section == 0 {
+            if section == 0 || section == 1 {
                 return 1
             }
 
@@ -118,9 +119,25 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
 //            cell.configure(with: leaguesModels)
             
-            cell.selectionStyle = .none
+            cell.selectionStyle = .gray
+            return cell
+        } else if indexPath.section == 1 {
+            guard
+                let cell = gamesTableView.dequeueReusableCell(
+                    withIdentifier: YearsTableViewCell.identifier,
+                    for: indexPath)
+                    as? YearsTableViewCell
+            else {
+                return UITableViewCell()
+            }
+
+//            cell.configure(with: leaguesModels)
+            
+            cell.selectionStyle = .gray
             return cell
         }
+        
+        
 
         guard
             let cell = gamesTableView.dequeueReusableCell(
@@ -141,7 +158,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return 180
+        } else if indexPath.section == 1 {
+            return 40
         }
+
         return 400
     }
     
@@ -173,17 +193,16 @@ extension HomeViewController: GameTableViewCellDelegate {
     func saveToPickedButtonTapped(tappedForItem item: Int) {
         let game = gamesModel[item]
         let cdGame = CDGame(context: self.context)
-        cdGame.homeTeamName = game.teams?.home?.name
+        cdGame.guestTotalScore = game.teams?.away?.total?.description
         cdGame.homeTotalScore = game.teams?.home?.total?.description
+        cdGame.homeTeamName = game.teams?.home?.name
         cdGame.homeTeamImageURL = game.teams?.home?.logo
         cdGame.guestTeamName = game.teams?.away?.name
-        cdGame.guestTotalScore = game.teams?.away?.total?.description
         cdGame.guestTeamImageURL = game.teams?.away?.logo
         cdGame.countryCode = game.country?.code
         cdGame.status = game.status?.long
         cdGame.date = game.date
         cdGame.leagueImageURL = game.league?.logo
-        
 
         // Save in Core Data action
         MyCoreDataManager.shared.cdSave(self.context)

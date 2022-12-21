@@ -1,11 +1,11 @@
 import Foundation
 
-struct Json4Swift_Base : Codable {
-	let get : String?
-	let parameters : Parameters?
-	let errors : [String]?
-	let results : Int?
-	let response : [Response]?
+struct TeamsEntryPoint: Codable {
+	let get: String?
+	let parameters: Parameters?
+	let errors: [String]?
+	let results: Int?
+	let response: [TeamResponse]?
 
 	enum CodingKeys: String, CodingKey {
 
@@ -22,7 +22,6 @@ struct Json4Swift_Base : Codable {
 		parameters = try values.decodeIfPresent(Parameters.self, forKey: .parameters)
 		errors = try values.decodeIfPresent([String].self, forKey: .errors)
 		results = try values.decodeIfPresent(Int.self, forKey: .results)
-		response = try values.decodeIfPresent([Response].self, forKey: .response)
+		response = try values.decodeIfPresent([TeamResponse].self, forKey: .response)
 	}
-
 }
