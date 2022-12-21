@@ -26,6 +26,11 @@ class AccountViewController: BaseViewController {
 
         setUpUI()
         setUpTableView()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
         fetchPhotos()
     }
 
@@ -40,7 +45,9 @@ class AccountViewController: BaseViewController {
         // Fetch data from Core Data to displayin the table View
         do {
             self.cdPhotos = try context.fetch(CDPhoto.fetchRequest())
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+
                 self.accountTableView.reloadData()
             }
         } catch {
@@ -185,8 +192,9 @@ extension AccountViewController: UIImagePickerControllerDelegate, UINavigationCo
         }
 
         lazy var imageName: UUID = .init()
-
+        
         fileManager.saveImage(image: image, name: "\(imageName)")
+
         // Create a photo object
         let newPhoto = CDPhoto(context: self.context)
         newPhoto.imageName = imageName
@@ -199,7 +207,6 @@ extension AccountViewController: UIImagePickerControllerDelegate, UINavigationCo
         }
         // Re-fetch data
         self.fetchPhotos()
-
         self.dismiss(animated: true)
     }
 }

@@ -38,7 +38,7 @@ class LeaguesTableViewCell: UITableViewCell {
                                 forCellWithReuseIdentifier: BaseCollectionViewCell.identifier)
         collectionView.delegate = self
         collectionView.dataSource = self
-//        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
         contentView.addSubview(collectionView)
     }
 
