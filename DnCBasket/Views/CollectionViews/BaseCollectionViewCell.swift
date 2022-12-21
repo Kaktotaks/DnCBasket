@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import SnapKit
 
 class BaseCollectionViewCell: UICollectionViewCell {
     // MARK: - Constants and Variables
@@ -59,6 +60,13 @@ class BaseCollectionViewCell: UICollectionViewCell {
         leagueNameLabel.text = model.name
         countryNameLabel.text = model.country?.name
     }
+    
+//    func configure(with model: TeamResponse) {
+//        let leagueImageURL = URL(string: model.logo ?? Constants.noImageURL)
+//        leagueImageView.kf.setImage(with: leagueImageURL)
+//        leagueNameLabel.text = model.name
+//        countryNameLabel.text = model.country?.name
+//    }
 
     override func layoutSubviews() {
         super.layoutSubviews()

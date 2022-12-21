@@ -20,6 +20,10 @@
 		E4369AD2295068F500678ED7 /* AccountHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4369AD1295068F500678ED7 /* AccountHeaderTableViewCell.swift */; };
 		E4369ADA2950CE3900678ED7 /* LocalFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4369AD92950CE3900678ED7 /* LocalFileManager.swift */; };
 		E4369ADF2952245400678ED7 /* PickedGamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4369ADE2952245400678ED7 /* PickedGamesViewController.swift */; };
+		E4369AE52952683000678ED7 /* TeamsEntryPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4369AE12952683000678ED7 /* TeamsEntryPoint.swift */; };
+		E4369AE82952683000678ED7 /* TeamResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4369AE42952683000678ED7 /* TeamResponse.swift */; };
+		E4369AEA29526A3200678ED7 /* YearsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4369AE929526A3200678ED7 /* YearsTableViewCell.swift */; };
+		E4369AEC29526B8F00678ED7 /* YearsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4369AEB29526B8F00678ED7 /* YearsCollectionViewCell.swift */; };
 		E4BA93F8293DF3E50049F281 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA93F7293DF3E50049F281 /* AppDelegate.swift */; };
 		E4BA93FA293DF3E50049F281 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA93F9293DF3E50049F281 /* SceneDelegate.swift */; };
 		E4BA93FC293DF3E50049F281 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA93FB293DF3E50049F281 /* LoginViewController.swift */; };
@@ -84,6 +88,10 @@
 		E4369AD1295068F500678ED7 /* AccountHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		E4369AD92950CE3900678ED7 /* LocalFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFileManager.swift; sourceTree = "<group>"; };
 		E4369ADE2952245400678ED7 /* PickedGamesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickedGamesViewController.swift; sourceTree = "<group>"; };
+		E4369AE12952683000678ED7 /* TeamsEntryPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamsEntryPoint.swift; sourceTree = "<group>"; };
+		E4369AE42952683000678ED7 /* TeamResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamResponse.swift; sourceTree = "<group>"; };
+		E4369AE929526A3200678ED7 /* YearsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearsTableViewCell.swift; sourceTree = "<group>"; };
+		E4369AEB29526B8F00678ED7 /* YearsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearsCollectionViewCell.swift; sourceTree = "<group>"; };
 		E4BA93F4293DF3E50049F281 /* DnCBasket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DnCBasket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4BA93F7293DF3E50049F281 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4BA93F9293DF3E50049F281 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -162,6 +170,44 @@
 			path = Tournaments;
 			sourceTree = "<group>";
 		};
+		E4369AE02952681B00678ED7 /* Teams */ = {
+			isa = PBXGroup;
+			children = (
+				E4369AE12952683000678ED7 /* TeamsEntryPoint.swift */,
+				E4369AE42952683000678ED7 /* TeamResponse.swift */,
+			);
+			path = Teams;
+			sourceTree = "<group>";
+		};
+		E4369AED29526B9500678ED7 /* CollectionViews */ = {
+			isa = PBXGroup;
+			children = (
+				E4369AEB29526B8F00678ED7 /* YearsCollectionViewCell.swift */,
+				E4BA94802949EC420049F281 /* BaseCollectionViewCell.swift */,
+			);
+			path = CollectionViews;
+			sourceTree = "<group>";
+		};
+		E4369AEE29526BE100678ED7 /* HeaderTableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				E4369ACF294C820300678ED7 /* TournamentHeaderView.swift */,
+				E4369AD1295068F500678ED7 /* AccountHeaderTableViewCell.swift */,
+			);
+			path = HeaderTableViewCells;
+			sourceTree = "<group>";
+		};
+		E4369AEF29526C1800678ED7 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				E4BA946529479B230049F281 /* GameTableViewCell.swift */,
+				E4369ACD294B941F00678ED7 /* TeamPlaceTableViewCell.swift */,
+				E4BA94822949EC780049F281 /* LeaguesTableViewCell.swift */,
+				E4369AE929526A3200678ED7 /* YearsTableViewCell.swift */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
 		E4BA93EB293DF3E50049F281 = {
 			isa = PBXGroup;
 			children = (
@@ -236,12 +282,9 @@
 		E4BA9434293F62640049F281 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E4369ACF294C820300678ED7 /* TournamentHeaderView.swift */,
-				E4BA946529479B230049F281 /* GameTableViewCell.swift */,
-				E4369ACD294B941F00678ED7 /* TeamPlaceTableViewCell.swift */,
-				E4BA94802949EC420049F281 /* BaseCollectionViewCell.swift */,
-				E4BA94822949EC780049F281 /* LeaguesTableViewCell.swift */,
-				E4369AD1295068F500678ED7 /* AccountHeaderTableViewCell.swift */,
+				E4369AEF29526C1800678ED7 /* TableViewCells */,
+				E4369AEE29526BE100678ED7 /* HeaderTableViewCells */,
+				E4369AED29526B9500678ED7 /* CollectionViews */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -310,6 +353,7 @@
 		E4BA946229436A310049F281 /* APIModels */ = {
 			isa = PBXGroup;
 			children = (
+				E4369AE02952681B00678ED7 /* Teams */,
 				E4369AB6294B8F2300678ED7 /* Tournaments */,
 				E4BA94842949F8B90049F281 /* Leagues */,
 				E4BA946729479E9F0049F281 /* Games */,
@@ -458,6 +502,7 @@
 			files = (
 				E4BA9415293E05850049F281 /* BaseViewController.swift in Sources */,
 				E4BA9464294773E10049F281 /* Constants.swift in Sources */,
+				E4369AEA29526A3200678ED7 /* YearsTableViewCell.swift in Sources */,
 				E4369AD0294C820300678ED7 /* TournamentHeaderView.swift in Sources */,
 				E4BA941B293E21C30049F281 /* TournamentViewController.swift in Sources */,
 				E4369AC9294B8F6F00678ED7 /* Group.swift in Sources */,
@@ -471,6 +516,7 @@
 				E4BA947929479EB00049F281 /* Home.swift in Sources */,
 				E4BA9402293DF3E50049F281 /* DnCBasket.xcdatamodeld in Sources */,
 				E4369ADF2952245400678ED7 /* PickedGamesViewController.swift in Sources */,
+				E4369AEC29526B8F00678ED7 /* YearsCollectionViewCell.swift in Sources */,
 				E4BA947229479EB00049F281 /* League.swift in Sources */,
 				E4BA9417293E07010049F281 /* TabBarController.swift in Sources */,
 				E4BA945F29412E900049F281 /* CreateAccountViewController.swift in Sources */,
@@ -488,7 +534,9 @@
 				E4369AC3294B8F6F00678ED7 /* Lose.swift in Sources */,
 				E4369AC4294B8F6F00678ED7 /* TournamentResponse.swift in Sources */,
 				E4BA94812949EC420049F281 /* BaseCollectionViewCell.swift in Sources */,
+				E4369AE82952683000678ED7 /* TeamResponse.swift in Sources */,
 				E4BA941D293E21D50049F281 /* TeamsViewController.swift in Sources */,
+				E4369AE52952683000678ED7 /* TeamsEntryPoint.swift in Sources */,
 				E4369ACB294B8F6F00678ED7 /* Games.swift in Sources */,
 				E4BA947A29479EB00049F281 /* Country.swift in Sources */,
 				E4BA947F294931DF0049F281 /* DateFormater.swift in Sources */,
@@ -637,6 +685,8 @@
 				DEVELOPMENT_TEAM = SY6Z34435G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DnCBasket/Defaults/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please, allows us to use your camera.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please, allows us to use your library.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -667,6 +717,8 @@
 				DEVELOPMENT_TEAM = SY6Z34435G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DnCBasket/Defaults/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please, allows us to use your camera.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please, allows us to use your library.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
