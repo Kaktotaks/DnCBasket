@@ -8,12 +8,15 @@
 import UIKit
 import SnapKit
 
-class TournamentViewController: UIViewController {
+class TournamentViewController: BaseViewController {
     private var tournamentTableView: UITableView = {
         let value: UITableView = .init()
         value.separatorStyle = .none
         return value
     }()
+
+    private var conferencesModel: [[TournamentResponse]] = [[]]
+    private var groupsNumber: Int = 1
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,17 +25,55 @@ class TournamentViewController: UIViewController {
         setUpTableView()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        print(" This Tournament has: \(conferencesModel.count) of stages/conferences ⛹🏻‍♂️")
+        getAllStandings()
+    }
+
     private func setUpTableView() {
         tournamentTableView.register(TeamPlaceTableViewCell.self, forCellReuseIdentifier: TeamPlaceTableViewCell.identifier)
         tournamentTableView.register(TournamentHeaderView.self, forHeaderFooterViewReuseIdentifier: TournamentHeaderView.idetifier)
         tournamentTableView.delegate = self
         tournamentTableView.dataSource = self
     }
+
+    private func getAllStandings() {
+        ActivityIndicatorManager.shared.showIndicator(.basketballLoading)
+        RestService.shared.getAllStandings { result in
+            switch result {
+            case .success(let standings):
+                self.conferencesModel.removeAll()
+                self.conferencesModel.append(contentsOf: standings)
+                DispatchQueue.main.async {
+                    ActivityIndicatorManager.shared.hide()
+                    self.tournamentTableView.reloadData()
+                }
+            case .failure(let error):
+                self.showErrorAlert(error.localizedDescription, controller: self)
+            }
+        }
+    }
 }
 
+// SAVING !!!!
+
 extension TournamentViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        conferencesModel.count
+        // унікальное названіе группи ілі 1
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        var numberOfTeams = 0
+
+        for teams in conferencesModel {
+            print("Teams in conference: \(teams.count) ⛹🏻‍♂️")
+            numberOfTeams = teams.count
+        }
+
+        return numberOfTeams
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -45,10 +86,15 @@ extension TournamentViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
 
-//        cell.configure(with: gamesModel[indexPath.row])
-        cell.selectionStyle = .none
-        cell.positionLabel.text = "\(indexPath.row + 1)"
-        return cell
+        for conference in conferencesModel {
+            cell.configure(with: conference[indexPath.row])
+            let count = NSSet(array: conference).count
+            print(count)
+            cell.selectionStyle = .none
+            return cell
+        }
+
+        return UITableViewCell()
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

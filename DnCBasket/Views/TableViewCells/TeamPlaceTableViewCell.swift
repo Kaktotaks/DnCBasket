@@ -86,10 +86,22 @@ class TeamPlaceTableViewCell: UITableViewCell {
         setUpUI()
     }
 
-//    func configure(with gameModel: TournamentResponse) {
-//
-//    }
-
+    func configure(with placeModel: TournamentResponse) {
+        let teamImageURL = URL(string: placeModel.team?.logo ?? Constants.noImageURL)
+        teamImageView.kf.setImage(with: teamImageURL)
+        positionLabel.text = placeModel.position?.description
+        teamNameLabel.text = placeModel.team?.name
+        gamesPlayedLabel.text = placeModel.games?.played?.description
+        victoriesLabel.text = placeModel.games?.win?.total?.description
+        lossesLabel.text = placeModel.games?.lose?.total?.description
+        guard
+            let homePoints = placeModel.points?.selfPoints,
+            let guestPoints = placeModel.points?.againstPoints
+        else {
+            return
+        }
+        totalPointsLabel.text = "\(homePoints):\(guestPoints)"
+    }
 }
 
 extension TeamPlaceTableViewCell {
