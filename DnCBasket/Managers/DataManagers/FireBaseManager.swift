@@ -25,8 +25,7 @@ class FireBaseManager {
     }
 
     func createAccount(email: String, password: String, viewController: UIViewController) {
-        let validatedEmailAndPassword = Validator.shared.validate(values:
-                                                                    (ValidationType.email, email),
+        let validatedEmailAndPassword = Validator.shared.validate(values: (ValidationType.email, email),
                                                                   (ValidationType.password, password)
         )
 

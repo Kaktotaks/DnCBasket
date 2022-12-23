@@ -23,34 +23,31 @@ class TournamentHeaderView: UITableViewHeaderFooterView {
         return value
     }()
 
-    private lazy var countryNameLabel: UILabel = {
+    private var countryNameLabel: UILabel = {
         let value: UILabel = .init()
         value.font = .systemFont(ofSize: 16, weight: .semibold)
-        value.text = "UA" // need to set configure with model
         value.textAlignment = .center
         return value
     }()
 
-    private lazy var leagueImageView: UIImageView = {
+    private var leagueImageView: UIImageView = {
         let value: UIImageView = .init()
         value.contentMode = .scaleAspectFit
-        value.image = UIImage(named: "fbuLogo") // need to set configure with model
         return value
     }()
 
-    private lazy var leagueNameLabel: UILabel = {
+    private var leagueNameLabel: UILabel = {
         let value: UILabel = .init()
         value.font = .systemFont(ofSize: 16, weight: .semibold)
-        value.text = "FBU" // need to set configure with model
         value.textAlignment = .center
         return value
     }()
 
-    private lazy var groupNameLabel: UILabel = {
+    private lazy var teamsLabel: UILabel = {
         let value: UILabel = .init()
         value.font = .systemFont(ofSize: 16, weight: .medium)
         value.textAlignment = .left
-        value.text = "Regular Season" // need to set configure with model
+        value.text = "Teams"
         value.numberOfLines = 2
         value.textAlignment = .center
         return value
@@ -89,13 +86,6 @@ class TournamentHeaderView: UITableViewHeaderFooterView {
         return value
     }()
 
-//    func cofigure(with model: TournamentResponse) {
-//        countryNameLabel.text = model.country?.name
-//        let leagueImageURL = URL(string: model.league?.logo ?? Constants.noImageURL)
-//        leagueImageView.kf.setImage(with: leagueImageURL)
-//        groupNameLabel.text = model.group?.name
-//    }
-
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
 
@@ -104,7 +94,7 @@ class TournamentHeaderView: UITableViewHeaderFooterView {
         self.addSubview(countryNameLabel)
         self.addSubview(leagueImageView)
         self.addSubview(leagueNameLabel)
-        self.addSubview(groupNameLabel)
+        self.addSubview(teamsLabel)
         self.addSubview(gamesPlayedLabel)
         self.addSubview(victoriesLabel)
         self.addSubview(lossesLabel)
@@ -119,6 +109,13 @@ class TournamentHeaderView: UITableViewHeaderFooterView {
         super .layoutSubviews()
 
         setUpConstraint()
+    }
+
+    func configure(model: TournamentResponse?) {
+        let leagueImageURL = URL(string: model?.league?.logo ?? Constants.noImageURL)
+        leagueImageView.kf.setImage(with: leagueImageURL)
+        countryNameLabel.text = model?.country?.name
+        leagueNameLabel.text = model?.league?.name
     }
 }
 
@@ -150,7 +147,7 @@ extension TournamentHeaderView {
             $0.width.equalTo(leagueNameLabel.snp.height)
         }
 
-        groupNameLabel.snp.makeConstraints {
+        teamsLabel.snp.makeConstraints {
             $0.bottom.leading.equalToSuperview().inset(4)
             $0.height.equalToSuperview().dividedBy(2.2)
             $0.left.equalToSuperview().offset(+4)

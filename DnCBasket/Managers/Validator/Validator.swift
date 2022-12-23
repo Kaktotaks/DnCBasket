@@ -27,7 +27,7 @@ enum ValidationType {
 
 enum RegEx: String {
     case email = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}" // Email
-    case password = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$" // Minimum 8 characters at least 1 Alphabet and 1 Number:
+    case password = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$" // Minimum 8 characters at least 1 Alphabet and 1 Number
 }
 
 enum AlertMessages: String {

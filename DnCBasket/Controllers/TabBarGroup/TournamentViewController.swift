@@ -16,7 +16,6 @@ class TournamentViewController: BaseViewController {
     }()
 
     private var conferencesModel: [[TournamentResponse]] = [[]]
-    private var groupsNumber: Int = 1
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +27,6 @@ class TournamentViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        print(" This Tournament has: \(conferencesModel.count) of stages/conferences ⛹🏻‍♂️")
         getAllStandings()
     }
 
@@ -57,12 +55,9 @@ class TournamentViewController: BaseViewController {
     }
 }
 
-// SAVING !!!!
-
 extension TournamentViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        conferencesModel.count
-        // унікальное названіе группи ілі 1
+        return conferencesModel.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -88,8 +83,6 @@ extension TournamentViewController: UITableViewDelegate, UITableViewDataSource {
 
         for conference in conferencesModel {
             cell.configure(with: conference[indexPath.row])
-            let count = NSSet(array: conference).count
-            print(count)
             cell.selectionStyle = .none
             return cell
         }
@@ -98,12 +91,14 @@ extension TournamentViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        60
+        80
     }
 
     // MARK: - Header setup
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: TournamentHeaderView.idetifier) as? TournamentHeaderView
+        let model = conferencesModel.first?.first
+        header?.configure(model: model)
         return header
     }
 

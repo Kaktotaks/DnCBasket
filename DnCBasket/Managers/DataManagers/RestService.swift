@@ -15,15 +15,15 @@ class RestService {
 
     enum APIConstants {
         static let mainURL = "https://v1.basketball.api-sports.io/"
+        static let key = "x-apisports-key"
         static let apiKey = "626f23c3584d8914d8e90a3683f68a67"
         static let secondApiKey = "62524b8b5e66ef73f37f874f63b5cab2"
+
         static let gamesEndPoint = "games?"
         static let leaguesEndPoint = "leagues?"
         static let teamsEndPoint = "teams?"
         static let standingsEndPoint = "standings?"
-        static let headers = [
-            "x-apisports-key": "626f23c3584d8914d8e90a3683f68a67"
-        ]
+        static let headers: HTTPHeaders = [key: apiKey]
     }
 
     // MARK: CONTROL API RESPONSE
@@ -32,7 +32,7 @@ class RestService {
         params: [String: Any] = [:],
         method: HTTPMethod = .get,
         encoding: ParameterEncoding = URLEncoding.default,
-        headers: HTTPHeaders = ["x-apisports-key": "62524b8b5e66ef73f37f874f63b5cab2"],
+        headers: HTTPHeaders = APIConstants.headers,
         completion: @escaping(AFDataResponse<Any>) -> Void
     ) {
         let url = "\(APIConstants.mainURL)\(path)"
@@ -53,7 +53,7 @@ class RestService {
         }
     }
 
-    // MARK: - Getting all matches
+    // MARK: - Getting all matches/games
     func getAllGames(
         league: Int? = 10,
         season: String? = "2022-2023",
@@ -68,7 +68,6 @@ class RestService {
         if let seasonKey = season {
             path = "\(path)&season=\(seasonKey)"
         }
-        //        print(path)
 
         self.getJsonResponse(path) { response in
 
@@ -129,7 +128,6 @@ class RestService {
         if let seasonKey = season {
             path = "\(path)&season=\(seasonKey)"
         }
-        //        print(path)
 
         self.getJsonResponse(path) { response in
 
@@ -162,16 +160,14 @@ class RestService {
         if let seasonKey = season {
             path = "\(path)&season=\(seasonKey)"
         }
-        //        print(path)
 
         self.getJsonResponse(path) { response in
             switch response.result {
             case .success:
                 let decoder = JSONDecoder()
                 if let data = try? decoder.decode(TournamentsEntryPoint.self, from: response.data ?? Data()) {
-                    let conferences = data.response ?? [[]]
-                    completionHandler(.success(conferences))
-                    print("Conferences now count: \(conferences.count) ⛹🏻‍♂️")
+                    let standings = data.response ?? [[]]
+                    completionHandler(.success(standings))
                 }
             case .failure(let error):
                 completionHandler(.failure(error))

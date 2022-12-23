@@ -23,18 +23,15 @@ class TeamPlaceTableViewCell: UITableViewCell {
         return value
     }()
 
-    // set private after model seted
-    lazy var positionLabel: UILabel = {
+    private lazy var positionLabel: UILabel = {
         let value: UILabel = .init()
         value.font = .systemFont(ofSize: 16, weight: .medium)
-        value.text = "10"
         return value
     }()
 
     private lazy var teamImageView: UIImageView = {
         let value: UIImageView = .init()
         value.contentMode = .scaleAspectFit
-        value.image = UIImage(named: "fbuLogo")
         return value
     }()
 
@@ -42,7 +39,6 @@ class TeamPlaceTableViewCell: UITableViewCell {
         let value: UILabel = .init()
         value.font = .systemFont(ofSize: 14, weight: .regular)
         value.textAlignment = .center
-        value.text = "BC DniproBasket"
         value.numberOfLines = 2
         return value
     }()
@@ -51,7 +47,6 @@ class TeamPlaceTableViewCell: UITableViewCell {
         let value: UILabel = .init()
         value.font = .systemFont(ofSize: 14, weight: .regular)
         value.textAlignment = .center
-        value.text = "10"
         return value
     }()
 
@@ -59,7 +54,6 @@ class TeamPlaceTableViewCell: UITableViewCell {
         let value: UILabel = .init()
         value.font = .systemFont(ofSize: 14, weight: .regular)
         value.textAlignment = .center
-        value.text = "5"
         return value
     }()
 
@@ -67,7 +61,6 @@ class TeamPlaceTableViewCell: UITableViewCell {
         let value: UILabel = .init()
         value.font = .systemFont(ofSize: 14, weight: .regular)
         value.textAlignment = .center
-        value.text = "5"
         return value
     }()
 
@@ -76,7 +69,13 @@ class TeamPlaceTableViewCell: UITableViewCell {
         let value: UILabel = .init()
         value.font = .systemFont(ofSize: 14, weight: .regular)
         value.textAlignment = .center
-        value.text = "3455:2456"
+        return value
+    }()
+
+    lazy var groupLabel: UILabel = {
+        let value: UILabel = .init()
+        value.font = .systemFont(ofSize: 12, weight: .thin)
+        value.textAlignment = .center
         return value
     }()
 
@@ -94,6 +93,7 @@ class TeamPlaceTableViewCell: UITableViewCell {
         gamesPlayedLabel.text = placeModel.games?.played?.description
         victoriesLabel.text = placeModel.games?.win?.total?.description
         lossesLabel.text = placeModel.games?.lose?.total?.description
+        groupLabel.text = placeModel.group?.name
         guard
             let homePoints = placeModel.points?.selfPoints,
             let guestPoints = placeModel.points?.againstPoints
@@ -115,6 +115,7 @@ extension TeamPlaceTableViewCell {
         myBackgroundView.addSubview(victoriesLabel)
         myBackgroundView.addSubview(lossesLabel)
         myBackgroundView.addSubview(totalPointsLabel)
+        myBackgroundView.addSubview(groupLabel)
 
         myBackgroundView.snp.makeConstraints {
             $0.edges.equalToSuperview()
@@ -159,6 +160,11 @@ extension TeamPlaceTableViewCell {
         totalPointsLabel.snp.makeConstraints {
             $0.trailing.height.equalToSuperview()
             $0.width.equalTo(80)
+        }
+
+        groupLabel.snp.makeConstraints {
+            $0.bottom.width.equalToSuperview().inset(2)
+            $0.height.equalTo(10)
         }
     }
 }
