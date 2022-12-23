@@ -17,7 +17,7 @@ class TeamsViewController: BaseViewController {
         view.backgroundColor = .systemBackground
         configureCollectionView()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -64,7 +64,6 @@ class TeamsViewController: BaseViewController {
 
 extension TeamsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        teamsModels.count - set all teams from league and season from HomeVC
         teamsModel.count
     }
 

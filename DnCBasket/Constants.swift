@@ -25,6 +25,6 @@ enum Constants {
         static let gameRemovedFromFavourites = "This game removed from favourites!"
         static var somethingWentWrongAnswear = "Something went wrong:"
     }
-    
+
     static let dayAndTimeDateFormat = "dd-MM-yyyy HH:mm"
 }

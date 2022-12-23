@@ -24,7 +24,7 @@ class BaseCollectionViewCell: UICollectionViewCell {
         return value
     }()
 
-    private lazy var leagueImageView: UIImageView = {
+    private lazy var objectImageView: UIImageView = {
         let value: UIImageView = .init()
         value.contentMode = .scaleAspectFill
         value.image = UIImage(named: "fbuLogo")
@@ -33,7 +33,7 @@ class BaseCollectionViewCell: UICollectionViewCell {
         return value
     }()
 
-    private lazy var leagueNameLabel: UILabel = {
+    private lazy var objectNameLabel: UILabel = {
         let value: UILabel = .init()
         value.font = .systemFont(ofSize: 12, weight: .regular)
         value.contentMode = .center
@@ -43,7 +43,7 @@ class BaseCollectionViewCell: UICollectionViewCell {
         return value
     }()
 
-    private lazy var countryNameLabel: UILabel = {
+    private lazy var objectCountryNameLabel: UILabel = {
         let value: UILabel = .init()
         value.font = .systemFont(ofSize: 8, weight: .thin)
         value.contentMode = .center
@@ -56,16 +56,16 @@ class BaseCollectionViewCell: UICollectionViewCell {
     // MARK: - Functions
     func configure(with model: LeagueResponse) {
         let leagueImageURL = URL(string: model.logo ?? Constants.noImageURL)
-        leagueImageView.kf.setImage(with: leagueImageURL)
-        leagueNameLabel.text = model.name
-        countryNameLabel.text = model.country?.name
+        objectImageView.kf.setImage(with: leagueImageURL)
+        objectNameLabel.text = model.name
+        objectCountryNameLabel.text = model.country?.name
     }
 
     func configure(with model: TeamResponse) {
         let teamImageURL = URL(string: model.logo ?? Constants.noImageURL)
-        leagueImageView.kf.setImage(with: teamImageURL)
-        leagueNameLabel.text = model.name
-        countryNameLabel.text = model.country?.name
+        objectImageView.kf.setImage(with: teamImageURL)
+        objectNameLabel.text = model.name
+        objectCountryNameLabel.text = model.country?.name
     }
 
     override func layoutSubviews() {
@@ -76,26 +76,26 @@ class BaseCollectionViewCell: UICollectionViewCell {
 
     private func setUpUI() {
         contentView.addSubview(myBackgroundView)
-        myBackgroundView.addSubview(leagueImageView)
-        myBackgroundView.addSubview(leagueNameLabel)
-        myBackgroundView.addSubview(countryNameLabel)
+        myBackgroundView.addSubview(objectImageView)
+        myBackgroundView.addSubview(objectNameLabel)
+        myBackgroundView.addSubview(objectCountryNameLabel)
 
         myBackgroundView.snp.makeConstraints {
             $0.edges.equalToSuperview().inset(2)
         }
 
-        leagueImageView.snp.makeConstraints {
+        objectImageView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview().inset(12)
             $0.height.equalToSuperview().dividedBy(2)
         }
 
-        leagueNameLabel.snp.makeConstraints {
+        objectNameLabel.snp.makeConstraints {
             $0.width.equalToSuperview()
-            $0.top.equalTo(leagueImageView.snp.bottom)
+            $0.top.equalTo(objectImageView.snp.bottom)
             $0.height.equalTo(30)
         }
 
-        countryNameLabel.snp.makeConstraints {
+        objectCountryNameLabel.snp.makeConstraints {
             $0.width.equalToSuperview()
             $0.bottom.equalToSuperview().inset(4)
             $0.height.equalTo(30)

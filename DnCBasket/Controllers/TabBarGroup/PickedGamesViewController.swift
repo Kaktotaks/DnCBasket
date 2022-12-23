@@ -93,7 +93,6 @@ extension PickedGamesViewController: UITableViewDelegate, UITableViewDataSource 
         }
 
         cell.selectionStyle = .none
-//        cell.configure(with: ArticlesCustomTableViewCellViewModel(with: favouriteArticles[indexPath.row]))
         cell.configure(with: pickedGames[indexPath.row])
         cell.addToFavouritesButton.isHidden = true
 
