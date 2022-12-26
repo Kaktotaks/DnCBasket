@@ -12,7 +12,7 @@ class CreateAccountViewController: UIViewController {
     private lazy var emailTextField: SkyFloatingLabelTextField = {
         let value = SkyFloatingLabelTextField()
         value.placeholder = Constants.emailPlaceholderText
-        value.title = "Email"
+        value.title = Constants.emailTitleText
         value.selectedTitleColor = .systemGray
         value.font = UIFont.systemFont(ofSize: 20)
         value.autocapitalizationType = .none
@@ -23,7 +23,7 @@ class CreateAccountViewController: UIViewController {
     private lazy var passwordTextField: SkyFloatingLabelTextField = {
         let value = SkyFloatingLabelTextField()
         value.placeholder = Constants.passPlaceholderText
-        value.title = "Password"
+        value.title = Constants.passPlaceholderText
         value.selectedTitleColor = .systemGray
         value.font = UIFont.systemFont(ofSize: 20)
         value.autocapitalizationType = .none
@@ -37,7 +37,7 @@ class CreateAccountViewController: UIViewController {
         value.backgroundColor = Constants.redColor.withAlphaComponent(0.7)
         value.addTarget(self, action: #selector(createAccountButtonPressed), for: .touchUpInside)
         value.setTitleColor(.white, for: .normal)
-        value.setTitle("Create an account", for: .normal)
+        value.setTitle(Constants.createAccount.localized(), for: .normal)
         value.layer.cornerRadius = 10
         value.layer.borderWidth = 1
         value.layer.borderColor = UIColor.systemOrange.cgColor
@@ -138,7 +138,7 @@ extension CreateAccountViewController: UITextFieldDelegate {
 // MARK: - Setup UI extension
 extension CreateAccountViewController {
     func setupUI() {
-        title = "Registration"
+        title = Constants.registrationText.localized()
         view.backgroundColor = .systemBackground.withAlphaComponent(0.8)
         view.addSubview(emailTextField)
         view.addSubview(passwordTextField)

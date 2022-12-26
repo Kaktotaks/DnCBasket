@@ -57,10 +57,10 @@ class AccountViewController: BaseViewController {
 
     private func showImagePickerOptions() {
         let actions: [MyAlertManager.Action] = [
-            .init(title: "Cancel", style: .cancel) {
+            .init(title: Constants.cancelText, style: .cancel) {
                 debugPrint("Cancel Button Pressed")
             },
-            .init(title: "Camera", style: .default) {
+            .init(title: Constants.cameraText, style: .default) {
                 debugPrint("Camera Button Pressed")
                 let cameraImagePicker = self.imagePicker(sourceType: .camera)
                 cameraImagePicker.delegate = self
@@ -68,7 +68,7 @@ class AccountViewController: BaseViewController {
                     // TODO
                 }
             },
-            .init(title: "Library", style: .default) {
+            .init(title: Constants.libraryText, style: .default) {
                 debugPrint("Library Button Pressed")
                 let libraryImagePicker = self.imagePicker(sourceType: .photoLibrary)
                 libraryImagePicker.delegate = self
@@ -79,8 +79,8 @@ class AccountViewController: BaseViewController {
         ]
 
         let alert = MyAlertManager.shared.presentAlertWithOptions(
-            title: "Pick a photo",
-            message: "Choose a picture from Camera or Library",
+            title: Constants.pickaPhotoText,
+            message: Constants.choosePictureText,
             actions: actions,
             dismissActionTitle: nil)
 
@@ -148,16 +148,15 @@ extension AccountViewController: UITableViewDelegate, UITableViewDataSource {
 
         switch indexPath.row {
         case 0:
-            cell.textLabel?.text = "Email"
+            cell.textLabel?.text = Constants.emailTitleText
             cell.detailTextLabel?.text = "UserEmail"
             return cell
         case 1:
-            cell.textLabel?.text = "Picked Games 📌"
+            cell.textLabel?.text = Constants.pickedGamesText
             return cell
         default:
             break
         }
-
         return cell
     }
 
@@ -177,8 +176,11 @@ extension AccountViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension AccountViewController: AccountHeaderTableViewCellDelegate {
     func pickImage() {
-        print("Delegate is working ")
-        showImagePickerOptions()
+        if self.user != nil {
+            showImagePickerOptions()
+        } else {
+            showAlertToCreateAccount(vc: self)
+        }
     }
 }
 

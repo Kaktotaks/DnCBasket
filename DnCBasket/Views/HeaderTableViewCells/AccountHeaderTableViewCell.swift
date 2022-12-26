@@ -18,7 +18,7 @@ class AccountHeaderTableViewCell: UITableViewCell {
     lazy var userImageView: UIImageView = {
         let value: UIImageView = .init()
         value.contentMode = .scaleAspectFill
-        value.image = UIImage(named: "fbuLogo")
+        value.image = UIImage(named: "profileImage")
         value.clipsToBounds = true
         return value
     }()
@@ -37,7 +37,6 @@ class AccountHeaderTableViewCell: UITableViewCell {
 
     @objc private func changePhotoButtonPressed() {
         self.delegate?.pickImage()
-//        print("changePhotoButtonPressed")
     }
 
     override func layoutSubviews() {
@@ -45,15 +44,10 @@ class AccountHeaderTableViewCell: UITableViewCell {
 
         setUpUI()
     }
-    
+
     func configureCoreDataPhotos(image: UIImage?) {
         userImageView.image = image
         }
-    
-    //    func configure(with userData: UserData) {
-    //        self.dataTypeLabel.text = userData.dataType
-    //        self.usersAnswerLabel.text = userData.usersAnswer
-    //    }
 }
 
 extension AccountHeaderTableViewCell {

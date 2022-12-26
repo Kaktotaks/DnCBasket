@@ -58,7 +58,7 @@ extension LeaguesTableViewCell: UICollectionViewDelegate, UICollectionViewDataSo
             return UICollectionViewCell()
         }
 
-        cell.configure(with: leaguesModels[indexPath.row])
+        cell.configureLeague(with: leaguesModels[indexPath.row])
 
         return cell
     }

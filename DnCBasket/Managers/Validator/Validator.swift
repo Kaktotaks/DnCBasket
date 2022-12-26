@@ -31,19 +31,17 @@ enum RegEx: String {
 }
 
 enum AlertMessages: String {
-     case inValidEmail = "Invalid Email"
-     case inValidPSW = """
-    Invalid Password. Password must contain:
-    - minimum 8 characters
-    - at least 1 alphabet
-    - at least 1 number
-    """
-
+    case inValidEmail = "Invalid Email"
+     case inValidPSW = "Invalid Password. Password must contain: minimum 8 characters, at least 1 alphabet, at least 1 number"
      case emptyEmail = "Empty Email"
      case emptyPSW = "Empty Password"
 
-     func localized() -> String {
-        NSLocalizedString(self.rawValue, comment: "")
+     func alertlocalized() -> String {
+        NSLocalizedString(self.rawValue,
+                          tableName: "Localizable",
+                          bundle: .main,
+                          value: self.rawValue,
+                          comment: self.rawValue)
      }
 }
 
