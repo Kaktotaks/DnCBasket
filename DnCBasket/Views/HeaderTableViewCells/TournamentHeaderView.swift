@@ -47,7 +47,7 @@ class TournamentHeaderView: UITableViewHeaderFooterView {
         let value: UILabel = .init()
         value.font = .systemFont(ofSize: 16, weight: .medium)
         value.textAlignment = .left
-        value.text = "Teams"
+        value.text = Constants.teamsTabBarTitle
         value.numberOfLines = 2
         value.textAlignment = .center
         return value
@@ -57,7 +57,7 @@ class TournamentHeaderView: UITableViewHeaderFooterView {
         let value: UILabel = .init()
         value.font = .systemFont(ofSize: 16, weight: .medium)
         value.textAlignment = .center
-        value.text = "GP"
+        value.text = Constants.gamesPlayedTitle
         return value
     }()
 
@@ -65,7 +65,7 @@ class TournamentHeaderView: UITableViewHeaderFooterView {
         let value: UILabel = .init()
         value.font = .systemFont(ofSize: 16, weight: .medium)
         value.textAlignment = .center
-        value.text = "W"
+        value.text = Constants.wictoriesTitle
         return value
     }()
 
@@ -73,7 +73,7 @@ class TournamentHeaderView: UITableViewHeaderFooterView {
         let value: UILabel = .init()
         value.font = .systemFont(ofSize: 16, weight: .medium)
         value.textAlignment = .center
-        value.text = "L"
+        value.text = Constants.lossesTitle
         return value
     }()
 
@@ -82,7 +82,7 @@ class TournamentHeaderView: UITableViewHeaderFooterView {
         let value: UILabel = .init()
         value.font = .systemFont(ofSize: 16, weight: .medium)
         value.textAlignment = .center
-        value.text = "TP"
+        value.text = Constants.totalPointsTitle
         return value
     }()
 

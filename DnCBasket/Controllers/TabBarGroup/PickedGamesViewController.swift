@@ -35,9 +35,9 @@ class PickedGamesViewController: BaseViewController {
 
     // MARK: - Methods
     private func configureNavigationBar() {
-        title = "Favourite Games"
+        title = Constants.pickedGamesText
         navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: "Clear all",
+            title: Constants.clearAllText,
             style: .plain,
             target: self,
             action: #selector(didTapClearAllButton))
@@ -107,7 +107,7 @@ extension PickedGamesViewController: UITableViewDelegate, UITableViewDataSource 
 
             // Wich present to remove
             let gamesToRemove = self.pickedGames[indexPath.row]
-            // Remove the articles + Save the data + Re-fetch the data
+            // Remove the games + Save the data + Re-fetch the data
             MyCoreDataManager.shared.deleteCoreDataObjct(object: gamesToRemove, context: self.context) {
                 self.getGames()
             }

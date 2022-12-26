@@ -199,28 +199,13 @@ extension HomeViewController {
 extension HomeViewController: GameTableViewCellDelegate {
     func saveToPickedButtonTapped(tappedForItem item: Int) {
         let game = gamesModel[item]
-        let cdGame = CDGame(context: self.context)
-        cdGame.guestTotalScore = game.teams?.away?.total?.description
-        cdGame.homeTotalScore = game.teams?.home?.total?.description
-        cdGame.homeTeamName = game.teams?.home?.name
-        cdGame.homeTeamImageURL = game.teams?.home?.logo
-        cdGame.guestTeamName = game.teams?.away?.name
-        cdGame.guestTeamImageURL = game.teams?.away?.logo
-        cdGame.countryCode = game.country?.code
-        cdGame.status = game.status?.long
-        cdGame.date = game.date
-        cdGame.leagueImageURL = game.league?.logo
 
-        // Save in Core Data action
-        MyCoreDataManager.shared.cdSave(self.context)
-
-        let alert = MyAlertManager.shared.presentTemporaryInfoAlert(
-            title: "Article Added",
-            message: nil,
-            preferredStyle: .actionSheet,
-            forTime: 1.0
-        )
-
-        present(alert, animated: true)
+        if self.user != nil {
+            MyCoreDataManager.shared.saveGameToPicked(gameAPIModel: game, context: self.context) {
+                self.showGameAddedAlert(vc: self)
+            }
+        } else {
+            self.showAlertToCreateAccount(vc: self)
+        }
     }
 }

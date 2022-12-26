@@ -7,11 +7,14 @@
 
 import UIKit
 import SnapKit
+import FirebaseAuth
 
 class BaseViewController: UIViewController {
     // swiftlint:disable force_cast
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     // swiftlint:enable force_cast
+
+    var user = FirebaseAuth.Auth.auth().currentUser
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +31,7 @@ class BaseViewController: UIViewController {
 
     func showErrorAlert(_ message: String, controller: UIViewController) {
         let errorAlert = MyAlertManager.shared.presentTemporaryInfoAlert(
-            title: Constants.TemporaryAlertAnswers.somethingWentWrongAnswear,
+            title: Constants.AlertAnswers.somethingWentWrongAnswear,
             message: message,
             preferredStyle: .actionSheet,
             forTime: 10.0)
@@ -73,6 +76,32 @@ class BaseViewController: UIViewController {
         }
 
         vc.present(navController, animated: true)
+    }
+
+    func showGameAddedAlert(vc: UIViewController) {
+        let alert = MyAlertManager.shared.presentTemporaryInfoAlert(
+            title: Constants.AlertAnswers.gameAdded,
+            message: nil,
+            preferredStyle: .actionSheet,
+            forTime: 3.0
+        )
+        vc.present(alert, animated: true)
+    }
+
+    func showAlertToCreateAccount(vc: UIViewController) {
+        let actions: [MyAlertManager.Action] = [
+            .init(title: Constants.cancelText, style: .cancel),
+            .init(title: Constants.goToRegistration, style: .default) {
+                vc.dismiss(animated: true)
+            }
+        ]
+
+        let alert = MyAlertManager.shared.presentAlertWithOptions(
+            title: Constants.AlertAnswers.needToCreateAnAccountAnswear,
+            message: nil,
+            actions: actions,
+            dismissActionTitle: nil)
+        vc.present(alert, animated: true)
     }
 
     // MARK: - Configure appearance upButton

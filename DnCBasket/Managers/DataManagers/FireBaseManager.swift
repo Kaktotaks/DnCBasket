@@ -34,8 +34,8 @@ class FireBaseManager {
             Auth.auth().createUser(withEmail: email, password: password)
 
             let successAlert = MyAlertManager.shared.presentTemporaryInfoAlert(
-                title: "Well done",
-                message: "You have just created a new account. Go back to login.",
+                title: Constants.AlertAnswers.wellDoneTitle,
+                message: Constants.AlertAnswers.successFullAccountCreationTitle,
                 preferredStyle: .actionSheet,
                 forTime: .infinity
             )
@@ -47,8 +47,8 @@ class FireBaseManager {
 
         case .failure(_, let errorMessage):
             let errorAlert = MyAlertManager.shared.presentTemporaryInfoAlert(
-                title: "Registration error:",
-                message: errorMessage.localized(),
+                title: Constants.AlertAnswers.registrationErrorTitle,
+                message: errorMessage.alertlocalized(),
                 preferredStyle: .actionSheet,
                 forTime: 5
             )
@@ -61,7 +61,7 @@ class FireBaseManager {
 
             if let error = error, user == nil {
                 let errorAlert = MyAlertManager.shared.presentTemporaryInfoAlert(
-                    title: "Log in error!",
+                    title: Constants.AlertAnswers.logInErrorTitle,
                     message: error.localizedDescription,
                     preferredStyle: .actionSheet,
                     forTime: 5

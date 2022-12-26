@@ -24,7 +24,7 @@ class LoginViewController: BaseViewController {
     private lazy var emailTextField: SkyFloatingLabelTextField = {
         let value = SkyFloatingLabelTextField()
         value.placeholder = Constants.emailPlaceholderText
-        value.title = "Email"
+        value.title = Constants.emailTitleText
         value.selectedTitleColor = .systemGray
         value.selectedLineColor = .systemGray4
         value.font = UIFont.systemFont(ofSize: 20)
@@ -36,7 +36,7 @@ class LoginViewController: BaseViewController {
     private lazy var passwordTextField: SkyFloatingLabelTextField = {
         let value = SkyFloatingLabelTextField()
         value.placeholder = Constants.passPlaceholderText
-        value.title = "Password"
+        value.title = Constants.passPlaceholderText
         value.selectedTitleColor = .systemGray
         value.selectedLineColor = .systemGray4
         value.isSecureTextEntry = true

@@ -72,6 +72,8 @@
 		E4BA948A2949F8DB0049F281 /* Seasons.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA94862949F8DB0049F281 /* Seasons.swift */; };
 		E4BA948B2949F8DB0049F281 /* leaguesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA94872949F8DB0049F281 /* leaguesResponse.swift */; };
 		E4BA948C2949F8DB0049F281 /* LeaguesEntryPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA94882949F8DB0049F281 /* LeaguesEntryPoint.swift */; };
+		E4CB08902959B4710052EB5A /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CB088F2959B4710052EB5A /* StringExtension.swift */; };
+		E4CB08932959B5B60052EB5A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E4CB08952959B5B60052EB5A /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -134,6 +136,9 @@
 		E4BA94862949F8DB0049F281 /* Seasons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Seasons.swift; sourceTree = "<group>"; };
 		E4BA94872949F8DB0049F281 /* leaguesResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = leaguesResponse.swift; sourceTree = "<group>"; };
 		E4BA94882949F8DB0049F281 /* LeaguesEntryPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaguesEntryPoint.swift; sourceTree = "<group>"; };
+		E4CB088F2959B4710052EB5A /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		E4CB08942959B5B60052EB5A /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E4CB08962959B5CC0052EB5A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,6 +268,7 @@
 		E4BA9432293F62560049F281 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				E4CB088E2959B41C0052EB5A /* Strings */,
 				E4BA94592940DE640049F281 /* Validator */,
 				E4BA9440293F655E0049F281 /* DataManagers */,
 				E4BA943F293F652E0049F281 /* UIManagers */,
@@ -388,6 +394,15 @@
 			path = Leagues;
 			sourceTree = "<group>";
 		};
+		E4CB088E2959B41C0052EB5A /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				E4CB088F2959B4710052EB5A /* StringExtension.swift */,
+				E4CB08952959B5B60052EB5A /* Localizable.strings */,
+			);
+			path = Strings;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -441,6 +456,7 @@
 			knownRegions = (
 				en,
 				Base,
+				uk,
 			);
 			mainGroup = E4BA93EB293DF3E50049F281;
 			packageReferences = (
@@ -465,6 +481,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4CB08932959B5B60052EB5A /* Localizable.strings in Resources */,
 				E4BA9453293FB6990049F281 /* spinBasketball.json in Resources */,
 				E4BA947D2948E1720049F281 /* basketballLoading.json in Resources */,
 				E4BA94582940A5050049F281 /* GoogleService-Info.plist in Resources */,
@@ -532,6 +549,7 @@
 				E4BA947329479EB00049F281 /* Status.swift in Sources */,
 				E4BA9445293F65A30049F281 /* RestService.swift in Sources */,
 				E4369AC3294B8F6F00678ED7 /* Lose.swift in Sources */,
+				E4CB08902959B4710052EB5A /* StringExtension.swift in Sources */,
 				E4369AC4294B8F6F00678ED7 /* TournamentResponse.swift in Sources */,
 				E4BA94812949EC420049F281 /* BaseCollectionViewCell.swift in Sources */,
 				E4369AE82952683000678ED7 /* TeamResponse.swift in Sources */,
@@ -557,6 +575,18 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E4CB08952959B5B60052EB5A /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E4CB08942959B5B60052EB5A /* uk */,
+				E4CB08962959B5CC0052EB5A /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		E4BA9409293DF3E60049F281 /* Debug */ = {

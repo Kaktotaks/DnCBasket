@@ -101,6 +101,7 @@ class RestService {
 
             switch response.result {
             case .success:
+                print("Leagues response SUCCESSFULL")
                 let decoder = JSONDecoder()
                 if let data = try? decoder.decode(LeaguesEntryPoint.self, from: response.data ?? Data()) {
                     let leagues = data.leaguesResponse ?? []
