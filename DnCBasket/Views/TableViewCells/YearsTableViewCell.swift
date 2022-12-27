@@ -11,7 +11,7 @@ class YearsTableViewCell: UITableViewCell {
         // MARK: - Constants and Variables
         static let identifier = "YearsTableViewCell"
         private var collectionView: UICollectionView!
-        private var yearsModels = [Seasons]()
+    private var yearsModels = OfflineSeasons.offlineSeasonsList
 
         override func layoutSubviews() {
             super.layoutSubviews()
@@ -19,7 +19,7 @@ class YearsTableViewCell: UITableViewCell {
             configureCollectionView()
         }
 
-        func configure(with models: [Seasons]) {
+        func configure(with models: [OfflineSeason]) {
             self.yearsModels = models
             collectionView?.reloadData()
         }
@@ -46,8 +46,7 @@ class YearsTableViewCell: UITableViewCell {
 
     extension YearsTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    //        leaguesModels.count
-            10
+            yearsModels.count
         }
 
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -59,12 +58,7 @@ class YearsTableViewCell: UITableViewCell {
                 return UICollectionViewCell()
             }
 
-//            cell.configure(with: yearsModels[indexPath.row])
-
-    //        if indexPath.row == 0 {
-    //            cell.hourLabel.text = "Now"
-    //        }
-
+            cell.configure(with: yearsModels[indexPath.row])
             return cell
         }
 

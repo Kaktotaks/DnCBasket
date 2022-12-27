@@ -74,6 +74,7 @@
 		E4BA948C2949F8DB0049F281 /* LeaguesEntryPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA94882949F8DB0049F281 /* LeaguesEntryPoint.swift */; };
 		E4CB08902959B4710052EB5A /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CB088F2959B4710052EB5A /* StringExtension.swift */; };
 		E4CB08932959B5B60052EB5A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E4CB08952959B5B60052EB5A /* Localizable.strings */; };
+		E4CB089A295B118B0052EB5A /* OfflineLegues.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CB0899295B118B0052EB5A /* OfflineLegues.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -139,6 +140,7 @@
 		E4CB088F2959B4710052EB5A /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		E4CB08942959B5B60052EB5A /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E4CB08962959B5CC0052EB5A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E4CB0899295B118B0052EB5A /* OfflineLegues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineLegues.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -279,6 +281,7 @@
 		E4BA9433293F625D0049F281 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E4CB0898295B115E0052EB5A /* OfflineModels */,
 				E4BA946229436A310049F281 /* APIModels */,
 				E4BA944D293F7EBC0049F281 /* LottieAnimations */,
 			);
@@ -401,6 +404,14 @@
 				E4CB08952959B5B60052EB5A /* Localizable.strings */,
 			);
 			path = Strings;
+			sourceTree = "<group>";
+		};
+		E4CB0898295B115E0052EB5A /* OfflineModels */ = {
+			isa = PBXGroup;
+			children = (
+				E4CB0899295B118B0052EB5A /* OfflineLegues.swift */,
+			);
+			path = OfflineModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -553,6 +564,7 @@
 				E4369AC4294B8F6F00678ED7 /* TournamentResponse.swift in Sources */,
 				E4BA94812949EC420049F281 /* BaseCollectionViewCell.swift in Sources */,
 				E4369AE82952683000678ED7 /* TeamResponse.swift in Sources */,
+				E4CB089A295B118B0052EB5A /* OfflineLegues.swift in Sources */,
 				E4BA941D293E21D50049F281 /* TeamsViewController.swift in Sources */,
 				E4369AE52952683000678ED7 /* TeamsEntryPoint.swift in Sources */,
 				E4369ACB294B8F6F00678ED7 /* Games.swift in Sources */,

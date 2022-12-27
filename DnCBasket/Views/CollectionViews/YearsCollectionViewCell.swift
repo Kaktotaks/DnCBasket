@@ -34,8 +34,8 @@ class YearsCollectionViewCell: UICollectionViewCell {
     }()
 
     // MARK: - Functions
-    func configure(with model: Seasons) {
-        seasonYearsLabel.text = model.season?.description
+    func configure(with model: OfflineSeason) {
+        seasonYearsLabel.text = model.season
     }
 
     override func layoutSubviews() {

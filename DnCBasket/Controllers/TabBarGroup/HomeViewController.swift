@@ -32,14 +32,15 @@ class HomeViewController: BaseViewController {
     }()
 
     private var gamesModel: [GameResponse] = []
-    private var leaguesModels: [LeagueResponse] = []
+    private var leaguesModels = OfflineLeagues.offlineLeaguesList
+    private var seasonsModel = OfflineSeasons.offlineSeasonsList
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUI()
         setUpTableView()
-        getLeagues()
+//        getLeagues()
         getGames()
         setUPNavItems(needed: true)
     }
@@ -53,24 +54,24 @@ class HomeViewController: BaseViewController {
         gamesTableView.dataSource = self
     }
 
-    private func getLeagues() {
-        ActivityIndicatorManager.shared.showIndicator(.basketballLoading)
-        
-        RestService.shared.getAllleagues(season: nil) { [weak self] result in
-            guard let self = self else { return }
-
-            switch result {
-            case .success(let leagues):
-                self.leaguesModels.append(contentsOf: leagues)
-                DispatchQueue.main.async {
-                    ActivityIndicatorManager.shared.hide()
-                    self.gamesTableView.reloadData()
-                }
-            case .failure(let error):
-                self.showErrorAlert(error.localizedDescription, controller: self)
-            }
-        }
-    }
+//    private func getLeagues() {
+//        ActivityIndicatorManager.shared.showIndicator(.basketballLoading)
+//
+//        RestService.shared.getAllleagues(season: nil) { [weak self] result in
+//            guard let self = self else { return }
+//
+//            switch result {
+//            case .success(let leagues):
+//                self.leaguesModels.append(contentsOf: leagues)
+//                DispatchQueue.main.async {
+//                    ActivityIndicatorManager.shared.hide()
+//                    self.gamesTableView.reloadData()
+//                }
+//            case .failure(let error):
+//                self.showErrorAlert(error.localizedDescription, controller: self)
+//            }
+//        }
+//    }
 
     // relocate to baseVC
     private func getGames() {
@@ -140,7 +141,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
 
-//          cell.configure(with: SeasonsModels)
+          cell.configure(with: seasonsModel)
             return cell
         }
 

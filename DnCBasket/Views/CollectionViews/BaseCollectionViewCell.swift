@@ -26,7 +26,7 @@ class BaseCollectionViewCell: UICollectionViewCell {
 
     private lazy var objectImageView: UIImageView = {
         let value: UIImageView = .init()
-        value.contentMode = .scaleAspectFill
+        value.contentMode = .scaleAspectFit
         value.image = UIImage(named: "fbuLogo")
         value.clipsToBounds = true
         value.layer.cornerRadius = 15
@@ -35,7 +35,7 @@ class BaseCollectionViewCell: UICollectionViewCell {
 
     private lazy var objectNameLabel: UILabel = {
         let value: UILabel = .init()
-        value.font = .systemFont(ofSize: 12, weight: .regular)
+        value.font = .systemFont(ofSize: 12, weight: .semibold)
         value.contentMode = .center
         value.textAlignment = .center
         value.numberOfLines = 2
@@ -45,7 +45,7 @@ class BaseCollectionViewCell: UICollectionViewCell {
 
     private lazy var objectCountryNameLabel: UILabel = {
         let value: UILabel = .init()
-        value.font = .systemFont(ofSize: 8, weight: .thin)
+        value.font = .systemFont(ofSize: 10, weight: .regular)
         value.contentMode = .center
         value.textAlignment = .center
         value.numberOfLines = 2
@@ -54,11 +54,11 @@ class BaseCollectionViewCell: UICollectionViewCell {
     }()
 
     // MARK: - Functions
-    func configureLeague(with model: LeagueResponse) {
+    func configureLeague(with model: OfflineLeague) {
         let leagueImageURL = URL(string: model.logo ?? Constants.noImageURL)
         objectImageView.kf.setImage(with: leagueImageURL)
         objectNameLabel.text = model.name
-        objectCountryNameLabel.text = model.country?.name
+        objectCountryNameLabel.text = model.countryName
     }
 
     func configure(with model: TeamResponse) {

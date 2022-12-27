@@ -11,7 +11,7 @@ class LeaguesTableViewCell: UITableViewCell {
     // MARK: - Constants and Variables
     static let identifier = "LeaguesTableViewCell"
     private var collectionView: UICollectionView!
-    private var leaguesModels: [LeagueResponse] = []
+    private var leaguesModels: [OfflineLeague] = []
 
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -19,7 +19,7 @@ class LeaguesTableViewCell: UITableViewCell {
         configureCollectionView()
     }
 
-    func configure(with models: [LeagueResponse]) {
+    func configure(with models: [OfflineLeague]) {
         self.leaguesModels = models
         collectionView?.reloadData()
     }
