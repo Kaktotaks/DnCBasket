@@ -85,7 +85,7 @@ class RestService {
         }
     }
 
-    // MARK: - Getting all leagues
+    // MARK: - Getting all leagues - not working ❌
     func getAllleagues(
         season: String? = "2022-2023",
         completionHandler: @escaping(Result<[LeagueResponse], Error>) -> Void
