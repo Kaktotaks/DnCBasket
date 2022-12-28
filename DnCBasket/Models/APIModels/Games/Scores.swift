@@ -2,19 +2,18 @@
 import Foundation
 
 struct Scores: Codable {
-	let home: Home?
-	let away: Away?
+	let homeScores: GenericScoresCount?
+	let awayScores: GenericScoresCount?
 
 	enum CodingKeys: String, CodingKey {
 
-		case home = "home"
-		case away = "away"
+		case homeScores = "home"
+		case awayScores = "away"
 	}
 
 	init(from decoder: Decoder) throws {
 		let values = try decoder.container(keyedBy: CodingKeys.self)
-		home = try values.decodeIfPresent(Home.self, forKey: .home)
-		away = try values.decodeIfPresent(Away.self, forKey: .away)
+        homeScores = try values.decodeIfPresent(GenericScoresCount.self, forKey: .homeScores)
+        awayScores = try values.decodeIfPresent(GenericScoresCount.self, forKey: .awayScores)
 	}
-
 }

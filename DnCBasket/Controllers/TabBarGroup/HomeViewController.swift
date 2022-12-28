@@ -33,6 +33,7 @@ class HomeViewController: BaseViewController {
 
     private var gamesModel: [GameResponse] = []
     private var leaguesModels: [LeagueResponse] = []
+    private var seasonsModels: [Seasons] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +49,7 @@ class HomeViewController: BaseViewController {
     private func setUpTableView() {
         gamesTableView.register(GameTableViewCell.self, forCellReuseIdentifier: GameTableViewCell.identifier)
         gamesTableView.register(LeaguesTableViewCell.self, forCellReuseIdentifier: LeaguesTableViewCell.identifier)
-        gamesTableView.register(YearsTableViewCell.self, forCellReuseIdentifier: YearsTableViewCell.identifier)
+        gamesTableView.register(SeasonsTableViewCell.self, forCellReuseIdentifier: SeasonsTableViewCell.identifier)
         gamesTableView.delegate = self
         gamesTableView.dataSource = self
     }
@@ -56,12 +57,15 @@ class HomeViewController: BaseViewController {
     private func getLeagues() {
         ActivityIndicatorManager.shared.showIndicator(.basketballLoading)
         
-        RestService.shared.getAllleagues(season: nil) { [weak self] result in
+        RestService.shared.getAllleagues() { [weak self] result in
             guard let self = self else { return }
 
             switch result {
             case .success(let leagues):
                 self.leaguesModels.append(contentsOf: leagues)
+                
+                guard let seasons = leagues.first?.seasons else { return } // temp desision
+                self.seasonsModels.append(contentsOf: seasons)
                 DispatchQueue.main.async {
                     ActivityIndicatorManager.shared.hide()
                     self.gamesTableView.reloadData()
@@ -133,14 +137,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         } else if indexPath.section == 1 { // MARK: Set - YearsTableViewCell
             guard
                 let cell = gamesTableView.dequeueReusableCell(
-                    withIdentifier: YearsTableViewCell.identifier,
+                    withIdentifier: SeasonsTableViewCell.identifier,
                     for: indexPath)
-                    as? YearsTableViewCell
+                    as? SeasonsTableViewCell
             else {
                 return UITableViewCell()
             }
 
-//          cell.configure(with: SeasonsModels)
+          cell.configure(with: seasonsModels)
             return cell
         }
 

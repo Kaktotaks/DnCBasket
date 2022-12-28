@@ -1,7 +1,7 @@
 import Foundation
 
 struct Seasons: Codable {
-	let season: Int?
+	let season: String?
 	let start: String?
 	let end: String?
 
@@ -14,7 +14,7 @@ struct Seasons: Codable {
 
 	init(from decoder: Decoder) throws {
 		let values = try decoder.container(keyedBy: CodingKeys.self)
-		season = try values.decodeIfPresent(Int.self, forKey: .season)
+		season = try values.decodeIfPresent(String.self, forKey: .season)
 		start = try values.decodeIfPresent(String.self, forKey: .start)
 		end = try values.decodeIfPresent(String.self, forKey: .end)
 	}

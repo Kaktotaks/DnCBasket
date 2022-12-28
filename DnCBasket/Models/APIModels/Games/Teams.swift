@@ -1,8 +1,8 @@
 import Foundation
 
 struct Teams: Codable {
-	let home: Home?
-	let away: Away?
+	let home: GenericTeam?
+	let away: GenericTeam?
 
 	enum CodingKeys: String, CodingKey {
 
@@ -12,8 +12,7 @@ struct Teams: Codable {
 
 	init(from decoder: Decoder) throws {
 		let values = try decoder.container(keyedBy: CodingKeys.self)
-		home = try values.decodeIfPresent(Home.self, forKey: .home)
-		away = try values.decodeIfPresent(Away.self, forKey: .away)
+		home = try values.decodeIfPresent(GenericTeam.self, forKey: .home)
+		away = try values.decodeIfPresent(GenericTeam.self, forKey: .away)
 	}
-
 }

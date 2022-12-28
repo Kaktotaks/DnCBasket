@@ -13,7 +13,7 @@ class BaseCollectionViewCell: UICollectionViewCell {
     // MARK: - Constants and Variables
     static let identifier = "BaseCollectionViewCell"
 
-    private lazy var myBackgroundView: GradientView = {
+    lazy var myBackgroundView: GradientView = {
         let value: GradientView = .init()
         value.diagonalMode = true
         value.startColor = Constants.redColor.withAlphaComponent(0.7)
@@ -26,7 +26,7 @@ class BaseCollectionViewCell: UICollectionViewCell {
 
     private lazy var objectImageView: UIImageView = {
         let value: UIImageView = .init()
-        value.contentMode = .scaleAspectFill
+        value.contentMode = .scaleAspectFit
         value.image = UIImage(named: "fbuLogo")
         value.clipsToBounds = true
         value.layer.cornerRadius = 15
@@ -35,7 +35,7 @@ class BaseCollectionViewCell: UICollectionViewCell {
 
     private lazy var objectNameLabel: UILabel = {
         let value: UILabel = .init()
-        value.font = .systemFont(ofSize: 12, weight: .regular)
+        value.font = .systemFont(ofSize: 14, weight: .semibold)
         value.contentMode = .center
         value.textAlignment = .center
         value.numberOfLines = 2
@@ -45,7 +45,7 @@ class BaseCollectionViewCell: UICollectionViewCell {
 
     private lazy var objectCountryNameLabel: UILabel = {
         let value: UILabel = .init()
-        value.font = .systemFont(ofSize: 8, weight: .thin)
+        value.font = .systemFont(ofSize: 10, weight: .regular)
         value.contentMode = .center
         value.textAlignment = .center
         value.numberOfLines = 2
@@ -61,7 +61,7 @@ class BaseCollectionViewCell: UICollectionViewCell {
         objectCountryNameLabel.text = model.country?.name
     }
 
-    func configure(with model: TeamResponse) {
+    func configureTeam(with model: TeamResponse) {
         let teamImageURL = URL(string: model.logo ?? Constants.noImageURL)
         objectImageView.kf.setImage(with: teamImageURL)
         objectNameLabel.text = model.name

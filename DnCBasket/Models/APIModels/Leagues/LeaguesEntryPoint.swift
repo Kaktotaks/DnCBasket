@@ -2,10 +2,10 @@ import Foundation
 
 struct LeaguesEntryPoint: Codable {
     let get: String?
-    let parameters: [String]?
+    let parameters: Parameters?
     let errors: [String]?
     let results: Int?
-    let leaguesResponse: [LeagueResponse]?
+    let response: [LeagueResponse]?
 
     enum CodingKeys: String, CodingKey {
 
@@ -13,15 +13,15 @@ struct LeaguesEntryPoint: Codable {
         case parameters = "parameters"
         case errors = "errors"
         case results = "results"
-        case leaguesResponse = "response"
+        case response = "response"
     }
 
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         get = try values.decodeIfPresent(String.self, forKey: .get)
-        parameters = try values.decodeIfPresent([String].self, forKey: .parameters)
+        parameters = try values.decodeIfPresent(Parameters.self, forKey: .parameters)
         errors = try values.decodeIfPresent([String].self, forKey: .errors)
         results = try values.decodeIfPresent(Int.self, forKey: .results)
-        leaguesResponse = try values.decodeIfPresent([LeagueResponse].self, forKey: .leaguesResponse)
+        response = try values.decodeIfPresent([LeagueResponse].self, forKey: .response)
     }
 }

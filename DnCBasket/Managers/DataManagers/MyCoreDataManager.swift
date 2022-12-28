@@ -12,12 +12,12 @@ struct MyCoreDataManager {
     static let shared = MyCoreDataManager()
 
     private init() {}
-    
+
     func saveGameToPicked(gameAPIModel: GameResponse, context: NSManagedObjectContext, completion: @escaping(() -> Void)) {
         let game = gameAPIModel
         let cdGame = CDGame(context: context)
-        cdGame.guestTotalScore = game.teams?.away?.total?.description
-        cdGame.homeTotalScore = game.teams?.home?.total?.description
+        cdGame.guestTotalScore = game.scores?.awayScores?.total?.description
+        cdGame.homeTotalScore = game.scores?.homeScores?.total?.description
         cdGame.homeTeamName = game.teams?.home?.name
         cdGame.homeTeamImageURL = game.teams?.home?.logo
         cdGame.guestTeamName = game.teams?.away?.name

@@ -1,5 +1,5 @@
 //
-//  YearsTableViewCell.swift
+//  SeasonsTableViewCell.swift
 //  DnCBasket
 //
 //  Created by Леонід Шевченко on 21.12.2022.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-class YearsTableViewCell: UITableViewCell {
+class SeasonsTableViewCell: UITableViewCell {
         // MARK: - Constants and Variables
-        static let identifier = "YearsTableViewCell"
+        static let identifier = "SeasonsTableViewCell"
         private var collectionView: UICollectionView!
-        private var yearsModels = [Seasons]()
+        private var seasonsModels = [Seasons]()
 
         override func layoutSubviews() {
             super.layoutSubviews()
@@ -20,7 +20,7 @@ class YearsTableViewCell: UITableViewCell {
         }
 
         func configure(with models: [Seasons]) {
-            self.yearsModels = models
+            self.seasonsModels = models
             collectionView?.reloadData()
         }
 
@@ -34,8 +34,8 @@ class YearsTableViewCell: UITableViewCell {
             collectionView = UICollectionView(
                 frame: CGRect(x: 0, y: 0, width: contentView.frame.size.width, height: contentView.frame.size.height),
                 collectionViewLayout: layout)
-            collectionView.register(YearsCollectionViewCell.self,
-                                    forCellWithReuseIdentifier: YearsCollectionViewCell.identifier)
+            collectionView.register(SeasonsCollectionViewCell.self,
+                                    forCellWithReuseIdentifier: SeasonsCollectionViewCell.identifier)
             collectionView.delegate = self
             collectionView.dataSource = self
             collectionView.showsHorizontalScrollIndicator = false
@@ -44,27 +44,22 @@ class YearsTableViewCell: UITableViewCell {
 
     }
 
-    extension YearsTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    extension SeasonsTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    //        leaguesModels.count
-            10
+            seasonsModels.count
+//            10
         }
 
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             guard
                 let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: YearsCollectionViewCell.identifier,
-                for: indexPath) as? YearsCollectionViewCell
+                withReuseIdentifier: SeasonsCollectionViewCell.identifier,
+                for: indexPath) as? SeasonsCollectionViewCell
             else {
                 return UICollectionViewCell()
             }
 
-//            cell.configure(with: yearsModels[indexPath.row])
-
-    //        if indexPath.row == 0 {
-    //            cell.hourLabel.text = "Now"
-    //        }
-
+            cell.configure(with: seasonsModels[indexPath.row])
             return cell
         }
 

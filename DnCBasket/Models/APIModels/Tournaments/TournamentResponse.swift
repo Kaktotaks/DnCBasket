@@ -4,7 +4,7 @@ struct TournamentResponse: Codable {
 	let position: Int?
 	let stage: String?
     let group: Group?
-	let team: Team?
+	let team: GenericTeam?
 	let league: League?
 	let country: Country?
 	let games: Games?
@@ -31,7 +31,7 @@ struct TournamentResponse: Codable {
 		position = try values.decodeIfPresent(Int.self, forKey: .position)
 		stage = try values.decodeIfPresent(String.self, forKey: .stage)
 		group = try values.decodeIfPresent(Group.self, forKey: .group)
-		team = try values.decodeIfPresent(Team.self, forKey: .team)
+		team = try values.decodeIfPresent(GenericTeam.self, forKey: .team)
 		league = try values.decodeIfPresent(League.self, forKey: .league)
 		country = try values.decodeIfPresent(Country.self, forKey: .country)
 		games = try values.decodeIfPresent(Games.self, forKey: .games)
