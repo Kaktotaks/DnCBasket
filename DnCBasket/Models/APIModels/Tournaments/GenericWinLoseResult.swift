@@ -1,6 +1,6 @@
 import Foundation
 
-struct Lose: Codable {
+struct GenericWinLoseResult: Codable {
 	let total: Int?
 	let percentage: String?
 

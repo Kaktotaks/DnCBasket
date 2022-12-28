@@ -76,7 +76,7 @@ extension TeamsViewController: UICollectionViewDelegate, UICollectionViewDataSou
             return UICollectionViewCell()
         }
 
-        cell.configure(with: teamsModel[indexPath.row])
+        cell.configureTeam(with: teamsModel[indexPath.row])
 
         return cell
     }

@@ -1,5 +1,5 @@
 //
-//  YearsCollectionViewCell.swift
+//  SeasonsCollectionViewCell.swift
 //  DnCBasket
 //
 //  Created by Леонід Шевченко on 21.12.2022.
@@ -8,11 +8,11 @@
 import UIKit
 import Kingfisher
 
-class YearsCollectionViewCell: UICollectionViewCell {
+class SeasonsCollectionViewCell: UICollectionViewCell {
     // MARK: - Constants and Variables
-    static let identifier = "YearsCollectionViewCell"
+    static let identifier = "SeasonsCollectionViewCell"
 
-    private lazy var myBackgroundView: GradientView = {
+    lazy var myBackgroundView: GradientView = {
         let value: GradientView = .init()
         value.diagonalMode = true
         value.startColor = Constants.redColor.withAlphaComponent(0.7)
@@ -23,7 +23,7 @@ class YearsCollectionViewCell: UICollectionViewCell {
         return value
     }()
 
-    private lazy var seasonYearsLabel: UILabel = {
+    private lazy var seasonLabel: UILabel = {
         let value: UILabel = .init()
         value.font = .systemFont(ofSize: 16, weight: .semibold)
         value.contentMode = .center
@@ -35,7 +35,7 @@ class YearsCollectionViewCell: UICollectionViewCell {
 
     // MARK: - Functions
     func configure(with model: Seasons) {
-        seasonYearsLabel.text = model.season?.description
+        seasonLabel.text = model.season?.description
     }
 
     override func layoutSubviews() {
@@ -46,13 +46,13 @@ class YearsCollectionViewCell: UICollectionViewCell {
 
     private func setUpUI() {
         contentView.addSubview(myBackgroundView)
-        myBackgroundView.addSubview(seasonYearsLabel)
+        myBackgroundView.addSubview(seasonLabel)
 
         myBackgroundView.snp.makeConstraints {
             $0.edges.equalToSuperview().inset(2)
         }
 
-        seasonYearsLabel.snp.makeConstraints {
+        seasonLabel.snp.makeConstraints {
             $0.width.height.equalToSuperview().inset(2)
             $0.centerX.centerY.equalToSuperview()
         }

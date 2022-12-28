@@ -2,8 +2,8 @@ import Foundation
 
 struct Games: Codable {
 	let played: Int?
-	let win: Win?
-	let lose: Lose?
+	let win: GenericWinLoseResult?
+	let lose: GenericWinLoseResult?
 
 	enum CodingKeys: String, CodingKey {
 
@@ -15,8 +15,7 @@ struct Games: Codable {
 	init(from decoder: Decoder) throws {
 		let values = try decoder.container(keyedBy: CodingKeys.self)
 		played = try values.decodeIfPresent(Int.self, forKey: .played)
-		win = try values.decodeIfPresent(Win.self, forKey: .win)
-		lose = try values.decodeIfPresent(Lose.self, forKey: .lose)
+		win = try values.decodeIfPresent(GenericWinLoseResult.self, forKey: .win)
+		lose = try values.decodeIfPresent(GenericWinLoseResult.self, forKey: .lose)
 	}
-
 }

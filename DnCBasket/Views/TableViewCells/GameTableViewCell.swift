@@ -49,6 +49,7 @@ class GameTableViewCell: UITableViewCell {
     private lazy var leagueImageView: UIImageView = {
         let value: UIImageView = .init()
         value.contentMode = .scaleAspectFit
+        value.image = UIImage(named: "fbuLogo")
         return value
     }()
 
@@ -56,6 +57,7 @@ class GameTableViewCell: UITableViewCell {
         let value: UILabel = .init()
         value.font = .systemFont(ofSize: 18, weight: .medium)
         value.contentMode = .center
+        value.text = "No data"
         return value
     }()
 
@@ -64,6 +66,7 @@ class GameTableViewCell: UITableViewCell {
         value.contentMode = .scaleAspectFit
         value.clipsToBounds = true
         value.layer.cornerRadius = 32
+        value.image = UIImage(named: "fbuLogo")
         return value
     }()
 
@@ -72,6 +75,7 @@ class GameTableViewCell: UITableViewCell {
         value.contentMode = .scaleAspectFit
         value.clipsToBounds = true
         value.layer.cornerRadius = 32
+        value.image = UIImage(named: "fbuLogo")
         return value
     }()
 
@@ -81,7 +85,7 @@ class GameTableViewCell: UITableViewCell {
         value.contentMode = .center
         value.textAlignment = .center
         value.numberOfLines = 2
-        value.text = "No name"
+        value.text = "No data"
         return value
     }()
 
@@ -91,7 +95,7 @@ class GameTableViewCell: UITableViewCell {
         value.contentMode = .center
         value.textAlignment = .center
         value.numberOfLines = 2
-        value.text = "No name"
+        value.text = "No data"
         return value
     }()
 
@@ -100,7 +104,7 @@ class GameTableViewCell: UITableViewCell {
         value.font = .systemFont(ofSize: 36, weight: .heavy)
         value.contentMode = .center
         value.textAlignment = .center
-        value.text = "-"
+        value.text = "No data"
         return value
     }()
 
@@ -109,7 +113,7 @@ class GameTableViewCell: UITableViewCell {
         value.font = .systemFont(ofSize: 36, weight: .heavy)
         value.contentMode = .center
         value.textAlignment = .center
-        value.text = "-"
+        value.text = "No data"
         return value
     }()
 
@@ -118,6 +122,7 @@ class GameTableViewCell: UITableViewCell {
         value.font = .systemFont(ofSize: 12, weight: .medium)
         value.contentMode = .center
         value.textAlignment = .center
+        value.text = "No data"
         return value
     }()
 
@@ -126,7 +131,7 @@ class GameTableViewCell: UITableViewCell {
         value.font = .systemFont(ofSize: 12, weight: .medium)
         value.contentMode = .center
         value.textAlignment = .center
-        value.text = "No status"
+        value.text = "No data"
         return value
     }()
 
@@ -164,8 +169,8 @@ class GameTableViewCell: UITableViewCell {
         dateLabel.text = formatedDate
 
         statusLabel.text = gameModel.status?.long
-        homeTotalScoreLabel.text = gameModel.scores?.home?.total?.description
-        guestTotalScoreLabel.text = gameModel.scores?.away?.total?.description
+        homeTotalScoreLabel.text = gameModel.scores?.homeScores?.total?.description
+        guestTotalScoreLabel.text = gameModel.scores?.awayScores?.total?.description
         countryCodeLabel.text = gameModel.country?.code
     }
 
