@@ -57,14 +57,14 @@ class HomeViewController: BaseViewController {
     private func getLeagues() {
         ActivityIndicatorManager.shared.showIndicator(.basketballLoading)
         
-        RestService.shared.getAllleagues() { [weak self] result in
+        RestService.shared.getAllleagues(season: nil) { [weak self] result in
             guard let self = self else { return }
 
             switch result {
             case .success(let leagues):
                 self.leaguesModels.append(contentsOf: leagues)
                 
-                guard let seasons = leagues.first?.seasons else { return } // temp desision
+                guard let seasons = leagues.first?.seasons else { return }  // temp desision
                 self.seasonsModels.append(contentsOf: seasons)
                 DispatchQueue.main.async {
                     ActivityIndicatorManager.shared.hide()

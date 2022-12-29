@@ -91,7 +91,7 @@ class RestService {
 
     // MARK: - Getting all leagues - not working ❌
     func getAllleagues(
-        season: String? = APIConstants.currentSeson,
+        season: String?,
         completionHandler: @escaping(Result<[LeagueResponse], Error>) -> Void
     ) {
         var path = "\(APIConstants.leaguesEndPoint)"
@@ -109,7 +109,7 @@ class RestService {
                 if let data = try? decoder.decode(LeaguesEntryPoint.self, from: response.data ?? Data()) {
                     let leagues = data.response ?? []
                     completionHandler(.success(leagues))
-                    print("Leagues now count: \(data.results) ⛹🏻‍♂️")
+//                    print("Leagues now count: \(data.results) ⛹🏻‍♂️")
                 }
             case .failure(let error):
                 completionHandler(.failure(error))

@@ -23,6 +23,7 @@
 		E4369AEA29526A3200678ED7 /* SeasonsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4369AE929526A3200678ED7 /* SeasonsTableViewCell.swift */; };
 		E4369AEC29526B8F00678ED7 /* SeasonsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4369AEB29526B8F00678ED7 /* SeasonsCollectionViewCell.swift */; };
 		E48282FE295CC57800FE76CD /* GenericScoresCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48282FD295CC57800FE76CD /* GenericScoresCount.swift */; };
+		E4828302295D9B1F00FE76CD /* AnyCodableValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4828301295D9B1F00FE76CD /* AnyCodableValue.swift */; };
 		E4BA93F8293DF3E50049F281 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA93F7293DF3E50049F281 /* AppDelegate.swift */; };
 		E4BA93FA293DF3E50049F281 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA93F9293DF3E50049F281 /* SceneDelegate.swift */; };
 		E4BA93FC293DF3E50049F281 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA93FB293DF3E50049F281 /* LoginViewController.swift */; };
@@ -91,6 +92,7 @@
 		E4369AE929526A3200678ED7 /* SeasonsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonsTableViewCell.swift; sourceTree = "<group>"; };
 		E4369AEB29526B8F00678ED7 /* SeasonsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonsCollectionViewCell.swift; sourceTree = "<group>"; };
 		E48282FD295CC57800FE76CD /* GenericScoresCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericScoresCount.swift; sourceTree = "<group>"; };
+		E4828301295D9B1F00FE76CD /* AnyCodableValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyCodableValue.swift; sourceTree = "<group>"; };
 		E4BA93F4293DF3E50049F281 /* DnCBasket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DnCBasket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4BA93F7293DF3E50049F281 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4BA93F9293DF3E50049F281 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -357,6 +359,7 @@
 				E4369AB6294B8F2300678ED7 /* Tournaments */,
 				E4BA94842949F8B90049F281 /* Leagues */,
 				E4BA946729479E9F0049F281 /* Games */,
+				E4828301295D9B1F00FE76CD /* AnyCodableValue.swift */,
 			);
 			path = APIModels;
 			sourceTree = "<group>";
@@ -563,6 +566,7 @@
 				E4BA943C293F649E0049F281 /* MyAlertManager.swift in Sources */,
 				E4BA947629479EB00049F281 /* GameResponse.swift in Sources */,
 				E4369ADA2950CE3900678ED7 /* LocalFileManager.swift in Sources */,
+				E4828302295D9B1F00FE76CD /* AnyCodableValue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
