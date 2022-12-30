@@ -4,6 +4,7 @@
 //
 //  Created by Леонід Шевченко on 29.12.2022.
 //
+// swiftlint: disable all
 
 import Foundation
 
@@ -105,7 +106,7 @@ enum AnyCodableValue: Codable {
             return 0
         }
     }
-    
+
     var floatValue: Float {
         switch self {
         case .float(let s):

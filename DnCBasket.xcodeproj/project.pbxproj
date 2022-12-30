@@ -355,11 +355,11 @@
 		E4BA946229436A310049F281 /* APIModels */ = {
 			isa = PBXGroup;
 			children = (
+				E4828301295D9B1F00FE76CD /* AnyCodableValue.swift */,
 				E4369AE02952681B00678ED7 /* Teams */,
 				E4369AB6294B8F2300678ED7 /* Tournaments */,
 				E4BA94842949F8B90049F281 /* Leagues */,
 				E4BA946729479E9F0049F281 /* Games */,
-				E4828301295D9B1F00FE76CD /* AnyCodableValue.swift */,
 			);
 			path = APIModels;
 			sourceTree = "<group>";

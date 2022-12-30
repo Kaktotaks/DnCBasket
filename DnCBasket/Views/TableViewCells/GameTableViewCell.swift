@@ -17,12 +17,6 @@ class GameTableViewCell: UITableViewCell {
     static let identifier = "GamesTableViewCell"
     public var buttonTogled = false
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        setUpUI()
-    }
-
     private lazy var myBackgroundView: GradientView = {
         let value: GradientView = .init()
         value.verticalMode = true
@@ -138,6 +132,12 @@ class GameTableViewCell: UITableViewCell {
     weak var delegate: GameTableViewCellDelegate?
 
     // MARK: - Methods
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        setUpUI()
+    }
+
     @objc private func addToFavouritesButtonPressed() {
         if buttonTogled == false {
             buttonTogled = true
@@ -199,6 +199,7 @@ class GameTableViewCell: UITableViewCell {
     }
 }
 
+// MARK: - UI setup.
 extension GameTableViewCell {
     private func setUpUI() {
         contentView.addSubview(myBackgroundView)

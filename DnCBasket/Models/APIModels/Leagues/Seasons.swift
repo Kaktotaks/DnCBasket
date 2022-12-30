@@ -6,7 +6,6 @@ struct Seasons: Codable {
 	let end: String?
 
 	enum CodingKeys: String, CodingKey {
-
 		case season = "season"
 		case start = "start"
 		case end = "end"
@@ -18,5 +17,4 @@ struct Seasons: Codable {
 		start = try values.decodeIfPresent(String.self, forKey: .start)
 		end = try values.decodeIfPresent(String.self, forKey: .end)
 	}
-
 }

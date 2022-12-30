@@ -5,7 +5,6 @@ struct GenericWinLoseResult: Codable {
 	let percentage: String?
 
 	enum CodingKeys: String, CodingKey {
-
 		case total = "total"
 		case percentage = "percentage"
 	}

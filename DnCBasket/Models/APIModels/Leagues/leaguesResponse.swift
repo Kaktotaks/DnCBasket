@@ -9,7 +9,6 @@ struct LeagueResponse: Codable {
 	let seasons: [Seasons]?
 
 	enum CodingKeys: String, CodingKey {
-
 		case id = "id"
 		case name = "name"
 		case type = "type"
@@ -27,5 +26,4 @@ struct LeagueResponse: Codable {
 		country = try values.decodeIfPresent(Country.self, forKey: .country)
 		seasons = try values.decodeIfPresent([Seasons].self, forKey: .seasons)
 	}
-
 }

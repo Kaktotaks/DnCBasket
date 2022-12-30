@@ -5,7 +5,6 @@ struct Parameters: Codable {
 	let season: String?
 
 	enum CodingKeys: String, CodingKey {
-
 		case league = "league"
 		case season = "season"
 	}
@@ -15,5 +14,4 @@ struct Parameters: Codable {
 		league = try values.decodeIfPresent(String.self, forKey: .league)
 		season = try values.decodeIfPresent(String.self, forKey: .season)
 	}
-
 }

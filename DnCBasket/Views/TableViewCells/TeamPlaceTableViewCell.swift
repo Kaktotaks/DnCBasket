@@ -79,6 +79,7 @@ class TeamPlaceTableViewCell: UITableViewCell {
         return value
     }()
 
+    // MARK: - Methods
     override func layoutSubviews() {
         super.layoutSubviews()
 
@@ -104,6 +105,7 @@ class TeamPlaceTableViewCell: UITableViewCell {
     }
 }
 
+// MARK: - UI setup.
 extension TeamPlaceTableViewCell {
     private func setUpUI() {
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 5, left: 4, bottom: 0, right: 4))

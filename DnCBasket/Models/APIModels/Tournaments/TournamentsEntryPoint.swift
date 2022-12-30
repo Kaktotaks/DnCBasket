@@ -8,7 +8,6 @@ struct TournamentsEntryPoint: Codable {
 	let response: [[TournamentResponse]]?
 
 	enum CodingKeys: String, CodingKey {
-
 		case get = "get"
 		case parameters = "parameters"
 		case errors = "errors"

@@ -6,7 +6,6 @@ struct Scores: Codable {
 	let awayScores: GenericScoresCount?
 
 	enum CodingKeys: String, CodingKey {
-
 		case homeScores = "home"
 		case awayScores = "away"
 	}

@@ -6,7 +6,6 @@ struct GenericTeam: Codable {
     let logo: String?
 
 	enum CodingKeys: String, CodingKey {
-
         case id = "id"
         case name = "name"
         case logo = "logo"
@@ -18,5 +17,4 @@ struct GenericTeam: Codable {
         name = try values.decodeIfPresent(String.self, forKey: .name)
         logo = try values.decodeIfPresent(String.self, forKey: .logo)
 	}
-
 }

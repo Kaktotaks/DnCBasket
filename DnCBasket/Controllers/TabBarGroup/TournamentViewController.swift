@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 
 class TournamentViewController: BaseViewController {
+    // MARK: - Constants & Variables
     private var tournamentTableView: UITableView = {
         let value: UITableView = .init()
         value.separatorStyle = .none
@@ -24,6 +25,7 @@ class TournamentViewController: BaseViewController {
         setUpTableView()
     }
 
+    // MARK: - Methods
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -39,7 +41,9 @@ class TournamentViewController: BaseViewController {
 
     private func getAllStandings() {
         ActivityIndicatorManager.shared.showIndicator(.basketballLoading)
-        RestService.shared.getAllStandings { result in
+        RestService.shared.getAllStandings { [weak self] result in
+            guard let self = self else { return }
+
             switch result {
             case .success(let standings):
                 self.conferencesModel.removeAll()
@@ -47,6 +51,7 @@ class TournamentViewController: BaseViewController {
                 DispatchQueue.main.async {
                     ActivityIndicatorManager.shared.hide()
                     self.tournamentTableView.reloadData()
+                    self.checkIfModelIsEmpty(vc: self, model: standings)
                 }
             case .failure(let error):
                 self.showErrorAlert(error.localizedDescription, controller: self)
@@ -55,16 +60,16 @@ class TournamentViewController: BaseViewController {
     }
 }
 
+// MARK: - UITableView Delegate/DataSource
 extension TournamentViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return conferencesModel.count
+        conferencesModel.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var numberOfTeams = 0
 
         for teams in conferencesModel {
-            print("Teams in conference: \(teams.count) ⛹🏻‍♂️")
             numberOfTeams = teams.count
         }
 

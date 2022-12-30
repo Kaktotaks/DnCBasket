@@ -19,7 +19,7 @@ enum APIConstants {
     static let leaguesEndPoint = "leagues?"
     static let teamsEndPoint = "teams?"
     static let standingsEndPoint = "standings?"
-    static let headers: HTTPHeaders = [key: thirdApiKey]
+    static let headers: HTTPHeaders = [key: apiKey]
 
     static var currentSeson = "2022-2023"
     static var currentLeagueID = 12
@@ -89,7 +89,7 @@ class RestService {
         }
     }
 
-    // MARK: - Getting all leagues - not working ❌
+    // MARK: - Getting all leagues
     func getAllleagues(
         season: String?,
         completionHandler: @escaping(Result<[LeagueResponse], Error>) -> Void
@@ -109,7 +109,7 @@ class RestService {
                 if let data = try? decoder.decode(LeaguesEntryPoint.self, from: response.data ?? Data()) {
                     let leagues = data.response ?? []
                     completionHandler(.success(leagues))
-//                    print("Leagues now count: \(data.results) ⛹🏻‍♂️")
+                    print("Leagues now count: \(data.results) ⛹🏻‍♂️")
                 }
             case .failure(let error):
                 completionHandler(.failure(error))

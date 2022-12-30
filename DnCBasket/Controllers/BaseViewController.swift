@@ -15,12 +15,8 @@ class BaseViewController: UIViewController {
     // swiftlint:enable force_cast
 
     var user = FirebaseAuth.Auth.auth().currentUser
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
-    func setUPNavItems(needed: Bool = true) {
+    
+    func setUPExitleftBarButtonItem() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "door.left.hand.open"),
             style: .plain,
@@ -29,6 +25,7 @@ class BaseViewController: UIViewController {
         )
     }
 
+    // MARK: - Alert that shows different types of error (Bad network connection included)
     func showErrorAlert(_ message: String, controller: UIViewController) {
         let errorAlert = MyAlertManager.shared.presentTemporaryInfoAlert(
             title: Constants.AlertAnswers.somethingWentWrongAnswear,
@@ -41,12 +38,14 @@ class BaseViewController: UIViewController {
         }
     }
 
+    // MARK: - Exit from account
     @objc func logOutButtonTapped() {
         FireBaseManager.shared.signOut {
             self.dismiss(animated: true, completion: nil)
         }
     }
 
+    // MARK: - Rout to TabBarController
     func goToTapBar(vc: UIViewController, animated: Bool = true) {
         let tapBar = UINavigationController(rootViewController: TabBarController())
         tapBar.modalPresentationStyle = .fullScreen
@@ -54,6 +53,7 @@ class BaseViewController: UIViewController {
         vc.present(tapBar, animated: animated)
     }
 
+    // MARK: - Rout to CreateAccountViewController
     func goToCreateAccVC(vc: UIViewController) {
         let createAccVC = CreateAccountViewController()
         let navController = UINavigationController(rootViewController: createAccVC)
@@ -66,6 +66,7 @@ class BaseViewController: UIViewController {
         vc.present(navController, animated: true)
     }
 
+    // MARK: - Rout to PickedGamesViewController
     func goToPickedGames(vc: UIViewController) {
         let pickedGamseVC = PickedGamesViewController()
         let navController = UINavigationController(rootViewController: pickedGamseVC)
@@ -78,6 +79,7 @@ class BaseViewController: UIViewController {
         vc.present(navController, animated: true)
     }
 
+    // MARK: - Alert about added game
     func showGameAddedAlert(vc: UIViewController) {
         let alert = MyAlertManager.shared.presentTemporaryInfoAlert(
             title: Constants.AlertAnswers.gameAdded,
@@ -88,6 +90,21 @@ class BaseViewController: UIViewController {
         vc.present(alert, animated: true)
     }
 
+    // MARK: - Show user information that collection of Codable object is empty
+    func checkIfModelIsEmpty(vc: UIViewController, model: [Codable]) {
+        let alert = MyAlertManager.shared.presentTemporaryInfoAlert(
+            title: Constants.AlertAnswers.noDataByThisParametrs,
+            message: nil,
+            preferredStyle: .actionSheet,
+            forTime: 3.0
+        )
+
+        if model.isEmpty {
+            vc.present(alert, animated: true)
+        }
+    }
+
+    // MARK: - Alert for non registered users
     func showAlertToCreateAccount(vc: UIViewController) {
         let actions: [MyAlertManager.Action] = [
             .init(title: Constants.cancelText, style: .cancel),

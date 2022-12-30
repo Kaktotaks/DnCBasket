@@ -15,7 +15,6 @@ struct GameResponse: Codable {
 	let scores: Scores?
 
 	enum CodingKeys: String, CodingKey {
-
 		case id = "id"
 		case date = "date"
 		case time = "time"
@@ -45,5 +44,4 @@ struct GameResponse: Codable {
 		teams = try values.decodeIfPresent(Teams.self, forKey: .teams)
 		scores = try values.decodeIfPresent(Scores.self, forKey: .scores)
 	}
-
 }

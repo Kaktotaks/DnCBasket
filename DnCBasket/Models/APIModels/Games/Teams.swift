@@ -5,7 +5,6 @@ struct Teams: Codable {
 	let away: GenericTeam?
 
 	enum CodingKeys: String, CodingKey {
-
 		case home = "home"
 		case away = "away"
 	}

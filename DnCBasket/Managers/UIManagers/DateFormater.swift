@@ -8,7 +8,7 @@
 import UIKit
 
 struct DateFormaterManager {
-    static let shared = DateFormaterManager()
+    static let shared: DateFormaterManager = .init()
     private init() { }
 
     func formatDate(stringDate: String) -> String {

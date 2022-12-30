@@ -5,7 +5,6 @@ struct Group: Codable {
 	let points: Int?
 
 	enum CodingKeys: String, CodingKey {
-
 		case name = "name"
 		case points = "points"
 	}

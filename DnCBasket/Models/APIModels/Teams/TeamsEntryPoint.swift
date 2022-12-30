@@ -8,7 +8,6 @@ struct TeamsEntryPoint: Codable {
 	let response: [TeamResponse]?
 
 	enum CodingKeys: String, CodingKey {
-
 		case get = "get"
 		case parameters = "parameters"
 		case errors = "errors"

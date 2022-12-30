@@ -8,9 +8,11 @@
 import UIKit
 
 class TeamsViewController: BaseViewController {
+    // MARK: - Constants & Variables
     private var teamsCollectionView: UICollectionView!
     private var teamsModel: [TeamResponse] = []
 
+    // MARK: - UIView lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,7 +26,7 @@ class TeamsViewController: BaseViewController {
         getAllTeams()
     }
 
-    // MARK: - functions
+    // MARK: - Methods
     private func configureCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -62,6 +64,7 @@ class TeamsViewController: BaseViewController {
     }
 }
 
+// MARK: - UICollectionView Delegate/DataSource
 extension TeamsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         teamsModel.count

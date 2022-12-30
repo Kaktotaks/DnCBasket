@@ -7,11 +7,16 @@
 
 import UIKit
 
+protocol LeaguesTableViewCellDelegate: AnyObject {
+    func sendData(tappedForItem item: Int)
+}
+
 class LeaguesTableViewCell: UITableViewCell {
     // MARK: - Constants and Variables
     static let identifier = "LeaguesTableViewCell"
     private var collectionView: UICollectionView!
     private var leaguesModels: [LeagueResponse] = []
+    weak var delegate: LeaguesTableViewCellDelegate?
 
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -24,7 +29,7 @@ class LeaguesTableViewCell: UITableViewCell {
         collectionView?.reloadData()
     }
 
-    // MARK: - functions
+    // MARK: - Methods
     private func configureCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -38,12 +43,12 @@ class LeaguesTableViewCell: UITableViewCell {
                                 forCellWithReuseIdentifier: BaseCollectionViewCell.identifier)
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.showsHorizontalScrollIndicator = false
         contentView.addSubview(collectionView)
     }
 
 }
 
+// MARK: - CollectionView Delegate/DataSource methods
 extension LeaguesTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         leaguesModels.count
@@ -59,8 +64,12 @@ extension LeaguesTableViewCell: UICollectionViewDelegate, UICollectionViewDataSo
         }
 
         cell.configureLeague(with: leaguesModels[indexPath.row])
-
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.delegate?.sendData(tappedForItem: indexPath.last ?? 0)
+        collectionView.setContentOffset(CGPoint.zero, animated: false)
     }
 
     func collectionView(

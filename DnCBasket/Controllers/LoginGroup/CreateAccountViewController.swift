@@ -9,6 +9,7 @@ import UIKit
 import SkyFloatingLabelTextField
 
 class CreateAccountViewController: UIViewController {
+    // MARK: - Constants & Variables
     private lazy var emailTextField: SkyFloatingLabelTextField = {
         let value = SkyFloatingLabelTextField()
         value.placeholder = Constants.emailPlaceholderText
@@ -64,7 +65,7 @@ class CreateAccountViewController: UIViewController {
         setupUI()
     }
 
-    // MARK: - Functions
+    // MARK: - Methods
     @objc private func createAccountButtonPressed(sender: UIButton!) {
         guard
             let email = emailTextField.text, !email.isEmpty,
@@ -135,7 +136,7 @@ extension CreateAccountViewController: UITextFieldDelegate {
     }
 }
 
-// MARK: - Setup UI extension
+// MARK: - Setup UI
 extension CreateAccountViewController {
     func setupUI() {
         title = Constants.registrationText.localized()
