@@ -16,7 +16,6 @@ struct GenericScoresCount: Codable {
     let total: Int?
 
     enum CodingKeys: String, CodingKey {
-
         case quarter1 = "quarter_1"
         case quarter2 = "quarter_2"
         case quarter3 = "quarter_3"

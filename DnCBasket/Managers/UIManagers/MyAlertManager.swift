@@ -8,7 +8,7 @@
 import UIKit
 
 struct MyAlertManager {
-    static let shared = MyAlertManager()
+    static let shared: MyAlertManager = .init()
     private init() { }
 
     struct Action {

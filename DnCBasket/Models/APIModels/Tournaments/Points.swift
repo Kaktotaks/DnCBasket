@@ -5,7 +5,6 @@ struct Points: Codable {
 	let againstPoints: Int?
 
 	enum CodingKeys: String, CodingKey {
-
 		case selfPoints = "for"
 		case againstPoints = "against"
 	}

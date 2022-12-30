@@ -13,7 +13,6 @@ struct TournamentResponse: Codable {
 	let description: String?
 
 	enum CodingKeys: String, CodingKey {
-
 		case position = "position"
 		case stage = "stage"
 		case group = "group"

@@ -13,6 +13,7 @@ protocol AccountHeaderTableViewCellDelegate: AnyObject {
 }
 
 class AccountHeaderTableViewCell: UITableViewCell {
+    // MARK: - Constants and Variables
     static let identifier = "AccountHeaderTableViewCell"
 
     lazy var userImageView: UIImageView = {
@@ -39,6 +40,7 @@ class AccountHeaderTableViewCell: UITableViewCell {
         self.delegate?.pickImage()
     }
 
+    // MARK: - Methods
     override func layoutSubviews() {
         super .layoutSubviews()
 
@@ -50,6 +52,7 @@ class AccountHeaderTableViewCell: UITableViewCell {
         }
 }
 
+// MARK: - UI setup.
 extension AccountHeaderTableViewCell {
     private func setUpUI() {
         contentView.addSubview(userImageView)

@@ -10,6 +10,7 @@ import SnapKit
 import Kingfisher
 
 class TournamentHeaderView: UITableViewHeaderFooterView {
+    // MARK: - Constants and Variables
     static let idetifier = "TournamentHeaderView"
 
     private lazy var myBackgroundView: GradientView = {
@@ -105,6 +106,7 @@ class TournamentHeaderView: UITableViewHeaderFooterView {
         fatalError()
     }
 
+    // MARK: - Methods
     override func layoutSubviews() {
         super .layoutSubviews()
 
@@ -119,6 +121,7 @@ class TournamentHeaderView: UITableViewHeaderFooterView {
     }
 }
 
+// MARK: - UI setup.
 extension TournamentHeaderView {
     func setUpConstraint() {
         myBackgroundView.snp.makeConstraints {
@@ -137,14 +140,14 @@ extension TournamentHeaderView {
             $0.right.equalTo(leagueImageView.snp.left).offset(-10)
             $0.top.equalToSuperview().inset(4)
             $0.height.equalToSuperview().dividedBy(2.2)
-            $0.width.equalTo(countryNameLabel.snp.height)
+            $0.left.equalToSuperview().offset(+4)
         }
 
         leagueNameLabel.snp.makeConstraints {
             $0.left.equalTo(leagueImageView.snp.right).offset(10)
             $0.top.equalToSuperview().inset(4)
             $0.height.equalToSuperview().dividedBy(2.2)
-            $0.width.equalTo(leagueNameLabel.snp.height)
+            $0.right.equalToSuperview().offset(-4)
         }
 
         teamsLabel.snp.makeConstraints {

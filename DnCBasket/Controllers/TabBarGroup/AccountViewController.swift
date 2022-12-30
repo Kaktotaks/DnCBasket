@@ -20,12 +20,12 @@ class AccountViewController: BaseViewController {
     private lazy var cdPhotos: [CDPhoto]? = nil
     var image = UIImage()
 
-    //    lazy var userData: [UserData] = []
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setUpUI()
         setUpTableView()
+        setUPExitleftBarButtonItem()
     }
 
     override func viewWillAppear(_ animated: Bool) {

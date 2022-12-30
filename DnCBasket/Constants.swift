@@ -49,6 +49,7 @@ enum Constants {
         static var successFullAccountCreationTitle = "You have just created a new account. Go back to login.".localized()
         static var registrationErrorTitle = "❌ Registration error:".localized()
         static var logInErrorTitle = "❌ Log in error!".localized()
+        static var noDataByThisParametrs = "Unfortunately, no information was found for the given parameters.".localized()
     }
 
     static let dayAndTimeDateFormat = "dd-MM-yyyy HH:mm"

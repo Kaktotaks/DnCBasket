@@ -6,7 +6,6 @@ struct Games: Codable {
 	let lose: GenericWinLoseResult?
 
 	enum CodingKeys: String, CodingKey {
-
 		case played = "played"
 		case win = "win"
 		case lose = "lose"

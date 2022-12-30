@@ -7,7 +7,6 @@ struct Country: Codable {
 	let flag: String?
 
 	enum CodingKeys: String, CodingKey {
-
 		case id = "id"
 		case name = "name"
 		case code = "code"
@@ -21,5 +20,4 @@ struct Country: Codable {
 		code = try values.decodeIfPresent(String.self, forKey: .code)
 		flag = try values.decodeIfPresent(String.self, forKey: .flag)
 	}
-
 }

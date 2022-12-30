@@ -12,7 +12,6 @@ import SkyFloatingLabelTextField
 
 class LoginViewController: BaseViewController {
     // MARK: - Constants & Variables
-
     private let dncLabel: UILabel = {
         let value: UILabel = .init()
         value.text = Constants.dncLabel
@@ -105,7 +104,7 @@ class LoginViewController: BaseViewController {
         emailTextField.becomeFirstResponder()
     }
 
-    // MARK: - Functions
+    // MARK: - Methods
     @objc func loginButtonPressed(sender: UIButton!) {
         guard
             let email = emailTextField.text, !email.isEmpty,
@@ -125,7 +124,6 @@ class LoginViewController: BaseViewController {
 
     @objc func enterAsGuestButtonPressed(sender: UIButton!) {
         self.goToTapBar(vc: self)
-    // MARK: Enter as a guest
     }
 
     private func userLogedIn() {
@@ -135,7 +133,7 @@ class LoginViewController: BaseViewController {
     }
 }
 
-// MARK: - Constraints extension
+// MARK: - UI setup.
 extension LoginViewController {
     func setupUI() {
         view.backgroundColor = .systemBackground

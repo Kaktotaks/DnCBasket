@@ -8,7 +8,6 @@ struct TeamResponse: Codable {
 	let country: Country?
 
 	enum CodingKeys: String, CodingKey {
-
 		case id = "id"
 		case name = "name"
 		case logo = "logo"
@@ -24,5 +23,4 @@ struct TeamResponse: Codable {
 		nationnal = try values.decodeIfPresent(Bool.self, forKey: .nationnal)
 		country = try values.decodeIfPresent(Country.self, forKey: .country)
 	}
-
 }

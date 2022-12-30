@@ -9,7 +9,7 @@ import UIKit
 import CoreData
 
 struct MyCoreDataManager {
-    static let shared = MyCoreDataManager()
+    static let shared: MyCoreDataManager = .init()
 
     private init() {}
 

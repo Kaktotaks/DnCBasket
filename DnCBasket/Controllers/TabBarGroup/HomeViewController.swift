@@ -42,7 +42,6 @@ class HomeViewController: BaseViewController {
         setUpTableView()
         getLeagues()
         getGames()
-        setUPNavItems(needed: true)
     }
 
     // MARK: - Methods
@@ -57,15 +56,19 @@ class HomeViewController: BaseViewController {
     private func getLeagues() {
         ActivityIndicatorManager.shared.showIndicator(.basketballLoading)
         
-        RestService.shared.getAllleagues() { [weak self] result in
+        RestService.shared.getAllleagues(season: nil) { [weak self] result in
             guard let self = self else { return }
 
             switch result {
             case .success(let leagues):
-                self.leaguesModels.append(contentsOf: leagues)
+//                guard let seasons = leagues.first?.seasons else { return } // initial seasons
+
+                self.leaguesModels.removeAll()
+                self.seasonsModels.removeAll()
                 
-                guard let seasons = leagues.first?.seasons else { return } // temp desision
-                self.seasonsModels.append(contentsOf: seasons)
+                self.leaguesModels.append(contentsOf: leagues)
+//                self.seasonsModels.append(contentsOf: seasons)
+
                 DispatchQueue.main.async {
                     ActivityIndicatorManager.shared.hide()
                     self.gamesTableView.reloadData()
@@ -76,7 +79,6 @@ class HomeViewController: BaseViewController {
         }
     }
 
-    // relocate to baseVC
     private func getGames() {
         ActivityIndicatorManager.shared.showIndicator(.basketballLoading)
 
@@ -85,10 +87,12 @@ class HomeViewController: BaseViewController {
 
             switch result {
             case .success(let games):
-                self.gamesModel.append(contentsOf: games)
                 DispatchQueue.main.async {
+                    self.gamesModel.removeAll()
+                    self.gamesModel.append(contentsOf: games)
                     ActivityIndicatorManager.shared.hide()
                     self.gamesTableView.reloadData()
+                    self.checkIfModelIsEmpty(vc: self, model: games)
                 }
             case .failure(let error):
                 self.showErrorAlert(error.localizedDescription, controller: self)
@@ -106,7 +110,7 @@ class HomeViewController: BaseViewController {
     }
 }
 
-// MARK: - TableView setup
+// MARK: - UITableView Delegate/DataSource
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         3
@@ -133,8 +137,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             }
 
             cell.configure(with: leaguesModels)
+            cell.delegate = self
+            cell.tag = indexPath.row
             return cell
-        } else if indexPath.section == 1 { // MARK: Set - YearsTableViewCell
+        } else if indexPath.section == 1 { // MARK: Set - SeasonsTableViewCell
             guard
                 let cell = gamesTableView.dequeueReusableCell(
                     withIdentifier: SeasonsTableViewCell.identifier,
@@ -144,7 +150,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
 
-          cell.configure(with: seasonsModels)
+            cell.configure(with: seasonsModels)
+            cell.delegate = self
             return cell
         }
 
@@ -211,5 +218,30 @@ extension HomeViewController: GameTableViewCellDelegate {
         } else {
             self.showAlertToCreateAccount(vc: self)
         }
+    }
+}
+
+extension HomeViewController: LeaguesTableViewCellDelegate {
+    func sendData(tappedForItem item: Int) {
+        let league = leaguesModels[item]
+        guard let seasons = league.seasons else { return }
+        print("Delegate working, league tapped at \(league.name)")
+        
+        seasonsModels.removeAll()
+        seasonsModels.append(contentsOf: seasons)
+
+        APIConstants.currentLeagueID = league.id ?? 0
+        APIConstants.currentSeson = seasonsModels.first?.season?.stringValue ?? "2022"
+
+        self.getGames()
+    }
+}
+
+extension HomeViewController: SeasonsTableViewCellDelegate {
+    func sendSeasonData(tappedForItem item: Int) {
+        let season = seasonsModels[item].season?.stringValue
+        APIConstants.currentSeson = season ?? "2022"
+
+        self.getGames()
     }
 }

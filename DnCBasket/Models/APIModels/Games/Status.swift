@@ -6,7 +6,6 @@ struct Status: Codable {
 	let timer: String?
 
 	enum CodingKeys: String, CodingKey {
-
 		case long = "long"
 		case short = "short"
 		case timer = "timer"
@@ -18,5 +17,4 @@ struct Status: Codable {
 		short = try values.decodeIfPresent(String.self, forKey: .short)
 		timer = try values.decodeIfPresent(String.self, forKey: .timer)
 	}
-
 }

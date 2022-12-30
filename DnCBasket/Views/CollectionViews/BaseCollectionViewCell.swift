@@ -53,7 +53,7 @@ class BaseCollectionViewCell: UICollectionViewCell {
         return value
     }()
 
-    // MARK: - Functions
+    // MARK: - Methods
     func configureLeague(with model: LeagueResponse) {
         let leagueImageURL = URL(string: model.logo ?? Constants.noImageURL)
         objectImageView.kf.setImage(with: leagueImageURL)
