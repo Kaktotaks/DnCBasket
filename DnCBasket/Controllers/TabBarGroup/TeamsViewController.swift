@@ -24,6 +24,7 @@ class TeamsViewController: BaseViewController {
         super.viewWillAppear(animated)
 
         getAllTeams()
+        setCurrentLeagueAndSeasonTitle()
     }
 
     // MARK: - Methods
@@ -82,6 +83,13 @@ extension TeamsViewController: UICollectionViewDelegate, UICollectionViewDataSou
         cell.configureTeam(with: teamsModel[indexPath.row])
 
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+        APIConstants.currentTeamID = teamsModel[indexPath.item].id
+        APIConstants.currentTeamName = teamsModel[indexPath.item].name
+        self.goToHomeViewController(vc: self)
     }
 
     func collectionView(

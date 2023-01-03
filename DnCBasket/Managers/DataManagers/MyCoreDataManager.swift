@@ -13,6 +13,10 @@ struct MyCoreDataManager {
 
     private init() {}
 
+    enum CoreDataEntitiesName: String {
+        case CDGame, CDPhoto
+    }
+
     func saveGameToPicked(gameAPIModel: GameResponse, context: NSManagedObjectContext, completion: @escaping(() -> Void)) {
         let game = gameAPIModel
         let cdGame = CDGame(context: context)
@@ -40,8 +44,8 @@ struct MyCoreDataManager {
     }
 
     // MARK: Clear Database from Core Data objects
-    func cdTryDeleteAllObjects(context: NSManagedObjectContext, completion: @escaping(() -> Void)) {
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "CDGame")
+    func cdTryDeleteAllObjects(entityName: CoreDataEntitiesName, context: NSManagedObjectContext, completion: @escaping(() -> Void)) {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: entityName.rawValue)
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
 
         do {

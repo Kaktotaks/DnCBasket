@@ -41,6 +41,11 @@ class HomeViewController: BaseViewController {
         setupUI()
         setUpTableView()
         getLeagues()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
         getGames()
     }
 
@@ -55,7 +60,7 @@ class HomeViewController: BaseViewController {
 
     private func getLeagues() {
         ActivityIndicatorManager.shared.showIndicator(.basketballLoading)
-        
+
         RestService.shared.getAllleagues(season: nil) { [weak self] result in
             guard let self = self else { return }
 
@@ -91,6 +96,7 @@ class HomeViewController: BaseViewController {
                     self.gamesModel.removeAll()
                     self.gamesModel.append(contentsOf: games)
                     ActivityIndicatorManager.shared.hide()
+                    self.setCurrentLeagueAndSeasonTitle(showTeamIfNeed: true)
                     self.gamesTableView.reloadData()
                     self.checkIfModelIsEmpty(vc: self, model: games)
                 }
@@ -229,10 +235,15 @@ extension HomeViewController: LeaguesTableViewCellDelegate {
         
         seasonsModels.removeAll()
         seasonsModels.append(contentsOf: seasons)
+        seasonsModels.sort { firstSeason, secondSeason in
+            firstSeason.season?.stringValue ?? "" > secondSeason.season?.stringValue ?? ""
+        }
 
         APIConstants.currentLeagueID = league.id ?? 0
+        APIConstants.currentLeagueName = league.name
+        APIConstants.currentTeamName = nil
+        APIConstants.currentTeamID = nil
         APIConstants.currentSeson = seasonsModels.first?.season?.stringValue ?? "2022"
-
         self.getGames()
     }
 }
@@ -242,6 +253,8 @@ extension HomeViewController: SeasonsTableViewCellDelegate {
         let season = seasonsModels[item].season?.stringValue
         APIConstants.currentSeson = season ?? "2022"
 
+        APIConstants.currentTeamID = nil
+        APIConstants.currentTeamName = nil
         self.getGames()
     }
 }

@@ -44,7 +44,7 @@ class PickedGamesViewController: BaseViewController {
     }
 
     @objc private func didTapClearAllButton() {
-        MyCoreDataManager.shared.cdTryDeleteAllObjects(context: context) {
+        MyCoreDataManager.shared.cdTryDeleteAllObjects(entityName: .CDGame, context: context) {
             self.getGames()
         }
     }

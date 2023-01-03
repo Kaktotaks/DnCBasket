@@ -19,10 +19,14 @@ enum APIConstants {
     static let leaguesEndPoint = "leagues?"
     static let teamsEndPoint = "teams?"
     static let standingsEndPoint = "standings?"
-    static let headers: HTTPHeaders = [key: apiKey]
+    static let headers: HTTPHeaders = [key: thirdApiKey]
 
-    static var currentSeson = "2022-2023"
+    static var currentSeson: String? = "2022-2023"
     static var currentLeagueID = 12
+    static var currentTeamID: Int? = nil
+
+    static var currentLeagueName: String? = "NBA"
+    static var currentTeamName: String? = nil
 }
 
 class RestService {
@@ -61,6 +65,7 @@ class RestService {
     func getAllGames(
         league: Int? = APIConstants.currentLeagueID,
         season: String? = APIConstants.currentSeson,
+        team: Int? = APIConstants.currentTeamID,
         completionHandler: @escaping(Result<[GameResponse], Error>) -> Void
     ) {
         var path = "\(APIConstants.gamesEndPoint)"
@@ -71,6 +76,10 @@ class RestService {
 
         if let seasonKey = season {
             path = "\(path)&season=\(seasonKey)"
+        }
+
+        if let teamKey = team {
+            path = "\(path)&team=\(teamKey)"
         }
 
         self.getJsonResponse(path) { response in

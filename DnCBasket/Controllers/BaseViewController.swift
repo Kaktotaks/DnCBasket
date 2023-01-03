@@ -15,7 +15,7 @@ class BaseViewController: UIViewController {
     // swiftlint:enable force_cast
 
     var user = FirebaseAuth.Auth.auth().currentUser
-    
+
     func setUPExitleftBarButtonItem() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "door.left.hand.open"),
@@ -23,6 +23,30 @@ class BaseViewController: UIViewController {
             target: self,
             action: #selector(logOutButtonTapped)
         )
+    }
+
+    func setCurrentLeagueAndSeasonTitle(showTeamIfNeed: Bool = false) {
+        var configuredTitle = ""
+
+        var currentSeason = APIConstants.currentSeson
+        var currentLeague = APIConstants.currentLeagueName
+        var currentTeam = APIConstants.currentTeamName
+
+        if let seasonKey = currentSeason {
+            configuredTitle = "\(seasonKey)"
+        }
+
+        if let leagueKey = currentLeague {
+            configuredTitle = "\(configuredTitle)/\(leagueKey)"
+        }
+
+        if showTeamIfNeed {
+            if let teamKey = currentTeam {
+                configuredTitle = "\(configuredTitle)/\(teamKey)"
+            }
+        }
+
+        self.navigationItem.title = configuredTitle
     }
 
     // MARK: - Alert that shows different types of error (Bad network connection included)
@@ -41,6 +65,9 @@ class BaseViewController: UIViewController {
     // MARK: - Exit from account
     @objc func logOutButtonTapped() {
         FireBaseManager.shared.signOut {
+            MyCoreDataManager.shared.cdTryDeleteAllObjects(entityName: .CDGame, context: self.context) {}
+            MyCoreDataManager.shared.cdTryDeleteAllObjects(entityName: .CDPhoto, context: self.context) {}
+
             self.dismiss(animated: true, completion: nil)
         }
     }
@@ -70,6 +97,19 @@ class BaseViewController: UIViewController {
     func goToPickedGames(vc: UIViewController) {
         let pickedGamseVC = PickedGamesViewController()
         let navController = UINavigationController(rootViewController: pickedGamseVC)
+        if let sheet = navController.sheetPresentationController {
+            sheet.detents = [.medium(), .large()]
+            sheet.prefersGrabberVisible = true
+            sheet.preferredCornerRadius = 20
+        }
+
+        vc.present(navController, animated: true)
+    }
+
+    // MARK: - Rout to HomeViewController
+    func goToHomeViewController(vc: UIViewController) {
+        let homeVC = HomeViewController()
+        let navController = UINavigationController(rootViewController: homeVC)
         if let sheet = navController.sheetPresentationController {
             sheet.detents = [.medium(), .large()]
             sheet.prefersGrabberVisible = true
