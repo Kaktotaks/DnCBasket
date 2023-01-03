@@ -21,8 +21,7 @@ class LocalFileManager {
 
         do {
            try data.write(to: path)
-            print(path)
-            print("Success saving!")
+            print("Success image saving by PATH: \(path)!")
         } catch let error {
             print("Error in saving data in LocalFile! \(error) ")
         }

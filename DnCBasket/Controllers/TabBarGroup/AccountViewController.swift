@@ -105,20 +105,16 @@ class AccountViewController: BaseViewController {
 
 // MARK: - TableView Delegate/DataSource methods
 extension AccountViewController: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        2
-    }
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 1
-        }
-
-        return 2
+        3
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
+        cell.selectionStyle = .none
+
+        switch indexPath.row {
+        case 0:
             guard
                 let cell = accountTableView.dequeueReusableCell(
                     withIdentifier: AccountHeaderTableViewCell.identifier,
@@ -141,17 +137,11 @@ extension AccountViewController: UITableViewDelegate, UITableViewDataSource {
 
             cell.selectionStyle = .none
             return cell
-        }
-
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
-        cell.selectionStyle = .none
-
-        switch indexPath.row {
-        case 0:
-            cell.textLabel?.text = Constants.emailTitleText
-            cell.detailTextLabel?.text = "UserEmail"
-            return cell
         case 1:
+            cell.textLabel?.text = Constants.emailTitleText
+            cell.detailTextLabel?.text = UserDefaults.standard.string(forKey: "userEmail")
+            return cell
+        case 2:
             cell.textLabel?.text = Constants.pickedGamesText
             return cell
         default:
@@ -161,14 +151,15 @@ extension AccountViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 {
+        if indexPath.row == 0 {
             return 180
         }
+
         return 60
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 1 {
+        if indexPath.row == 2 {
             self.goToPickedGames(vc: self)
         }
     }

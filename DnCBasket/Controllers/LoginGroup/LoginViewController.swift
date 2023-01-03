@@ -113,6 +113,8 @@ class LoginViewController: BaseViewController {
             return
         }
 
+        UserDefaults.standard.setValue(email, forKey: "userEmail")
+
         FireBaseManager.shared.logInToAccount(email: email, password: password, viewController: self) {
             self.goToTapBar(vc: self)
         }
