@@ -44,7 +44,11 @@ struct MyCoreDataManager {
     }
 
     // MARK: Clear Database from Core Data objects
-    func cdTryDeleteAllObjects(entityName: CoreDataEntitiesName, context: NSManagedObjectContext, completion: @escaping(() -> Void)) {
+    func cdTryDeleteAllObjects(
+        entityName: CoreDataEntitiesName,
+        context: NSManagedObjectContext,
+        completion: @escaping(() -> Void)
+    ) {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: entityName.rawValue)
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
 

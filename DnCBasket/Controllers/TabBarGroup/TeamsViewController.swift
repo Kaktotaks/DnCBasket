@@ -51,15 +51,15 @@ class TeamsViewController: BaseViewController {
             guard let self = self else { return }
 
             switch result {
-            case .success(let teams):
-                self.teamsModel.removeAll()
-                self.teamsModel.append(contentsOf: teams)
-                DispatchQueue.main.async {
-                    ActivityIndicatorManager.shared.hide()
-                    self.teamsCollectionView.reloadData()
-                }
-            case .failure(let error):
-                self.showErrorAlert(error.localizedDescription, controller: self)
+                case .success(let teams):
+                    self.teamsModel.removeAll()
+                    self.teamsModel.append(contentsOf: teams)
+                    DispatchQueue.main.async {
+                        ActivityIndicatorManager.shared.hide()
+                        self.teamsCollectionView.reloadData()
+                    }
+                case .failure(let error):
+                    self.showErrorAlert(error.localizedDescription, controller: self)
             }
         }
     }
@@ -89,7 +89,7 @@ extension TeamsViewController: UICollectionViewDelegate, UICollectionViewDataSou
 
         APIConstants.currentTeamID = teamsModel[indexPath.item].id
         APIConstants.currentTeamName = teamsModel[indexPath.item].name
-        self.goToHomeViewController(vc: self)
+        self.goToHomeViewController(controller: self)
     }
 
     func collectionView(

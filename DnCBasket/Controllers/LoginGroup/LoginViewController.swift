@@ -116,21 +116,21 @@ class LoginViewController: BaseViewController {
         UserDefaults.standard.setValue(email, forKey: "userEmail")
 
         FireBaseManager.shared.logInToAccount(email: email, password: password, viewController: self) {
-            self.goToTapBar(vc: self)
+            self.goToTapBar(controller: self)
         }
     }
 
     @objc func createNewAccountButtonPressed(sender: UIButton!) {
-        self.goToCreateAccVC(vc: self)
+        self.goToCreateAccVC(controller: self)
     }
 
     @objc func enterAsGuestButtonPressed(sender: UIButton!) {
-        self.goToTapBar(vc: self)
+        self.goToTapBar(controller: self)
     }
 
     private func userLogedIn() {
         if FireBaseManager.shared.currentUser != nil {
-            self.goToTapBar(vc: self, animated: false)
+            self.goToTapBar(controller: self, animated: false)
         }
     }
 }

@@ -103,7 +103,7 @@ class TournamentHeaderView: UITableViewHeaderFooterView {
     }
 
     required init?(coder: NSCoder) {
-        fatalError()
+        fatalError("Fatal error while Tournament constraints init")
     }
 
     // MARK: - Methods

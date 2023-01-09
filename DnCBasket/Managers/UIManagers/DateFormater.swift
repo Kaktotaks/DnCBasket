@@ -14,7 +14,7 @@ struct DateFormaterManager {
     func formatDate(stringDate: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        guard let date = dateFormatter.date(from: stringDate) else { return ""}
+        guard let date = dateFormatter.date(from: stringDate) else { return "" }
         dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
         let dateString = dateFormatter.string(from: date)
         return dateString

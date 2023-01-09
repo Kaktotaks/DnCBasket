@@ -132,10 +132,14 @@ class GameTableViewCell: UITableViewCell {
     weak var delegate: GameTableViewCellDelegate?
 
     // MARK: - Methods
-    override func layoutSubviews() {
-        super.layoutSubviews()
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         setUpUI()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     @objc private func addToFavouritesButtonPressed() {

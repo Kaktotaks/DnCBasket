@@ -1,7 +1,42 @@
-/* 
-  Localizable.strings
-  DnCBasket
+// MARK: - TournamentHeaderView
+"gamesPlayed" = "GP";
+"victories" = "V";
+"loses" = "L";
+"totalPoints" = "TP";
 
-  Created by Леонід Шевченко on 26.12.2022.
-  
-*/
+// MARK: - TabBar titles
+"homeTitle" = "Home";
+"tournamentTitle" = "Tournament";
+"teamsTitle" = "Teams";
+"accountTitle" = "Account";
+
+// MARK: - Login/Register ViewController
+"loginTitle" = "Login";
+"emailText" = "Email";
+"passwordText" = "Password";
+"emailAddress" = "Email address";
+"createAccount" = "Create account";
+"enterAsAGuest" = "Enter as a guest";
+"registration" = "Registration";
+"invalidEmail" = "Invalid Email";
+"emptyEmail" = "Empty Email";
+"emptyPassword" = "Empty Password";
+"invalidPasswordFormat" = "Invalid Password. Password must contain: minimum 8 characters, at least 1 alphabet, at least 1 number";
+"wellDone" = "Well done 🥳";
+"newAccountCreated" = "You have just created a new account. Go back to login.";
+"registrationError" = "❌ Registration error:";
+"logInError" = "❌ Log in error!";
+"goToRegistration" = "Go to registration";
+
+// MARK: - Base text
+"noInformation" = "Unfortunately, no information was found for the given parameters.";
+"needToCreateAccount" = "😩 We are sorry, but you need to create an account to use this functionality";
+"somethingWentWrong" = "Something went wrong:";
+"gameAddedToPicked" = "Game was successfuly added to Picked" ;
+"cancel" = "Cancel";
+"camera" = "Camera";
+"library" = "Library";
+"pickPhoto" = "Pick a photo";
+"cameraOrLibrary" = "Choose a picture from Camera or Library";
+"pickedGamesTitle" = "Picked Games 📌";
+"clearAll" = "Clear all";

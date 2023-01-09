@@ -31,17 +31,13 @@ enum RegEx: String {
 }
 
 enum AlertMessages: String {
-    case inValidEmail = "Invalid Email"
-     case inValidPSW = "Invalid Password. Password must contain: minimum 8 characters, at least 1 alphabet, at least 1 number"
-     case emptyEmail = "Empty Email"
-     case emptyPSW = "Empty Password"
+    case inValidEmail = "invalidEmail"
+     case inValidPSW = "invalidPasswordFormat"
+     case emptyEmail = "emptyEmail"
+     case emptyPSW = "emptyPassword"
 
      func alertlocalized() -> String {
-        NSLocalizedString(self.rawValue,
-                          tableName: "Localizable",
-                          bundle: .main,
-                          value: self.rawValue,
-                          comment: self.rawValue)
+         String.localizedByLang(self.rawValue)()
      }
 }
 
@@ -51,15 +47,15 @@ class Validator: NSObject {
     func validate(values: (type: ValidationType, inputValue: String)...) -> Valid {
         for valueToBeChecked in values {
             switch valueToBeChecked.type {
-            case .email:
-                if let tempValue = isValidString((valueToBeChecked.inputValue, .email, .emptyEmail, .inValidEmail)) {
-                    return tempValue
-                }
+                case .email:
+                    if let tempValue = isValidString((valueToBeChecked.inputValue, .email, .emptyEmail, .inValidEmail)) {
+                        return tempValue
+                    }
 
-            case .password:
-                if let tempValue = isValidString((valueToBeChecked.inputValue, .password, .emptyPSW, .inValidPSW)) {
-                    return tempValue
-                }
+                case .password:
+                    if let tempValue = isValidString((valueToBeChecked.inputValue, .password, .emptyPSW, .inValidPSW)) {
+                        return tempValue
+                    }
             }
         }
 
