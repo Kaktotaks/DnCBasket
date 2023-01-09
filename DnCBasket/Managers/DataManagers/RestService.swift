@@ -19,14 +19,14 @@ enum APIConstants {
     static let leaguesEndPoint = "leagues?"
     static let teamsEndPoint = "teams?"
     static let standingsEndPoint = "standings?"
-    static let headers: HTTPHeaders = [key: thirdApiKey]
+    static let headers: HTTPHeaders = [key: apiKey]
 
     static var currentSeson: String? = "2022-2023"
     static var currentLeagueID = 12
-    static var currentTeamID: Int? = nil
+    static var currentTeamID: Int?
 
     static var currentLeagueName: String? = "NBA"
-    static var currentTeamName: String? = nil
+    static var currentTeamName: String?
 }
 
 class RestService {
@@ -55,7 +55,7 @@ class RestService {
                 encoding: encoding,
                 headers: headers
             ).responseJSON { response in
-                print("Successfull request")
+                debugPrint("Successfull request")
                 completion(response)
             }
         }
@@ -85,15 +85,15 @@ class RestService {
         self.getJsonResponse(path) { response in
 
             switch response.result {
-            case .success:
-                let decoder = JSONDecoder()
-                if let data = try? decoder.decode(GamesEntryPoint.self, from: response.data ?? Data()) {
-                    let games = data.response ?? []
-                    completionHandler(.success(games))
-                    print("Games now count: \(games.count) ⛹🏻‍♂️")
-                }
-            case .failure(let error):
-                completionHandler(.failure(error))
+                case .success:
+                    let decoder = JSONDecoder()
+                    if let data = try? decoder.decode(GamesEntryPoint.self, from: response.data ?? Data()) {
+                        let games = data.response ?? []
+                        completionHandler(.success(games))
+                        debugPrint("Games now count: \(games.count) ⛹🏻‍♂️")
+                    }
+                case .failure(let error):
+                    completionHandler(.failure(error))
             }
         }
     }
@@ -112,16 +112,15 @@ class RestService {
 
         self.getJsonResponse(path) { response in
             switch response.result {
-            case .success:
-                print("Leagues response SUCCESSFULL")
-                let decoder = JSONDecoder()
-                if let data = try? decoder.decode(LeaguesEntryPoint.self, from: response.data ?? Data()) {
-                    let leagues = data.response ?? []
-                    completionHandler(.success(leagues))
-                    print("Leagues now count: \(data.results) ⛹🏻‍♂️")
-                }
-            case .failure(let error):
-                completionHandler(.failure(error))
+                case .success:
+                    print("Leagues response SUCCESSFULL")
+                    let decoder = JSONDecoder()
+                    if let data = try? decoder.decode(LeaguesEntryPoint.self, from: response.data ?? Data()) {
+                        let leagues = data.response ?? []
+                        completionHandler(.success(leagues))
+                    }
+                case .failure(let error):
+                    completionHandler(.failure(error))
             }
         }
     }
@@ -145,15 +144,15 @@ class RestService {
         self.getJsonResponse(path) { response in
 
             switch response.result {
-            case .success:
-                let decoder = JSONDecoder()
-                if let data = try? decoder.decode(TeamsEntryPoint.self, from: response.data ?? Data()) {
-                    let teams = data.response ?? []
-                    completionHandler(.success(teams))
-                    print("Teams now count: \(teams.count) ⛹🏻‍♂️")
-                }
-            case .failure(let error):
-                completionHandler(.failure(error))
+                case .success:
+                    let decoder = JSONDecoder()
+                    if let data = try? decoder.decode(TeamsEntryPoint.self, from: response.data ?? Data()) {
+                        let teams = data.response ?? []
+                        completionHandler(.success(teams))
+                        debugPrint("Teams now count: \(teams.count) ⛹🏻‍♂️")
+                    }
+                case .failure(let error):
+                    completionHandler(.failure(error))
             }
         }
     }
@@ -176,14 +175,14 @@ class RestService {
 
         self.getJsonResponse(path) { response in
             switch response.result {
-            case .success:
-                let decoder = JSONDecoder()
-                if let data = try? decoder.decode(TournamentsEntryPoint.self, from: response.data ?? Data()) {
-                    let standings = data.response ?? [[]]
-                    completionHandler(.success(standings))
-                }
-            case .failure(let error):
-                completionHandler(.failure(error))
+                case .success:
+                    let decoder = JSONDecoder()
+                    if let data = try? decoder.decode(TournamentsEntryPoint.self, from: response.data ?? Data()) {
+                        let standings = data.response ?? [[]]
+                        completionHandler(.success(standings))
+                    }
+                case .failure(let error):
+                    completionHandler(.failure(error))
             }
         }
     }

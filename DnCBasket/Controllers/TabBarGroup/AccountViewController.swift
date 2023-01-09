@@ -114,38 +114,38 @@ extension AccountViewController: UITableViewDelegate, UITableViewDataSource {
         cell.selectionStyle = .none
 
         switch indexPath.row {
-        case 0:
-            guard
-                let cell = accountTableView.dequeueReusableCell(
-                    withIdentifier: AccountHeaderTableViewCell.identifier,
-                    for: indexPath)
-                    as? AccountHeaderTableViewCell
-            else {
-                return UITableViewCell()
-            }
+            case 0:
+                guard
+                    let cell = accountTableView.dequeueReusableCell(
+                        withIdentifier: AccountHeaderTableViewCell.identifier,
+                        for: indexPath)
+                        as? AccountHeaderTableViewCell
+                else {
+                    return UITableViewCell()
+                }
 
-            cell.delegate = self
-            guard
-                let photo = self.cdPhotos?.last,
-                let photoImageName = photo.imageName
-            else {
-                return UITableViewCell()
-            }
+                cell.delegate = self
+                guard
+                    let photo = self.cdPhotos?.last,
+                    let photoImageName = photo.imageName
+                else {
+                    return UITableViewCell()
+                }
 
-            let imageName = fileManager.getImage(name: String("\(photoImageName)"))
-            cell.configureCoreDataPhotos(image: imageName)
+                let imageName = fileManager.getImage(name: String("\(photoImageName)"))
+                cell.configureCoreDataPhotos(image: imageName)
 
-            cell.selectionStyle = .none
-            return cell
-        case 1:
-            cell.textLabel?.text = Constants.emailTitleText
-            cell.detailTextLabel?.text = UserDefaults.standard.string(forKey: "userEmail")
-            return cell
-        case 2:
-            cell.textLabel?.text = Constants.pickedGamesText
-            return cell
-        default:
-            break
+                cell.selectionStyle = .none
+                return cell
+            case 1:
+                cell.textLabel?.text = Constants.emailTitleText
+                cell.detailTextLabel?.text = UserDefaults.standard.string(forKey: "userEmail")
+                return cell
+            case 2:
+                cell.textLabel?.text = Constants.pickedGamesText
+                return cell
+            default:
+                break
         }
         return cell
     }
@@ -160,7 +160,7 @@ extension AccountViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 2 {
-            self.goToPickedGames(vc: self)
+            self.goToPickedGames(controller: self)
         }
     }
 }
@@ -170,7 +170,7 @@ extension AccountViewController: AccountHeaderTableViewCellDelegate {
         if self.user != nil {
             showImagePickerOptions()
         } else {
-            showAlertToCreateAccount(vc: self)
+            showAlertToCreateAccount(controller: self)
         }
     }
 }

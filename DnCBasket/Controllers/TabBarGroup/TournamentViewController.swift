@@ -34,7 +34,10 @@ class TournamentViewController: BaseViewController {
 
     private func setUpTableView() {
         tournamentTableView.register(TeamPlaceTableViewCell.self, forCellReuseIdentifier: TeamPlaceTableViewCell.identifier)
-        tournamentTableView.register(TournamentHeaderView.self, forHeaderFooterViewReuseIdentifier: TournamentHeaderView.idetifier)
+        tournamentTableView.register(
+            TournamentHeaderView.self,
+            forHeaderFooterViewReuseIdentifier: TournamentHeaderView.idetifier
+        )
         tournamentTableView.delegate = self
         tournamentTableView.dataSource = self
     }
@@ -45,16 +48,16 @@ class TournamentViewController: BaseViewController {
             guard let self = self else { return }
 
             switch result {
-            case .success(let standings):
-                self.conferencesModel.removeAll()
-                self.conferencesModel.append(contentsOf: standings)
-                DispatchQueue.main.async {
-                    ActivityIndicatorManager.shared.hide()
-                    self.tournamentTableView.reloadData()
-                    self.checkIfModelIsEmpty(vc: self, model: standings)
-                }
-            case .failure(let error):
-                self.showErrorAlert(error.localizedDescription, controller: self)
+                case .success(let standings):
+                    self.conferencesModel.removeAll()
+                    self.conferencesModel.append(contentsOf: standings)
+                    DispatchQueue.main.async {
+                        ActivityIndicatorManager.shared.hide()
+                        self.tournamentTableView.reloadData()
+                        self.checkIfModelIsEmpty(controller: self, model: standings)
+                    }
+                case .failure(let error):
+                    self.showErrorAlert(error.localizedDescription, controller: self)
             }
         }
     }
@@ -101,7 +104,9 @@ extension TournamentViewController: UITableViewDelegate, UITableViewDataSource {
 
     // MARK: - Header setup
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: TournamentHeaderView.idetifier) as? TournamentHeaderView
+        let header = tableView.dequeueReusableHeaderFooterView(
+            withIdentifier: TournamentHeaderView.idetifier
+        ) as? TournamentHeaderView
         let model = conferencesModel.first?.first
         header?.configure(model: model)
         return header

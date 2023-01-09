@@ -30,29 +30,29 @@ class FireBaseManager {
         )
 
         switch validatedEmailAndPassword {
-        case .success:
-            Auth.auth().createUser(withEmail: email, password: password)
+            case .success:
+                Auth.auth().createUser(withEmail: email, password: password)
 
-            let successAlert = MyAlertManager.shared.presentTemporaryInfoAlert(
-                title: Constants.AlertAnswers.wellDoneTitle,
-                message: Constants.AlertAnswers.successFullAccountCreationTitle,
-                preferredStyle: .actionSheet,
-                forTime: .infinity
-            )
+                let successAlert = MyAlertManager.shared.presentTemporaryInfoAlert(
+                    title: Constants.AlertAnswers.wellDoneTitle,
+                    message: Constants.AlertAnswers.successFullAccountCreationTitle,
+                    preferredStyle: .actionSheet,
+                    forTime: .infinity
+                )
 
-            successAlert.addAction(UIAlertAction(title: "OK", style: .default) {_ in
-                viewController.dismiss(animated: true)
-            })
-            viewController.present(successAlert, animated: true)
+                successAlert.addAction(UIAlertAction(title: "OK", style: .default) {_ in
+                    viewController.dismiss(animated: true)
+                })
+                viewController.present(successAlert, animated: true)
 
-        case .failure(_, let errorMessage):
-            let errorAlert = MyAlertManager.shared.presentTemporaryInfoAlert(
-                title: Constants.AlertAnswers.registrationErrorTitle,
-                message: errorMessage.alertlocalized(),
-                preferredStyle: .actionSheet,
-                forTime: 5
-            )
-            viewController.present(errorAlert, animated: true)
+            case .failure(_, let errorMessage):
+                let errorAlert = MyAlertManager.shared.presentTemporaryInfoAlert(
+                    title: Constants.AlertAnswers.registrationErrorTitle,
+                    message: errorMessage.alertlocalized(),
+                    preferredStyle: .actionSheet,
+                    forTime: 5
+                )
+                viewController.present(errorAlert, animated: true)
         }
     }
 

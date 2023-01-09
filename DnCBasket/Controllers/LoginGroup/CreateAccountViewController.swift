@@ -68,8 +68,8 @@ class CreateAccountViewController: UIViewController {
     // MARK: - Methods
     @objc private func createAccountButtonPressed(sender: UIButton!) {
         guard
-            let email = emailTextField.text, !email.isEmpty,
-            let password = passwordTextField.text, !password.isEmpty
+            let email = emailTextField.text,
+            let password = passwordTextField.text
         else {
             return
         }
@@ -83,23 +83,23 @@ class CreateAccountViewController: UIViewController {
             let emailResponce = Validator.shared.validate(values: (ValidationType.email, responce))
 
             switch emailResponce {
-            case .success:
-                emailTextField.lineColor = .green
-                emailTextField.selectedLineColor = .green
-            case .failure:
-                emailTextField.lineColor = .red
-                emailTextField.selectedLineColor = .red
+                case .success:
+                    emailTextField.lineColor = .green
+                    emailTextField.selectedLineColor = .green
+                case .failure:
+                    emailTextField.lineColor = .red
+                    emailTextField.selectedLineColor = .red
             }
         } else if passwordTextField.isEditing {
             let passwordResponce = Validator.shared.validate(values: (ValidationType.password, responce))
 
             switch passwordResponce {
-            case .success:
-                passwordTextField.lineColor = .green
-                passwordTextField.selectedLineColor = .green
-            case .failure:
-                passwordTextField.lineColor = .red
-                passwordTextField.selectedLineColor = .red
+                case .success:
+                    passwordTextField.lineColor = .green
+                    passwordTextField.selectedLineColor = .green
+                case .failure:
+                    passwordTextField.lineColor = .red
+                    passwordTextField.selectedLineColor = .red
             }
         }
     }

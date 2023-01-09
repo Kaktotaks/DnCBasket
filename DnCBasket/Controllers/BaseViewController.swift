@@ -25,12 +25,46 @@ class BaseViewController: UIViewController {
         )
     }
 
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//
+//        setupLanguageRightBarButtonItem()
+//    }
+
+    // MARK: In developing...
+    func setupLanguageRightBarButtonItem() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage(systemName: "character.bubble"),
+            style: .plain,
+            target: self,
+            action: nil
+        )
+
+        let languagesMenu = UIMenu(
+            title: "",
+            children: [
+                UIAction(title: "en",
+                         image: nil) { _ in
+                             debugPrint("en - tappad")
+                             Constants.currentLanguage = "en"
+                },
+                UIAction(title: "uk",
+                         image: nil) { _ in
+                             debugPrint("uk - tappad")
+                             Constants.currentLanguage = "uk"
+                }
+            ]
+        )
+
+        navigationItem.rightBarButtonItem?.menu = languagesMenu
+    }
+
     func setCurrentLeagueAndSeasonTitle(showTeamIfNeed: Bool = false) {
         var configuredTitle = ""
 
-        var currentSeason = APIConstants.currentSeson
-        var currentLeague = APIConstants.currentLeagueName
-        var currentTeam = APIConstants.currentTeamName
+        let currentSeason = APIConstants.currentSeson
+        let currentLeague = APIConstants.currentLeagueName
+        let currentTeam = APIConstants.currentTeamName
 
         if let seasonKey = currentSeason {
             configuredTitle = "\(seasonKey)"
@@ -62,6 +96,22 @@ class BaseViewController: UIViewController {
         }
     }
 
+//    @objc private func languageRightBarButtonTapped() {
+//        let categoriesMenu = UIMenu(
+//            title: "",
+//            children: [
+//                UIAction(title: "en",
+//                         image: nil) { _ in
+//                             debugPrint("en - tappad")
+//                         },
+//                UIAction(title: "uk",
+//                         image: nil) { _ in
+//                             debugPrint("uk - tappad")
+//                         }
+//            ]
+//        )
+//    }
+
     // MARK: - Exit from account
     @objc func logOutButtonTapped() {
         FireBaseManager.shared.signOut {
@@ -73,15 +123,15 @@ class BaseViewController: UIViewController {
     }
 
     // MARK: - Rout to TabBarController
-    func goToTapBar(vc: UIViewController, animated: Bool = true) {
+    func goToTapBar(controller: UIViewController, animated: Bool = true) {
         let tapBar = UINavigationController(rootViewController: TabBarController())
         tapBar.modalPresentationStyle = .fullScreen
         tapBar.modalTransitionStyle = .flipHorizontal
-        vc.present(tapBar, animated: animated)
+        controller.present(tapBar, animated: animated)
     }
 
     // MARK: - Rout to CreateAccountViewController
-    func goToCreateAccVC(vc: UIViewController) {
+    func goToCreateAccVC(controller: UIViewController) {
         let createAccVC = CreateAccountViewController()
         let navController = UINavigationController(rootViewController: createAccVC)
         if let sheet = navController.sheetPresentationController {
@@ -90,11 +140,11 @@ class BaseViewController: UIViewController {
             sheet.preferredCornerRadius = 20
         }
 
-        vc.present(navController, animated: true)
+        controller.present(navController, animated: true)
     }
 
     // MARK: - Rout to PickedGamesViewController
-    func goToPickedGames(vc: UIViewController) {
+    func goToPickedGames(controller: UIViewController) {
         let pickedGamseVC = PickedGamesViewController()
         let navController = UINavigationController(rootViewController: pickedGamseVC)
         if let sheet = navController.sheetPresentationController {
@@ -103,11 +153,11 @@ class BaseViewController: UIViewController {
             sheet.preferredCornerRadius = 20
         }
 
-        vc.present(navController, animated: true)
+        controller.present(navController, animated: true)
     }
 
     // MARK: - Rout to HomeViewController
-    func goToHomeViewController(vc: UIViewController) {
+    func goToHomeViewController(controller: UIViewController) {
         let homeVC = HomeViewController()
         let navController = UINavigationController(rootViewController: homeVC)
         if let sheet = navController.sheetPresentationController {
@@ -116,22 +166,22 @@ class BaseViewController: UIViewController {
             sheet.preferredCornerRadius = 20
         }
 
-        vc.present(navController, animated: true)
+        controller.present(navController, animated: true)
     }
 
     // MARK: - Alert about added game
-    func showGameAddedAlert(vc: UIViewController) {
+    func showGameAddedAlert(controller: UIViewController) {
         let alert = MyAlertManager.shared.presentTemporaryInfoAlert(
             title: Constants.AlertAnswers.gameAdded,
             message: nil,
             preferredStyle: .actionSheet,
             forTime: 3.0
         )
-        vc.present(alert, animated: true)
+        controller.present(alert, animated: true)
     }
 
     // MARK: - Show user information that collection of Codable object is empty
-    func checkIfModelIsEmpty(vc: UIViewController, model: [Codable]) {
+    func checkIfModelIsEmpty(controller: UIViewController, model: [Codable]) {
         let alert = MyAlertManager.shared.presentTemporaryInfoAlert(
             title: Constants.AlertAnswers.noDataByThisParametrs,
             message: nil,
@@ -140,25 +190,25 @@ class BaseViewController: UIViewController {
         )
 
         if model.isEmpty {
-            vc.present(alert, animated: true)
+            controller.present(alert, animated: true)
         }
     }
 
     // MARK: - Alert for non registered users
-    func showAlertToCreateAccount(vc: UIViewController) {
+    func showAlertToCreateAccount(controller: UIViewController) {
         let actions: [MyAlertManager.Action] = [
             .init(title: Constants.cancelText, style: .cancel),
             .init(title: Constants.goToRegistration, style: .default) {
-                vc.dismiss(animated: true)
+                controller.dismiss(animated: true)
             }
         ]
 
         let alert = MyAlertManager.shared.presentAlertWithOptions(
-            title: Constants.AlertAnswers.needToCreateAnAccountAnswear,
+            title: Constants.AlertAnswers.needAnAccountAnswear,
             message: nil,
             actions: actions,
             dismissActionTitle: nil)
-        vc.present(alert, animated: true)
+        controller.present(alert, animated: true)
     }
 
     // MARK: - Configure appearance upButton

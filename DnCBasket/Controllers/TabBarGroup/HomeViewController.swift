@@ -98,7 +98,7 @@ class HomeViewController: BaseViewController {
                     ActivityIndicatorManager.shared.hide()
                     self.setCurrentLeagueAndSeasonTitle(showTeamIfNeed: true)
                     self.gamesTableView.reloadData()
-                    self.checkIfModelIsEmpty(vc: self, model: games)
+                    self.checkIfModelIsEmpty(controller: self, model: games)
                 }
             case .failure(let error):
                 self.showErrorAlert(error.localizedDescription, controller: self)
@@ -219,10 +219,10 @@ extension HomeViewController: GameTableViewCellDelegate {
 
         if self.user != nil {
             MyCoreDataManager.shared.saveGameToPicked(gameAPIModel: game, context: self.context) {
-                self.showGameAddedAlert(vc: self)
+                self.showGameAddedAlert(controller: self)
             }
         } else {
-            self.showAlertToCreateAccount(vc: self)
+            self.showAlertToCreateAccount(controller: self)
         }
     }
 }
@@ -231,7 +231,6 @@ extension HomeViewController: LeaguesTableViewCellDelegate {
     func sendData(tappedForItem item: Int) {
         let league = leaguesModels[item]
         guard let seasons = league.seasons else { return }
-        print("Delegate working, league tapped at \(league.name)")
         
         seasonsModels.removeAll()
         seasonsModels.append(contentsOf: seasons)
