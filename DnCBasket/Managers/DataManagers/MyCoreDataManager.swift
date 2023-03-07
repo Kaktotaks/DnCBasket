@@ -17,7 +17,11 @@ struct MyCoreDataManager {
         case CDGame, CDPhoto
     }
 
-    func saveGameToPicked(gameAPIModel: GameResponse, context: NSManagedObjectContext, completion: @escaping(() -> Void)) {
+    func saveGameToPicked(
+        gameAPIModel: GameResponse,
+        context: NSManagedObjectContext,
+        completion: @escaping(() -> Void)
+    ) {
         let game = gameAPIModel
         let cdGame = CDGame(context: context)
         cdGame.guestTotalScore = game.scores?.awayScores?.total?.description

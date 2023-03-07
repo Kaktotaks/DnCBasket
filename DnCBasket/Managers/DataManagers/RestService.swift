@@ -90,7 +90,6 @@ class RestService {
                     if let data = try? decoder.decode(GamesEntryPoint.self, from: response.data ?? Data()) {
                         let games = data.response ?? []
                         completionHandler(.success(games))
-                        debugPrint("Games now count: \(games.count) ⛹🏻‍♂️")
                     }
                 case .failure(let error):
                     completionHandler(.failure(error))
@@ -149,7 +148,6 @@ class RestService {
                     if let data = try? decoder.decode(TeamsEntryPoint.self, from: response.data ?? Data()) {
                         let teams = data.response ?? []
                         completionHandler(.success(teams))
-                        debugPrint("Teams now count: \(teams.count) ⛹🏻‍♂️")
                     }
                 case .failure(let error):
                     completionHandler(.failure(error))

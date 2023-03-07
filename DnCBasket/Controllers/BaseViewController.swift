@@ -25,12 +25,6 @@ class BaseViewController: UIViewController {
         )
     }
 
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//
-//        setupLanguageRightBarButtonItem()
-//    }
-
     // MARK: In developing...
     func setupLanguageRightBarButtonItem() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(

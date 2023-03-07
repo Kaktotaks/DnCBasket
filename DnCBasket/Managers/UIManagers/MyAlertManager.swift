@@ -70,10 +70,11 @@ struct MyAlertManager {
                                                        preferredStyle: preferredStyle
         )
 
-        Timer.scheduledTimer(withTimeInterval: forTime,
-                             repeats: false) {_ in
+        Timer.scheduledTimer(
+            withTimeInterval: forTime,
+            repeats: false) {_ in
                 alertController.dismiss(animated: true, completion: nil)
-        }
+            }
         return alertController
     }
 }

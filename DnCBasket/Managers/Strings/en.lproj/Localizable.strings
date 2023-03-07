@@ -21,7 +21,7 @@
 "invalidEmail" = "Invalid Email";
 "emptyEmail" = "Empty Email";
 "emptyPassword" = "Empty Password";
-"invalidPasswordFormat" = "Invalid Password. Password must contain: minimum 8 characters, at least 1 alphabet, at least 1 number";
+"invalidPasswordFormat" = "Invalid Password. Password must contain: \nminimum 8 characters;\nat least 1 alphabet;\nat least 1 number";
 "wellDone" = "Well done 🥳";
 "newAccountCreated" = "You have just created a new account. Go back to login.";
 "registrationError" = "❌ Registration error:";
@@ -32,7 +32,7 @@
 "noInformation" = "Unfortunately, no information was found for the given parameters.";
 "needToCreateAccount" = "😩 We are sorry, but you need to create an account to use this functionality";
 "somethingWentWrong" = "Something went wrong:";
-"gameAddedToPicked" = "Game was successfuly added to Picked" ;
+"gameAddedToPicked" = "Game was successfuly added to \"Picked\"!" ;
 "cancel" = "Cancel";
 "camera" = "Camera";
 "library" = "Library";
