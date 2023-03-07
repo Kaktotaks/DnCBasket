@@ -13,7 +13,6 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .systemBackground
            UITabBar.appearance().barTintColor = .systemBackground
            tabBar.tintColor = .label
            setupVCs()
@@ -26,18 +25,16 @@ class TabBarController: UITabBarController {
           let navController = UINavigationController(rootViewController: rootViewController)
           navController.tabBarItem.title = title
           navController.tabBarItem.image = image
-          navController.navigationBar.prefersLargeTitles = true
-          rootViewController.navigationItem.title = title
           return navController
       }
 
     // MARK: Setup our NavControllers
     func setupVCs() {
           viewControllers = [
-              createNavController(for: HomeViewController(), title: NSLocalizedString("Home", comment: ""), image: UIImage(systemName: "house")!),
-              createNavController(for: TournamentsViewController(), title: NSLocalizedString("Tournaments", comment: ""), image: UIImage(systemName: "trophy")!),
-              createNavController(for: TeamsViewController(), title: NSLocalizedString("Teams", comment: ""), image: UIImage(systemName: "figure.basketball")!),
-              createNavController(for: AccountViewController(), title: NSLocalizedString("Account", comment: ""), image: UIImage(systemName: "person")!)
+            createNavController(for: HomeViewController(), title: NSLocalizedString(Constants.homeTabBarTitle, comment: ""), image: UIImage(systemName: "house")!),
+              createNavController(for: TournamentViewController(), title: NSLocalizedString(Constants.tournamentTabBarTitle, comment: ""), image: UIImage(systemName: "trophy")!),
+              createNavController(for: TeamsViewController(), title: NSLocalizedString(Constants.teamsTabBarTitle, comment: ""), image: UIImage(systemName: "person.3")!),
+              createNavController(for: AccountViewController(), title: NSLocalizedString(Constants.accountTabBarTitle, comment: ""), image: UIImage(systemName: "person")!)
           ]
       }
 }
