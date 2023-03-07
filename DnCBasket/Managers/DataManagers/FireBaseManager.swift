@@ -24,9 +24,14 @@ class FireBaseManager {
         }
     }
 
-    func createAccount(email: String, password: String, viewController: UIViewController) {
-        let validatedEmailAndPassword = Validator.shared.validate(values: (ValidationType.email, email),
-                                                                  (ValidationType.password, password)
+    func createAccount(
+        email: String,
+        password: String,
+        viewController: UIViewController
+    ) {
+        let validatedEmailAndPassword = Validator.shared.validate(
+            values: (ValidationType.email, email),
+            (ValidationType.password, password)
         )
 
         switch validatedEmailAndPassword {
@@ -56,9 +61,13 @@ class FireBaseManager {
         }
     }
 
-    func logInToAccount(email: String, password: String, viewController: UIViewController, completion: @escaping(() -> Void)) {
+    func logInToAccount(
+        email: String,
+        password: String,
+        viewController: UIViewController,
+        completion: @escaping(() -> Void)
+    ) {
         Auth.auth().signIn(withEmail: email, password: password) { user, error in
-
             if let error = error, user == nil {
                 let errorAlert = MyAlertManager.shared.presentTemporaryInfoAlert(
                     title: Constants.AlertAnswers.logInErrorTitle,
@@ -68,7 +77,6 @@ class FireBaseManager {
                 )
                 viewController.present(errorAlert, animated: true, completion: nil)
             } else if error == nil, user == user {
-                print("You successfully loged in \(user?.user.displayName ?? "nilName")")
                 completion()
             }
         }
